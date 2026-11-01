@@ -14,6 +14,7 @@ const router = Router();
 
 router.use('/auth', authRoutes);
 router.use('/volunteers', volunteerRoutes);
+router.use('/volunteer', volunteerRoutes);
 router.use('/organizations', organizationRoutes);
 router.use('/events', eventRoutes);
 router.use('/matching', matchingRoutes);

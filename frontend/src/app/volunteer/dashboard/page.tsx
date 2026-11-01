@@ -19,7 +19,8 @@ import {
   Printer,
   BadgeCheck,
   X,
-  FileText
+  FileText,
+  User
 } from 'lucide-react';
 
 export default function VolunteerDashboard() {
@@ -161,6 +162,14 @@ export default function VolunteerDashboard() {
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
+            <Link
+              href="/volunteer/profile"
+              className="px-5 py-3 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs border border-white/20 shadow-sm transition-all flex items-center space-x-2"
+            >
+              <User className="w-4 h-4 text-emerald-300" />
+              <span>My Profile & Skills</span>
+            </Link>
+
             <button
               onClick={() => setCertificateModalOpen(true)}
               className="px-5 py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-semibold text-xs shadow-lg shadow-amber-500/25 transition-all flex items-center space-x-2"
@@ -360,6 +369,13 @@ export default function VolunteerDashboard() {
               <Sparkles className="w-5 h-5 text-emerald-600" />
               <span>Certified Skills Taxonomy</span>
             </h2>
+            <Link
+              href="/volunteer/profile"
+              className="text-xs font-semibold text-emerald-600 hover:underline flex items-center space-x-1"
+            >
+              <span>Manage Profile & Skills</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
 
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-3">

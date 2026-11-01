@@ -44,10 +44,6 @@ export default function CreateEventPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Application in Review state
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [submittedEvent, setSubmittedEvent] = useState<any>(null);
-
   useEffect(() => {
     loadSkills();
   }, []);
@@ -115,143 +111,12 @@ export default function CreateEventPage() {
       // Submit for administrator moderation & review
       await api.submitEvent(created.id);
 
-      setSubmittedEvent(created);
-      setIsSubmitted(true);
+      // Redirect directly to organization dashboard
+      router.push('/organization/dashboard');
     } else {
       setError(res.message || 'Failed to create campaign.');
     }
   };
-
-  if (isSubmitted) {
-    return (
-      <div className="max-w-2xl mx-auto space-y-8 pb-16">
-        <button
-          onClick={() => router.push('/organization/dashboard')}
-          className="inline-flex items-center space-x-1.5 text-xs font-semibold text-slate-500 hover:text-slate-800 transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Back to Organizer Console</span>
-        </button>
-
-        {/* Application In Review Card */}
-        <div className="bg-white p-8 sm:p-10 rounded-3xl border border-slate-200 shadow-xl space-y-8 text-center">
-          <div className="space-y-3">
-            <div className="w-16 h-16 mx-auto bg-amber-100 rounded-3xl flex items-center justify-center border-2 border-amber-300 shadow-inner">
-              <Clock className="w-8 h-8 text-amber-600 animate-pulse" />
-            </div>
-
-            <div className="inline-flex items-center space-x-1.5 px-3 py-1 bg-amber-100 text-amber-900 border border-amber-300 rounded-full text-xs font-extrabold uppercase tracking-wider">
-              <span>Application Under Review</span>
-            </div>
-
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-              Campaign Submitted for Review
-            </h1>
-            <p className="text-xs sm:text-sm text-slate-600 max-w-lg mx-auto leading-relaxed">
-              Your campaign proposal has been received and is currently under administrative moderation. Once approved by the administrator, it will be published to the volunteer discovery feed.
-            </p>
-          </div>
-
-          {/* Submitted Event Details Summary */}
-          <div className="p-6 bg-slate-50 rounded-2xl border border-slate-200 text-left space-y-4">
-            <div className="flex justify-between items-start border-b border-slate-200/80 pb-3">
-              <div>
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-                  Campaign Title
-                </span>
-                <strong className="text-base text-slate-900 font-bold">
-                  {submittedEvent?.title || title}
-                </strong>
-              </div>
-              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 border border-amber-200">
-                UNDER_REVIEW
-              </span>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs">
-              <div>
-                <span className="text-slate-400 text-[10px] uppercase font-bold block">Date & Time</span>
-                <span className="text-slate-700 font-medium">
-                  {submittedEvent?.event_date || eventDate} • {submittedEvent?.start_time?.slice(0, 5) || startTime}
-                </span>
-              </div>
-              <div>
-                <span className="text-slate-400 text-[10px] uppercase font-bold block">Location</span>
-                <span className="text-slate-700 font-medium">
-                  {submittedEvent?.location_name || locationName}, {submittedEvent?.city || city}
-                </span>
-              </div>
-              <div>
-                <span className="text-slate-400 text-[10px] uppercase font-bold block">Capacity</span>
-                <span className="text-slate-700 font-medium">
-                  {submittedEvent?.volunteers_required || volunteersRequired} / {submittedEvent?.max_capacity || maxCapacity} Volunteers
-                </span>
-              </div>
-            </div>
-
-            <div className="pt-2 border-t border-slate-200/80 flex items-center space-x-2 text-xs text-emerald-800 bg-emerald-50/70 p-3 rounded-xl border border-emerald-200">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-              <span>Preliminary AI Safety Check: Verified Low Risk & Category Cleared</span>
-            </div>
-          </div>
-
-          {/* Moderation Pipeline */}
-          <div className="space-y-3 pt-2 text-left">
-            <span className="text-xs font-bold text-slate-900 uppercase tracking-wider block">
-              Approval Pipeline
-            </span>
-            <div className="space-y-2 text-xs">
-              <div className="p-3 bg-white border border-emerald-200 rounded-xl flex items-center space-x-3">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                <span className="text-slate-800 font-semibold">1. Campaign Proposal Form Submitted</span>
-              </div>
-              <div className="p-3 bg-white border border-emerald-200 rounded-xl flex items-center space-x-3">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                <span className="text-slate-800 font-semibold">2. Automated Safety & Requirements Scan</span>
-              </div>
-              <div className="p-3 bg-amber-50 border border-amber-300 rounded-xl flex items-center justify-between">
-                <div className="flex items-center space-x-3 text-amber-900 font-semibold">
-                  <Clock className="w-4 h-4 text-amber-600 animate-spin" />
-                  <span>3. Administrator Verification & Moderation</span>
-                </div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-200/70 px-2 py-0.5 rounded">
-                  In Review
-                </span>
-              </div>
-              <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl flex items-center space-x-3 text-slate-400">
-                <div className="w-4 h-4 rounded-full border-2 border-slate-300"></div>
-                <span>4. Public Volunteer Registration & Attendance Access</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-slate-100">
-            <button
-              onClick={() => {
-                setIsSubmitted(false);
-                setSubmittedEvent(null);
-                setTitle('');
-                setDescription('');
-                setLocationName('');
-                setAddress('');
-              }}
-              className="flex-1 py-3 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-all"
-            >
-              Submit Another Campaign
-            </button>
-            <button
-              onClick={() => router.push('/organization/dashboard')}
-              className="flex-1 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold shadow-md transition-all flex items-center justify-center space-x-1.5"
-            >
-              <span>Go to Organizer Console</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="max-w-3xl mx-auto space-y-8 pb-12">

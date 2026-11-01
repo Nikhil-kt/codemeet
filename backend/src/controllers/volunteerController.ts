@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { db } from '../db/store';
 import { AuthenticatedRequest } from '../middleware/authMiddleware';
 import { TrustService } from '../services/trustService';
+import { FirestoreSync } from '../db/firestoreSync';
 
 export class VolunteerController {
   private static resolveVolunteer(req: AuthenticatedRequest) {
@@ -20,6 +21,8 @@ export class VolunteerController {
       res.status(404).json({ success: false, message: 'Volunteer profile not found.' });
       return;
     }
+
+    const profile = db.profiles.find(p => p.id === vol.profile_id);
 
     const skills = db.volunteer_skills
       .filter(vs => vs.volunteer_id === vol.id)
@@ -39,6 +42,9 @@ export class VolunteerController {
       success: true,
       volunteer: {
         ...vol,
+        full_name: profile?.full_name,
+        email: profile?.email,
+        phone: profile?.phone,
         skills,
         availability,
         reliability_factors: reliability.factors
@@ -51,6 +57,12 @@ export class VolunteerController {
     if (!vol) {
       res.status(404).json({ success: false, message: 'Volunteer profile not found.' });
       return;
+    }
+
+    const profile = db.profiles.find(p => p.id === vol.profile_id);
+    if (profile) {
+      if (req.body.full_name !== undefined) profile.full_name = req.body.full_name;
+      if (req.body.phone !== undefined) profile.phone = req.body.phone;
     }
 
     const { bio, city, district, state, postal_code, latitude, longitude, location_preference_enabled, preferred_categories } = req.body;
@@ -66,7 +78,19 @@ export class VolunteerController {
     if (preferred_categories !== undefined) vol.preferred_categories = preferred_categories;
     vol.updated_at = new Date().toISOString();
 
-    res.json({ success: true, message: 'Volunteer profile updated.', volunteer: vol });
+    // Sync to Firestore
+    FirestoreSync.setDoc('volunteer_profiles', vol.id, vol).catch(() => {});
+
+    res.json({
+      success: true,
+      message: 'Volunteer profile updated successfully.',
+      volunteer: {
+        ...vol,
+        full_name: profile?.full_name,
+        email: profile?.email,
+        phone: profile?.phone
+      }
+    });
   }
 
   public static async setSkills(req: AuthenticatedRequest, res: Response): Promise<void> {
@@ -95,6 +119,9 @@ export class VolunteerController {
         created_at: new Date().toISOString()
       });
     }
+
+    // Sync to Firestore
+    FirestoreSync.setDoc('volunteer_skills', vol.id, { volunteer_id: vol.id, skills }).catch(() => {});
 
     res.json({ success: true, message: 'Skills updated successfully.' });
   }
