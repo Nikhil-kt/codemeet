@@ -179,7 +179,7 @@ export default function VolunteerProfilePage() {
   };
 
   if (loading) {
-    return <div className="py-24 text-center text-slate-400">Loading volunteer profile...</div>;
+    return <div className="py-24 text-center text-forest-300/60">Loading volunteer profile...</div>;
   }
 
   const volunteerName = currentUser?.full_name || profile?.full_name || 'Community Volunteer';
@@ -199,12 +199,12 @@ export default function VolunteerProfilePage() {
 
   return (
     <ProtectedRoute allowedRoles={['VOLUNTEER', 'TEAM_LEADER', 'ADMIN']}>
-      <div className="max-w-5xl mx-auto space-y-8 pb-16">
+      <div className="leaf-pattern max-w-5xl mx-auto space-y-6 pb-16">
         {/* Navigation & Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <button
             onClick={() => router.push('/volunteer/dashboard')}
-            className="inline-flex items-center space-x-1.5 text-xs font-semibold text-stone-400 hover:text-amber-300 transition-colors cursor-pointer"
+            className="inline-flex items-center space-x-1.5 text-xs font-semibold text-stone-400 hover:text-gold-400 transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Back to Volunteer Console</span>
@@ -213,106 +213,107 @@ export default function VolunteerProfilePage() {
           <div className="flex items-center space-x-2">
             <button
               onClick={() => setEditProfileOpen(true)}
-              className="px-4 py-2 rounded-xl bg-stone-800 hover:bg-stone-700 text-stone-200 text-xs font-semibold flex items-center space-x-1.5 border border-stone-700 shadow-sm transition-all cursor-pointer"
+              className="px-4 py-2 rounded-xl bg-forest-700/50 hover:bg-forest-700 text-stone-200 text-xs font-semibold flex items-center space-x-1.5 border border-forest-600/30 shadow-sm transition-all cursor-pointer"
             >
               <Edit3 className="w-3.5 h-3.5" />
               <span>Edit Profile Details</span>
             </button>
             <button
               onClick={() => setManageSkillsOpen(true)}
-              className="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 hover:from-amber-400 hover:to-orange-400 text-stone-950 text-xs font-bold flex items-center space-x-1.5 shadow-md shadow-amber-500/20 transition-all cursor-pointer"
+              className="px-4 py-2 rounded-xl bg-gold-400 hover:bg-gold-500 text-forest-950 text-xs font-bold flex items-center space-x-1.5 shadow-md shadow-gold-400/20 transition-all cursor-pointer"
             >
-              <Sparkles className="w-3.5 h-3.5 text-stone-950" />
+              <Sparkles className="w-3.5 h-3.5 text-forest-950" />
               <span>Manage Skills ({activeSkills.length})</span>
             </button>
           </div>
         </div>
 
         {/* Identity & Bio Card */}
-        <div className="bg-stone-900/80 backdrop-blur-xl p-8 rounded-3xl border border-stone-800/80 shadow-xl space-y-6 text-stone-100">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 pb-6 border-b border-stone-800">
+        <div className="forest-card bg-forest-900/90 backdrop-blur-xl p-8 rounded-2xl border border-forest-700/30 shadow-xl space-y-6 text-stone-100">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 pb-6 border-b border-forest-700/30">
             <div className="flex items-center space-x-4">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-amber-500 via-orange-500 to-yellow-400 text-stone-950 flex items-center justify-center font-black text-2xl shadow-lg shadow-amber-500/25">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-gold-400 via-gold-500 to-gold-400 text-forest-950 flex items-center justify-center font-black text-2xl shadow-lg shadow-gold-400/25">
                 {volunteerName.charAt(0).toUpperCase()}
               </div>
               <div className="space-y-1">
                 <div className="flex items-center space-x-2">
-                  <h1 className="text-2xl font-black text-white">{volunteerName}</h1>
-                  <span className="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/15 text-amber-300 border border-amber-500/30">
+                  <h1 className="text-2xl font-display font-bold text-stone-100">{volunteerName}</h1>
+                  <span className="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-gold-400/15 text-gold-400 border border-gold-400/30">
                     <ShieldCheck className="w-3.5 h-3.5" />
                     <span>Verified Volunteer</span>
                   </span>
                 </div>
                 <div className="flex flex-wrap items-center gap-3 text-xs text-stone-400">
                   <span className="flex items-center space-x-1">
-                    <Mail className="w-3.5 h-3.5 text-stone-500" />
+                    <Mail className="w-3.5 h-3.5 text-forest-300/60" />
                     <span>{volunteerEmail}</span>
                   </span>
                   <span>•</span>
                   <span className="flex items-center space-x-1">
-                    <Phone className="w-3.5 h-3.5 text-stone-500" />
+                    <Phone className="w-3.5 h-3.5 text-forest-300/60" />
                     <span>{volunteerPhone}</span>
                   </span>
                   <span>•</span>
                   <span className="flex items-center space-x-1">
-                    <MapPin className="w-3.5 h-3.5 text-stone-500" />
+                    <MapPin className="w-3.5 h-3.5 text-forest-300/60" />
                     <span>{profile?.city || 'Chennai'}, {profile?.state || 'Tamil Nadu'}</span>
                   </span>
                 </div>
               </div>
             </div>
 
-            <div className="flex items-center space-x-3 bg-stone-950/80 px-4 py-2.5 rounded-2xl border border-stone-800">
+            <div className="flex items-center space-x-3 bg-forest-950/80 px-4 py-2.5 rounded-xl border border-forest-700/30">
               <div className="text-right">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400 block">Trust Rating</span>
-                <span className="text-xl font-extrabold text-amber-400">{reliabilityScore}/100</span>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-forest-300/70 block">Trust Rating</span>
+                <span className="text-xl font-extrabold text-gold-400">{reliabilityScore}/100</span>
               </div>
-              <div className="w-px h-8 bg-stone-800"></div>
+              <div className="w-px h-8 bg-forest-700/30"></div>
               <div className="text-left">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400 block">Verified Hours</span>
-                <span className="text-xl font-extrabold text-white">{totalVerifiedHours} hrs</span>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-forest-300/70 block">Verified Hours</span>
+                <span className="text-xl font-extrabold text-stone-100">{totalVerifiedHours} hrs</span>
               </div>
             </div>
           </div>
 
           {/* Bio / Civic Mission Statement */}
           <div className="space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-stone-400">
-              Personal Bio & Civic Mission
+            <span className="text-xs font-semibold uppercase tracking-wider text-forest-300/70">
+              🌿 Personal Bio & Civic Mission
             </span>
-            <p className="text-sm text-stone-200 leading-relaxed font-normal bg-stone-950/70 p-4 rounded-2xl border border-stone-800/80">
+            <div className="w-12 h-0.5 bg-gold-400/60 rounded-full" />
+            <p className="text-sm text-stone-300 leading-relaxed font-normal bg-forest-950/70 p-4 rounded-xl border border-forest-700/25">
               {profile?.bio || 'Dedicated community volunteer passionate about environmental conservation, social impact initiatives, and emergency relief operations.'}
             </p>
           </div>
         </div>
 
         {/* 3-Column Highlights */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-5">
           {/* Certified Skills Box */}
-          <div className="bg-stone-900/80 p-6 rounded-3xl border border-stone-800/80 shadow-xl space-y-4">
+          <div className="forest-card bg-forest-900/90 p-6 rounded-2xl border border-forest-700/30 shadow-xl space-y-4">
             <div className="flex justify-between items-center">
-              <span className="text-xs font-bold uppercase tracking-wider text-stone-400">
-                Certified Skills ({activeSkills.length})
+              <span className="text-xs font-semibold uppercase tracking-wider text-forest-300/70">
+                🌱 Certified Skills ({activeSkills.length})
               </span>
               <button
                 onClick={() => setManageSkillsOpen(true)}
-                className="text-xs font-bold text-amber-400 hover:text-amber-300 hover:underline cursor-pointer"
+                className="text-xs font-bold text-gold-400 hover:text-gold-300 hover:underline cursor-pointer"
               >
                 + Add Skill
               </button>
             </div>
 
             {activeSkills.length === 0 ? (
-              <p className="text-xs text-stone-500 py-4 text-center">No skills added yet.</p>
+              <p className="text-xs text-stone-400 py-4 text-center">No skills added yet.</p>
             ) : (
               <div className="space-y-2">
                 {activeSkills.map((sk, idx) => (
-                  <div key={idx} className="p-3 bg-stone-950/80 rounded-xl border border-stone-800 flex justify-between items-center text-xs">
+                  <div key={idx} className="p-3 bg-forest-800/60 rounded-xl border border-forest-700/25 flex justify-between items-center text-xs">
                     <div>
-                      <strong className="text-white block">{sk.name || 'Community Service'}</strong>
+                      <strong className="text-stone-100 block">{sk.name || 'Community Service'}</strong>
                       <span className="text-[11px] text-stone-400">{sk.years_experience || 1.0} yr(s) experience</span>
                     </div>
-                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/15 text-amber-300 border border-amber-500/30">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-gold-400/15 text-gold-400 border border-gold-400/30">
                       {sk.proficiency_level}
                     </span>
                   </div>
@@ -322,53 +323,73 @@ export default function VolunteerProfilePage() {
           </div>
 
           {/* Reliability Breakdown */}
-          <div className="bg-stone-900/80 p-6 rounded-3xl border border-stone-800/80 shadow-xl space-y-4">
-            <span className="text-xs font-bold uppercase tracking-wider text-stone-400">
+          <div className="forest-card bg-forest-900/90 p-6 rounded-2xl border border-forest-700/30 shadow-xl space-y-4">
+            <span className="text-xs font-semibold uppercase tracking-wider text-forest-300/70">
               Reliability Score Factors
             </span>
-            <div className="space-y-2.5 text-xs text-stone-300">
-              <div className="flex justify-between">
-                <span>Attendance Consistency</span>
-                <strong className="text-amber-400">{factors.attendanceConsistency}%</strong>
+            <div className="space-y-3 text-xs text-stone-300">
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span>Attendance Consistency</span>
+                  <strong className="text-gold-400">{factors.attendanceConsistency}%</strong>
+                </div>
+                <div className="w-full h-1.5 bg-forest-800 rounded-full overflow-hidden">
+                  <div className="h-full bg-gold-400/70 rounded-full" style={{ width: `${factors.attendanceConsistency}%` }} />
+                </div>
               </div>
-              <div className="flex justify-between">
-                <span>Task Execution Quality</span>
-                <strong className="text-amber-400">{factors.taskCompletion}%</strong>
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span>Task Execution Quality</span>
+                  <strong className="text-gold-400">{factors.taskCompletion}%</strong>
+                </div>
+                <div className="w-full h-1.5 bg-forest-800 rounded-full overflow-hidden">
+                  <div className="h-full bg-gold-400/70 rounded-full" style={{ width: `${factors.taskCompletion}%` }} />
+                </div>
               </div>
-              <div className="flex justify-between">
-                <span>Organizer Feedback</span>
-                <strong className="text-amber-400">{factors.organizerFeedback}%</strong>
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span>Organizer Feedback</span>
+                  <strong className="text-gold-400">{factors.organizerFeedback}%</strong>
+                </div>
+                <div className="w-full h-1.5 bg-forest-800 rounded-full overflow-hidden">
+                  <div className="h-full bg-gold-400/70 rounded-full" style={{ width: `${factors.organizerFeedback}%` }} />
+                </div>
               </div>
-              <div className="flex justify-between">
-                <span>Timely Cancellation</span>
-                <strong className="text-amber-400">{factors.timelyCancellation}%</strong>
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span>Timely Cancellation</span>
+                  <strong className="text-gold-400">{factors.timelyCancellation}%</strong>
+                </div>
+                <div className="w-full h-1.5 bg-forest-800 rounded-full overflow-hidden">
+                  <div className="h-full bg-gold-400/70 rounded-full" style={{ width: `${factors.timelyCancellation}%` }} />
+                </div>
               </div>
             </div>
-            <p className="text-[11px] text-stone-500 pt-2 border-t border-stone-800">
+            <p className="text-[11px] text-stone-400 pt-2 border-t border-forest-700/25">
               Calculated dynamically via tamper-proof QR check-ins and organizer performance reviews.
             </p>
           </div>
 
           {/* Official Certificates & Credentials */}
-          <div className="bg-stone-900/80 p-6 rounded-3xl border border-stone-800/80 shadow-xl space-y-4">
-            <span className="text-xs font-bold uppercase tracking-wider text-stone-400">
+          <div className="forest-card bg-forest-900/90 p-6 rounded-2xl border border-forest-700/30 shadow-xl space-y-4">
+            <span className="text-xs font-semibold uppercase tracking-wider text-forest-300/70">
               Certificates Earned ({myCertificates.length})
             </span>
             {myCertificates.length === 0 ? (
-              <p className="text-xs text-stone-500 py-4 text-center">
+              <p className="text-xs text-stone-400 py-4 text-center">
                 Check in to an event to receive your first Gemini AI-endorsed certificate!
               </p>
             ) : (
               <div className="space-y-2">
                 {myCertificates.map((cert) => (
-                  <div key={cert.id} className="p-3 bg-amber-50/60 rounded-xl border border-amber-200/70 space-y-1 text-xs">
+                  <div key={cert.id} className="p-3 bg-forest-800/60 rounded-xl border border-forest-700/25 space-y-1 text-xs">
                     <div className="flex justify-between items-start">
-                      <strong className="text-slate-900 font-bold">{cert.event_title}</strong>
-                      <span className="text-[10px] font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">
+                      <strong className="text-stone-100 font-bold">{cert.event_title}</strong>
+                      <span className="text-[10px] font-bold text-gold-400 bg-gold-400/15 px-2 py-0.5 rounded border border-gold-400/30">
                         4.0 hrs
                       </span>
                     </div>
-                    <div className="text-[10px] text-slate-500 font-mono">
+                    <div className="text-[10px] text-stone-400 font-mono">
                       ID: {cert.certificate_number || cert.id}
                     </div>
                   </div>
@@ -377,7 +398,7 @@ export default function VolunteerProfilePage() {
             )}
             <Link
               href="/volunteer/dashboard"
-              className="block w-full py-2 rounded-xl text-center text-xs font-semibold bg-slate-900 text-white hover:bg-slate-800 transition-all"
+              className="block w-full py-2 rounded-xl text-center text-xs font-semibold bg-forest-800 text-stone-200 hover:bg-forest-700 border border-forest-600/30 transition-all"
             >
               Open Certificate Viewer
             </Link>
@@ -385,28 +406,28 @@ export default function VolunteerProfilePage() {
         </div>
 
         {/* Participations & Attendance Log Table */}
-        <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
-          <div className="p-6 border-b border-slate-100 flex justify-between items-center">
+        <div className="forest-card bg-forest-900/90 rounded-2xl border border-forest-700/30 shadow-xl overflow-hidden">
+          <div className="p-6 border-b border-forest-700/25 flex justify-between items-center">
             <div>
-              <h2 className="text-lg font-bold text-slate-900">Campaign Participation Record</h2>
-              <p className="text-xs text-slate-500 mt-0.5">Comprehensive audit log of registered campaigns and verified check-in status</p>
+              <h2 className="text-lg font-bold text-stone-100">Campaign Participation Record</h2>
+              <p className="text-xs text-stone-400 mt-0.5">Comprehensive audit log of registered campaigns and verified check-in status</p>
             </div>
-            <span className="text-xs font-bold text-slate-700 bg-slate-100 px-3 py-1 rounded-full">
+            <span className="text-xs font-bold text-gold-400 bg-gold-400/15 px-3 py-1 rounded-full border border-gold-400/30">
               {allEvents.length} Campaigns Registered
             </span>
           </div>
 
           {allEvents.length === 0 ? (
-            <div className="p-12 text-center text-xs text-slate-400">
+            <div className="p-12 text-center text-xs text-stone-400">
               No participation records found. Explore open campaigns to start volunteering!
             </div>
           ) : (
-            <div className="divide-y divide-slate-100">
+            <div className="divide-y divide-forest-700/20">
               {allEvents.map((ev: any) => (
-                <div key={ev.registration_id} className="p-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 hover:bg-slate-50/50 transition-colors">
+                <div key={ev.registration_id} className="p-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 hover:bg-forest-800/40 transition-colors">
                   <div className="space-y-1">
-                    <strong className="text-sm font-bold text-slate-900">{ev.event_title}</strong>
-                    <div className="flex items-center space-x-3 text-xs text-slate-500">
+                    <strong className="text-sm font-bold text-stone-100">{ev.event_title}</strong>
+                    <div className="flex items-center space-x-3 text-xs text-stone-400">
                       <span>{ev.event_date}</span>
                       <span>•</span>
                       <span>{ev.city}</span>
@@ -416,16 +437,16 @@ export default function VolunteerProfilePage() {
                   <div className="flex items-center space-x-3">
                     <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold ${
                       ev.registration_status === 'CONFIRMED'
-                        ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
-                        : 'bg-amber-50 text-amber-800 border border-amber-200'
+                        ? 'bg-forest-400/15 text-forest-300 border border-forest-400/30'
+                        : 'bg-gold-400/15 text-gold-400 border border-gold-400/30'
                     }`}>
                       {ev.registration_status}
                     </span>
 
                     <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold ${
                       ev.attendance_status === 'PRESENT'
-                        ? 'bg-blue-100 text-blue-800 border border-blue-200'
-                        : 'bg-slate-100 text-slate-600'
+                        ? 'bg-forest-400/15 text-forest-300 border border-forest-400/30'
+                        : 'bg-forest-800/60 text-stone-400'
                     }`}>
                       {ev.attendance_status === 'PRESENT' ? '✓ Verified Present' : 'Registered'}
                     </span>
@@ -438,8 +459,8 @@ export default function VolunteerProfilePage() {
 
         {/* Modal: Edit Personal Profile */}
         {editProfileOpen && (
-          <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
-            <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-6 shadow-2xl border border-slate-100">
+          <div className="fixed inset-0 z-50 bg-forest-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+            <div className="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 space-y-6 shadow-2xl border border-slate-100">
               <div className="flex justify-between items-start border-b border-slate-100 pb-4">
                 <div>
                   <h3 className="text-lg font-bold text-slate-900">Edit Volunteer Profile</h3>
@@ -454,8 +475,8 @@ export default function VolunteerProfilePage() {
               </div>
 
               {profileSuccessMsg && (
-                <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl text-xs flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                <div className="p-3 bg-forest-50 border border-forest-200 text-forest-800 rounded-xl text-xs flex items-center space-x-2">
+                  <CheckCircle2 className="w-4 h-4 text-forest-600" />
                   <span>{profileSuccessMsg}</span>
                 </div>
               )}
@@ -468,7 +489,7 @@ export default function VolunteerProfilePage() {
                     required
                     value={fullNameInput}
                     onChange={e => setFullNameInput(e.target.value)}
-                    className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-forest-500"
                   />
                 </div>
 
@@ -479,7 +500,7 @@ export default function VolunteerProfilePage() {
                       type="text"
                       value={phoneInput}
                       onChange={e => setPhoneInput(e.target.value)}
-                      className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-forest-500"
                     />
                   </div>
                   <div>
@@ -488,7 +509,7 @@ export default function VolunteerProfilePage() {
                       type="text"
                       value={cityInput}
                       onChange={e => setCityInput(e.target.value)}
-                      className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-forest-500"
                     />
                   </div>
                 </div>
@@ -503,7 +524,7 @@ export default function VolunteerProfilePage() {
                         setDistrictInput(e.target.value);
                         setStateInput(e.target.value);
                       }}
-                      className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-forest-500"
                     />
                   </div>
                   <div>
@@ -512,7 +533,7 @@ export default function VolunteerProfilePage() {
                       type="text"
                       value={postalCodeInput}
                       onChange={e => setPostalCodeInput(e.target.value)}
-                      className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-forest-500"
                     />
                   </div>
                 </div>
@@ -523,7 +544,7 @@ export default function VolunteerProfilePage() {
                     rows={3}
                     value={bioInput}
                     onChange={e => setBioInput(e.target.value)}
-                    className="w-full p-3 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    className="w-full p-3 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-forest-500"
                     placeholder="Tell organizations about your volunteer passions and skills..."
                   />
                 </div>
@@ -532,14 +553,14 @@ export default function VolunteerProfilePage() {
                   <button
                     type="button"
                     onClick={() => setEditProfileOpen(false)}
-                    className="flex-1 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50"
+                    className="flex-1 py-2.5 rounded-xl border border-stone-200 text-xs font-semibold text-stone-600 hover:bg-slate-50"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={savingProfile}
-                    className="flex-1 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition-all flex items-center justify-center space-x-1.5"
+                    className="flex-1 py-2.5 rounded-xl bg-forest-800 hover:bg-forest-700 text-white text-xs font-semibold transition-all flex items-center justify-center space-x-1.5"
                   >
                     {savingProfile ? <span>Saving...</span> : <span>Save Profile</span>}
                   </button>
@@ -551,8 +572,8 @@ export default function VolunteerProfilePage() {
 
         {/* Modal: Manage Skills */}
         {manageSkillsOpen && (
-          <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
-            <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-6 shadow-2xl border border-slate-100 max-h-[90vh] overflow-y-auto">
+          <div className="fixed inset-0 z-50 bg-forest-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+            <div className="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 space-y-6 shadow-2xl border border-slate-100 max-h-[90vh] overflow-y-auto">
               <div className="flex justify-between items-start border-b border-slate-100 pb-4">
                 <div>
                   <h3 className="text-lg font-bold text-slate-900">Manage Volunteer Skills</h3>
@@ -569,14 +590,14 @@ export default function VolunteerProfilePage() {
               </div>
 
               {skillsSuccessMsg && (
-                <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl text-xs flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                <div className="p-3 bg-forest-50 border border-forest-200 text-forest-800 rounded-xl text-xs flex items-center space-x-2">
+                  <CheckCircle2 className="w-4 h-4 text-forest-600" />
                   <span>{skillsSuccessMsg}</span>
                 </div>
               )}
 
               {/* Add New Skill Picker */}
-              <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 space-y-3">
+              <div className="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-3">
                 <span className="text-xs font-bold text-slate-800 uppercase tracking-wider block">
                   Select Skill from Catalog
                 </span>
@@ -584,7 +605,7 @@ export default function VolunteerProfilePage() {
                   <select
                     value={selectedCatalogSkill}
                     onChange={e => setSelectedCatalogSkill(e.target.value)}
-                    className="px-3 py-2 text-xs rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    className="px-3 py-2 text-xs rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-forest-500"
                   >
                     {skillsCatalog.map(sk => (
                       <option key={sk.id} value={sk.id}>
@@ -596,7 +617,7 @@ export default function VolunteerProfilePage() {
                   <select
                     value={selectedProficiency}
                     onChange={e => setSelectedProficiency(e.target.value)}
-                    className="px-3 py-2 text-xs rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    className="px-3 py-2 text-xs rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-forest-500"
                   >
                     <option value="BEGINNER">BEGINNER</option>
                     <option value="INTERMEDIATE">INTERMEDIATE</option>
@@ -608,7 +629,7 @@ export default function VolunteerProfilePage() {
                 <button
                   type="button"
                   onClick={handleAddSkill}
-                  className="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-xl flex items-center justify-center space-x-1.5 transition-all shadow-sm"
+                  className="w-full py-2 bg-forest-800 hover:bg-forest-700 text-white text-xs font-semibold rounded-xl flex items-center justify-center space-x-1.5 transition-all shadow-sm"
                 >
                   <Plus className="w-4 h-4" />
                   <span>Add Skill to Profile</span>
@@ -648,7 +669,7 @@ export default function VolunteerProfilePage() {
                 <button
                   type="button"
                   onClick={() => setManageSkillsOpen(false)}
-                  className="flex-1 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50"
+                  className="flex-1 py-2.5 rounded-xl border border-stone-200 text-xs font-semibold text-stone-600 hover:bg-slate-50"
                 >
                   Close
                 </button>
@@ -656,7 +677,7 @@ export default function VolunteerProfilePage() {
                   type="button"
                   disabled={savingSkills}
                   onClick={handleSaveSkills}
-                  className="flex-1 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition-all flex items-center justify-center space-x-1.5"
+                  className="flex-1 py-2.5 rounded-xl bg-forest-800 hover:bg-forest-700 text-white text-xs font-semibold transition-all flex items-center justify-center space-x-1.5"
                 >
                   {savingSkills ? <span>Saving...</span> : <span>Save Skills ({activeSkills.length})</span>}
                 </button>
@@ -668,4 +689,3 @@ export default function VolunteerProfilePage() {
     </ProtectedRoute>
   );
 }
-

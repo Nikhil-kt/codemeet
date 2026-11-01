@@ -42,3 +42,40 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* Volunteer forest theme utilities */
+.forest-glow {
+  box-shadow: 0 0 30px -8px rgba(30, 138, 79, 0.3);
+}
+
+.gold-text-gradient {
+  background: linear-gradient(135deg, #fde047 0%, #f5c518 50%, #e8b931 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.forest-card {
+  background: linear-gradient(165deg, #0b3d22 0%, #082b18 100%);
+  border: 1px solid rgba(107, 200, 144, 0.12);
+}
+
+.forest-card-hover:hover {
+  border-color: rgba(107, 200, 144, 0.25);
+  box-shadow: 0 4px 20px -6px rgba(30, 138, 79, 0.2);
+}
+
+/* Organic blob decoration */
+.blob-shape {
+  border-radius: 60% 40% 50% 70% / 50% 60% 40% 60%;
+}
+
+/* Progress bar for reliability */
+.progress-forest {
+  background: linear-gradient(90deg, #166e3e, #38a86a, #f5c518);
+}
+
+/* Subtle leaf pattern overlay */
+.leaf-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 C35 15, 40 20, 30 35 C20 20, 25 15, 30 5Z' fill='rgba(107,200,144,0.03)'/%3E%3C/svg%3E");
+  background-size: 60px 60px;
+}
