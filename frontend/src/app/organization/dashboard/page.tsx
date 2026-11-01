@@ -81,7 +81,10 @@ export default function OrganizationDashboard() {
     const res = await api.matchVolunteers(eventId);
     setMatchingLoading(false);
     if (res.success && res.data) {
-      setMatches(res.data.matches || []);
+      const matchArr = res.data.matches || (Array.isArray(res.data) ? res.data : []);
+      setMatches(matchArr);
+    } else {
+      setMatches([]);
     }
   };
 
@@ -313,17 +316,78 @@ export default function OrganizationDashboard() {
                         </div>
                       ) : (
                         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
-                          {matches.map(m => (
-                            <div key={m.volunteer_id} className="p-4 bg-slate-50 border border-slate-100 rounded-xl space-y-2 text-xs">
-                              <div className="flex justify-between items-start">
-                                <span className="font-bold text-slate-900">{m.volunteer_name}</span>
-                                <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">
-                                  {m.overall_fit_score}% Fit
-                                </span>
+                          {matches.map(m => {
+                            const fitScore = m.overall_fit_score || m.match_score || 0;
+                            const isHighMatch = fitScore >= 85;
+                            return (
+                              <div key={m.volunteer_id} className="p-4 bg-slate-50 border border-slate-200/80 rounded-2xl space-y-3 text-xs shadow-2xs hover:shadow-sm transition-all">
+                                <div className="flex justify-between items-start gap-2">
+                                  <div>
+                                    <div className="font-bold text-slate-900 text-sm flex items-center space-x-1.5">
+                                      <span>{m.volunteer_name || 'Volunteer'}</span>
+                                    </div>
+                                    {m.volunteer_city && (
+                                      <span className="text-[11px] text-slate-400">
+                                        📍 {m.volunteer_city}
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div className="flex flex-col items-end gap-1">
+                                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-black tracking-wide ${
+                                      isHighMatch ? 'bg-emerald-100 text-emerald-800' : 'bg-indigo-100 text-indigo-800'
+                                    }`}>
+                                      {fitScore}% Fit
+                                    </span>
+                                    {m.recommendation_category && (
+                                      <span className="text-[9px] uppercase font-bold text-slate-400">
+                                        {m.recommendation_category.replace(/_/g, ' ')}
+                                      </span>
+                                    )}
+                                  </div>
+                                </div>
+
+                                {/* Matched Certified Skills Tags */}
+                                {m.matched_skills && m.matched_skills.length > 0 && (
+                                  <div className="space-y-1">
+                                    <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">
+                                      Matched Certified Skills
+                                    </span>
+                                    <div className="flex flex-wrap gap-1">
+                                      {m.matched_skills.map((skill: string, idx: number) => (
+                                        <span
+                                          key={idx}
+                                          className="px-2 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-md text-[10px] font-bold flex items-center space-x-1"
+                                        >
+                                          <span>✓</span>
+                                          <span>{skill}</span>
+                                        </span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+
+                                {/* Multi-Factor Match Explanation */}
+                                <div className="space-y-1 pt-2 border-t border-slate-200/60">
+                                  {Array.isArray(m.explanation) ? (
+                                    m.explanation.map((exp: string, idx: number) => (
+                                      <div key={idx} className="flex items-start space-x-1.5 text-[11px] text-slate-600">
+                                        <span className="text-emerald-500 font-bold leading-none mt-0.5">•</span>
+                                        <span className="leading-tight">{exp}</span>
+                                      </div>
+                                    ))
+                                  ) : (
+                                    <div className="text-slate-500 text-[11px]">{m.explanation}</div>
+                                  )}
+                                </div>
+
+                                {/* Metrics strip */}
+                                <div className="flex items-center justify-between text-[10px] text-slate-400 pt-1 border-t border-slate-100">
+                                  <span>Reliability: <strong className="text-slate-600">{m.reliability_score || 90}/100</strong></span>
+                                  <span>Skill Fit: <strong className="text-slate-600">{m.skill_score || 85}%</strong></span>
+                                </div>
                               </div>
-                              <div className="text-slate-500 text-[11px]">{m.explanation}</div>
-                            </div>
-                          ))}
+                            );
+                          })}
                         </div>
                       )}
                     </div>

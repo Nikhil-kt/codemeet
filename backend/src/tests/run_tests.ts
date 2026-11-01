@@ -77,6 +77,45 @@ async function runTests() {
     assert(!!rahul, 'Volunteer Rahul profile identified');
     assert(rahul!.reliability_score >= 80, 'Volunteer historical reliability is above baseline');
 
+    // Test Tree Planting Event AI Matching
+    const { MLClientService: MLTestClient } = await import('../services/mlClientService');
+    const treePlantingEvent = {
+      id: 'e-tree-1',
+      title: 'tree planting',
+      description: 'Community afforestation and sapling plantation drive',
+      category: 'ENVIRONMENTAL',
+      city: 'bangalore, benglore',
+      event_date: '2026-11-20',
+      requirements: []
+    };
+    const candidates = db.volunteer_profiles.map(vol => {
+      const vSkills = db.volunteer_skills
+        .filter(vs => vs.volunteer_id === vol.id)
+        .map(vs => {
+          const s = db.skills.find(sk => sk.id === vs.skill_id);
+          return {
+            skill_id: vs.skill_id,
+            name: s?.name || '',
+            category: s?.category || '',
+            proficiency: vs.proficiency_level,
+            years_experience: vs.years_experience
+          };
+        });
+      return {
+        id: vol.id,
+        skills: vSkills,
+        city: vol.city,
+        reliability_score: vol.reliability_score,
+        total_hours_volunteered: vol.total_hours_volunteered
+      };
+    });
+    const matchResults = await MLTestClient.matchEventVolunteers(treePlantingEvent, candidates);
+    const topMatch = matchResults[0];
+    assert(topMatch?.volunteer_id === rahul!.id, 'Volunteer Rahul with "Tree Planting" skill is ranked #1 candidate');
+    assert(topMatch?.matched_skills?.includes('Tree Planting'), 'AI Match identifies "Tree Planting" as matched skill');
+    assert(topMatch?.match_score >= 85, 'Fit score is in high recommendation tier (>= 85%)');
+    assert(topMatch?.explanation?.some((exp: string) => exp.includes('Tree Planting')), 'AI Explanation cites certified "Tree Planting" skill');
+
     // 8. Event Registration & Skill Matching
     console.log('[Step 8: Skill Matching & Concurrency-Safe Volunteer Registration]');
     const reg = db.event_registrations.find(r => r.event_id === event!.id && r.volunteer_id === rahul!.id);

@@ -33,6 +33,8 @@ export class MatchingController {
       const eventPayload = {
         id: event.id,
         title: event.title,
+        description: event.description,
+        category: event.category,
         city: event.city,
         latitude: event.latitude,
         longitude: event.longitude,
@@ -51,6 +53,7 @@ export class MatchingController {
             return {
               skill_id: vs.skill_id,
               name: s?.name || '',
+              category: s?.category || '',
               proficiency: vs.proficiency_level,
               years_experience: vs.years_experience
             };
@@ -71,7 +74,8 @@ export class MatchingController {
           total_hours_volunteered: vol.total_hours_volunteered,
           reliability_score: vol.reliability_score,
           is_provisional: vol.is_provisional,
-          location_preference_enabled: vol.location_preference_enabled
+          location_preference_enabled: vol.location_preference_enabled,
+          preferred_categories: vol.preferred_categories || []
         };
       });
 
@@ -109,8 +113,12 @@ export class MatchingController {
 
         enrichedMatches.push({
           ...record,
+          overall_fit_score: m.overall_fit_score || m.match_score,
           volunteer_name: volRecord?.full_name,
           volunteer_email: volRecord?.email,
+          volunteer_city: volRecord?.city,
+          matched_skills: m.matched_skills || [],
+          skills: volRecord?.skills || [],
           distance_km: m.distance_km
         });
       }

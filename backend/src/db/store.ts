@@ -155,6 +155,7 @@ export class MemoryStore {
     this.volunteer_skills = [
       { id: uuidv4(), volunteer_id: 'd0000000-0000-0000-0000-000000000001', skill_id: 'a0000000-0000-0000-0000-000000000003', proficiency_level: 'ADVANCED', years_experience: 3.0 },
       { id: uuidv4(), volunteer_id: 'd0000000-0000-0000-0000-000000000001', skill_id: 'a0000000-0000-0000-0000-000000000002', proficiency_level: 'EXPERT', years_experience: 4.0 },
+      { id: uuidv4(), volunteer_id: 'd0000000-0000-0000-0000-000000000001', skill_id: 'a0000000-0000-0000-0000-000000000001', proficiency_level: 'INTERMEDIATE', years_experience: 1.0 },
       { id: uuidv4(), volunteer_id: 'd0000000-0000-0000-0000-000000000002', skill_id: 'a0000000-0000-0000-0000-000000000011', proficiency_level: 'ADVANCED', years_experience: 2.0 },
       { id: uuidv4(), volunteer_id: 'd0000000-0000-0000-0000-000000000002', skill_id: 'a0000000-0000-0000-0000-000000000008', proficiency_level: 'BEGINNER', years_experience: 1.0 }
     ];
