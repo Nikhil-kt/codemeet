@@ -67,18 +67,18 @@ export default function RegisterPage() {
 
   return (
     <div className="max-w-xl mx-auto py-8">
-      <div className="bg-stone-900/85 backdrop-blur-2xl p-8 rounded-3xl border border-amber-500/20 shadow-2xl shadow-black/80 space-y-6 text-stone-100">
+      <div className="bg-white p-8 rounded-3xl border border-[#FED7AA] shadow-sm space-y-6 text-[#431407]">
         <div className="text-center space-y-2">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-amber-500/15 border border-amber-400/30 text-amber-400 mb-1 shadow-inner">
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-[#FFEDD5] border border-[#FED7AA] text-[#F97316] mb-1 shadow-xs">
             <Shield className="w-6 h-6 stroke-[2.5]" />
           </div>
-          <h1 className="text-2xl font-bold tracking-tight text-white">Create ImpactLink Account</h1>
-          <p className="text-xs text-stone-400">Join the Verified Civic Network with Role-Based Profiles</p>
+          <h1 className="text-2xl font-bold tracking-tight text-[#7C2D12]">Create ImpactLink Account</h1>
+          <p className="text-xs text-[#78716C]">Join the Verified Civic Network with Role-Based Profiles</p>
         </div>
 
         {error && (
-          <div className="p-3 bg-rose-500/15 border border-rose-400/30 rounded-2xl text-rose-300 text-xs flex items-center space-x-2">
-            <AlertCircle className="w-4 h-4 shrink-0 text-rose-400" />
+          <div className="p-3 bg-rose-50 border border-rose-200 rounded-2xl text-rose-700 text-xs flex items-center space-x-2">
+            <AlertCircle className="w-4 h-4 shrink-0 text-rose-600" />
             <span>{error}</span>
           </div>
         )}
@@ -88,63 +88,63 @@ export default function RegisterPage() {
           <button
             type="button"
             onClick={() => setRole('VOLUNTEER')}
-            className={`p-3 rounded-2xl border text-left transition-all ${
+            className={`p-3 rounded-2xl border text-left transition-all cursor-pointer ${
               role === 'VOLUNTEER'
-                ? 'border-amber-500 bg-amber-500/15 ring-2 ring-amber-500/30'
-                : 'border-stone-800 bg-stone-800/40 hover:border-stone-700'
+                ? 'border-[#F97316] bg-[#FFEDD5] ring-2 ring-[#F97316]/30'
+                : 'border-[#FED7AA] bg-white hover:bg-[#FFEDD5]/40'
             }`}
           >
-            <User className={`w-5 h-5 mb-1 ${role === 'VOLUNTEER' ? 'text-amber-400' : 'text-stone-400'}`} />
-            <div className={`font-bold text-xs ${role === 'VOLUNTEER' ? 'text-amber-300' : 'text-stone-200'}`}>Volunteer</div>
-            <div className="text-[10px] text-stone-400">Participate</div>
+            <User className={`w-5 h-5 mb-1 ${role === 'VOLUNTEER' ? 'text-[#F97316]' : 'text-[#78716C]'}`} />
+            <div className={`font-bold text-xs ${role === 'VOLUNTEER' ? 'text-[#7C2D12]' : 'text-[#431407]'}`}>Volunteer</div>
+            <div className="text-[10px] text-[#78716C]">Participate</div>
           </button>
 
           <button
             type="button"
             onClick={() => setRole('ORGANIZATION')}
-            className={`p-3 rounded-2xl border text-left transition-all ${
+            className={`p-3 rounded-2xl border text-left transition-all cursor-pointer ${
               role === 'ORGANIZATION'
-                ? 'border-amber-500 bg-amber-500/15 ring-2 ring-amber-500/30'
-                : 'border-stone-800 bg-stone-800/40 hover:border-stone-700'
+                ? 'border-[#F97316] bg-[#FFEDD5] ring-2 ring-[#F97316]/30'
+                : 'border-[#FED7AA] bg-white hover:bg-[#FFEDD5]/40'
             }`}
           >
-            <Building2 className={`w-5 h-5 mb-1 ${role === 'ORGANIZATION' ? 'text-amber-400' : 'text-stone-400'}`} />
-            <div className={`font-bold text-xs ${role === 'ORGANIZATION' ? 'text-amber-300' : 'text-stone-200'}`}>Organizer</div>
-            <div className="text-[10px] text-stone-400">Host events</div>
+            <Building2 className={`w-5 h-5 mb-1 ${role === 'ORGANIZATION' ? 'text-[#F97316]' : 'text-[#78716C]'}`} />
+            <div className={`font-bold text-xs ${role === 'ORGANIZATION' ? 'text-[#7C2D12]' : 'text-[#431407]'}`}>Organizer</div>
+            <div className="text-[10px] text-[#78716C]">Host events</div>
           </button>
 
           <button
             type="button"
             onClick={() => setRole('TEAM_LEADER')}
-            className={`p-3 rounded-2xl border text-left transition-all ${
+            className={`p-3 rounded-2xl border text-left transition-all cursor-pointer ${
               role === 'TEAM_LEADER'
-                ? 'border-amber-500 bg-amber-500/15 ring-2 ring-amber-500/30'
-                : 'border-stone-800 bg-stone-800/40 hover:border-stone-700'
+                ? 'border-[#F97316] bg-[#FFEDD5] ring-2 ring-[#F97316]/30'
+                : 'border-[#FED7AA] bg-white hover:bg-[#FFEDD5]/40'
             }`}
           >
-            <Users className={`w-5 h-5 mb-1 ${role === 'TEAM_LEADER' ? 'text-amber-400' : 'text-stone-400'}`} />
-            <div className={`font-bold text-xs ${role === 'TEAM_LEADER' ? 'text-amber-300' : 'text-stone-200'}`}>Team Leader</div>
-            <div className="text-[10px] text-stone-400">Lead teams</div>
+            <Users className={`w-5 h-5 mb-1 ${role === 'TEAM_LEADER' ? 'text-[#F97316]' : 'text-[#78716C]'}`} />
+            <div className={`font-bold text-xs ${role === 'TEAM_LEADER' ? 'text-[#7C2D12]' : 'text-[#431407]'}`}>Team Leader</div>
+            <div className="text-[10px] text-[#78716C]">Lead teams</div>
           </button>
 
           <button
             type="button"
             onClick={() => setRole('ADMIN')}
-            className={`p-3 rounded-2xl border text-left transition-all ${
+            className={`p-3 rounded-2xl border text-left transition-all cursor-pointer ${
               role === 'ADMIN'
-                ? 'border-amber-500 bg-amber-500/15 ring-2 ring-amber-500/30'
-                : 'border-stone-800 bg-stone-800/40 hover:border-stone-700'
+                ? 'border-[#F97316] bg-[#FFEDD5] ring-2 ring-[#F97316]/30'
+                : 'border-[#FED7AA] bg-white hover:bg-[#FFEDD5]/40'
             }`}
           >
-            <ShieldAlert className={`w-5 h-5 mb-1 ${role === 'ADMIN' ? 'text-amber-400' : 'text-stone-400'}`} />
-            <div className={`font-bold text-xs ${role === 'ADMIN' ? 'text-amber-300' : 'text-stone-200'}`}>Admin</div>
-            <div className="text-[10px] text-stone-400">Governance</div>
+            <ShieldAlert className={`w-5 h-5 mb-1 ${role === 'ADMIN' ? 'text-[#F97316]' : 'text-[#78716C]'}`} />
+            <div className={`font-bold text-xs ${role === 'ADMIN' ? 'text-[#7C2D12]' : 'text-[#431407]'}`}>Admin</div>
+            <div className="text-[10px] text-[#78716C]">Governance</div>
           </button>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-xs font-semibold text-stone-300 mb-1.5">
+            <label className="block text-xs font-semibold text-[#7C2D12] mb-1.5">
               {role === 'ORGANIZATION' ? 'Authorized Representative Name' : 'Full Name'}
             </label>
             <input
@@ -152,7 +152,7 @@ export default function RegisterPage() {
               required
               value={fullName}
               onChange={e => setFullName(e.target.value)}
-              className="w-full px-3.5 py-2.5 rounded-xl bg-stone-800/90 border border-stone-700/80 text-white placeholder-stone-500 text-xs focus:outline-none focus:ring-2 focus:ring-amber-400"
+              className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-[#FED7AA] text-[#431407] placeholder-[#78716C] text-xs focus:outline-none focus:ring-2 focus:ring-[#F97316]"
               placeholder="e.g. Ananya Sharma"
             />
           </div>
@@ -160,23 +160,23 @@ export default function RegisterPage() {
           {role === 'ORGANIZATION' && (
             <>
               <div>
-                <label className="block text-xs font-semibold text-stone-300 mb-1.5">Organization Name</label>
+                <label className="block text-xs font-semibold text-[#7C2D12] mb-1.5">Organization Name</label>
                 <input
                   type="text"
                   required
                   value={orgName}
                   onChange={e => setOrgName(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-stone-800/90 border border-stone-700/80 text-white placeholder-stone-500 text-xs focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-[#FED7AA] text-[#431407] placeholder-[#78716C] text-xs focus:outline-none focus:ring-2 focus:ring-[#F97316]"
                   placeholder="e.g. Green Earth Trust"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-stone-300 mb-1.5">Organization Legal Category</label>
+                <label className="block text-xs font-semibold text-[#7C2D12] mb-1.5">Organization Legal Category</label>
                 <select
                   value={orgCategory}
                   onChange={e => setOrgCategory(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-stone-800/90 border border-stone-700/80 text-white text-xs focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-[#FED7AA] text-[#431407] text-xs focus:outline-none focus:ring-2 focus:ring-[#F97316]"
                 >
                   <option value="NGO">NGO / Nonprofit Organization</option>
                   <option value="EDUCATIONAL_INSTITUTION">College / University</option>
@@ -191,24 +191,24 @@ export default function RegisterPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-stone-300 mb-1.5">Email Address</label>
+              <label className="block text-xs font-semibold text-[#7C2D12] mb-1.5">Email Address</label>
               <input
                 type="email"
                 required
                 value={email}
                 onChange={e => setEmail(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-stone-800/90 border border-stone-700/80 text-white placeholder-stone-500 text-xs focus:outline-none focus:ring-2 focus:ring-amber-400"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-[#FED7AA] text-[#431407] placeholder-[#78716C] text-xs focus:outline-none focus:ring-2 focus:ring-[#F97316]"
                 placeholder="contact@example.org"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-stone-300 mb-1.5">Mobile / WhatsApp</label>
+              <label className="block text-xs font-semibold text-[#7C2D12] mb-1.5">Mobile / WhatsApp</label>
               <input
                 type="tel"
                 required
                 value={phone}
                 onChange={e => setPhone(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-stone-800/90 border border-stone-700/80 text-white placeholder-stone-500 text-xs focus:outline-none focus:ring-2 focus:ring-amber-400"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-[#FED7AA] text-[#431407] placeholder-[#78716C] text-xs focus:outline-none focus:ring-2 focus:ring-[#F97316]"
                 placeholder="+91 98765 43210"
               />
             </div>
@@ -216,24 +216,24 @@ export default function RegisterPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-stone-300 mb-1.5">City / Region</label>
+              <label className="block text-xs font-semibold text-[#7C2D12] mb-1.5">City / Region</label>
               <input
                 type="text"
                 required
                 value={city}
                 onChange={e => setCity(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-stone-800/90 border border-stone-700/80 text-white placeholder-stone-500 text-xs focus:outline-none focus:ring-2 focus:ring-amber-400"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-[#FED7AA] text-[#431407] placeholder-[#78716C] text-xs focus:outline-none focus:ring-2 focus:ring-[#F97316]"
                 placeholder="e.g. Chennai"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-stone-300 mb-1.5">Password</label>
+              <label className="block text-xs font-semibold text-[#7C2D12] mb-1.5">Password</label>
               <input
                 type="password"
                 required
                 value={password}
                 onChange={e => setPassword(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-stone-800/90 border border-stone-700/80 text-white placeholder-stone-500 text-xs focus:outline-none focus:ring-2 focus:ring-amber-400"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-[#FED7AA] text-[#431407] placeholder-[#78716C] text-xs focus:outline-none focus:ring-2 focus:ring-[#F97316]"
                 placeholder="Min 6 characters"
               />
             </div>
@@ -242,16 +242,16 @@ export default function RegisterPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 hover:from-amber-400 hover:to-orange-400 text-stone-950 font-bold text-xs shadow-lg shadow-amber-500/25 transition-all flex items-center justify-center space-x-2 disabled:opacity-50 cursor-pointer"
+            className="w-full py-3.5 rounded-xl bg-[#F97316] hover:bg-[#EA580C] text-white font-bold text-xs shadow-md shadow-orange-500/25 transition-all flex items-center justify-center space-x-2 disabled:opacity-50 cursor-pointer"
           >
             <span>{loading ? 'Creating account in Firebase...' : 'Create Account'}</span>
-            <ArrowRight className="w-4 h-4 text-stone-950" />
+            <ArrowRight className="w-4 h-4 text-white" />
           </button>
         </form>
 
-        <div className="text-center text-xs text-stone-400 pt-2 border-t border-stone-800">
+        <div className="text-center text-xs text-[#78716C] pt-2 border-t border-[#FED7AA]">
           Already registered?{' '}
-          <Link href="/login" className="text-amber-400 font-semibold hover:text-amber-300 hover:underline">
+          <Link href="/login" className="text-[#F97316] font-semibold hover:text-[#EA580C] hover:underline">
             Sign in
           </Link>
         </div>

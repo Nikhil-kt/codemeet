@@ -122,22 +122,22 @@ export default function CreateEventPage() {
     <div className="max-w-3xl mx-auto space-y-8 pb-12">
       <button
         onClick={() => router.back()}
-        className="inline-flex items-center space-x-1.5 text-xs font-semibold text-stone-400 hover:text-amber-300 transition-colors cursor-pointer"
+        className="inline-flex items-center space-x-1.5 text-xs font-semibold text-[#78716C] hover:text-[#9A3412] transition-colors cursor-pointer"
       >
         <ArrowLeft className="w-4 h-4" />
         <span>Back to Organizer Console</span>
       </button>
 
-      <div className="bg-stone-900/85 backdrop-blur-xl p-8 rounded-3xl border border-amber-500/25 shadow-2xl shadow-black/80 space-y-6 text-stone-100">
+      <div className="bg-white backdrop-blur-xl p-8 rounded-3xl border border-[#FED7AA] shadow-2xl shadow-black/80 space-y-6 text-[#431407]">
         <div>
-          <h1 className="text-2xl font-bold text-white">Create New Community Campaign</h1>
-          <p className="text-xs text-stone-400 mt-1 font-medium">
+          <h1 className="text-2xl font-bold text-[#7C2D12]">Create New Community Campaign</h1>
+          <p className="text-xs text-[#78716C] mt-1 font-medium">
             Define objectives, required skills taxonomy, schedules, and volunteer capacities.
           </p>
         </div>
 
         {error && (
-          <div className="p-3 bg-rose-500/15 border border-rose-400/30 rounded-xl text-rose-300 text-xs flex items-center space-x-2">
+          <div className="p-3 bg-rose-50 border border-rose-300 rounded-xl text-rose-800 font-medium text-xs flex items-center space-x-2">
             <AlertTriangle className="w-4 h-4 flex-shrink-0 text-rose-400" />
             <span>{error}</span>
           </div>
@@ -146,24 +146,24 @@ export default function CreateEventPage() {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-stone-300 mb-1.5">Campaign Title</label>
+              <label className="block text-xs font-semibold text-[#431407] mb-1.5">Campaign Title</label>
               <input
                 type="text"
                 required
                 placeholder="e.g. Adyar Estuary Mangrove Sapling Plantation"
                 value={title}
                 onChange={e => setTitle(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-stone-800/90 border border-stone-700/80 text-white placeholder-stone-500 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-[#FED7AA] text-[#431407] placeholder-[#78716C] text-sm focus:outline-none focus:ring-2 focus:ring-[#F97316]"
               />
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-stone-300 mb-1.5">Campaign Category</label>
+                <label className="block text-xs font-semibold text-[#431407] mb-1.5">Campaign Category</label>
                 <select
                   value={category}
                   onChange={e => setCategory(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-stone-800/90 border border-stone-700/80 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-[#FED7AA] text-[#431407] text-sm focus:outline-none focus:ring-2 focus:ring-[#F97316]"
                 >
                   <option value="ENVIRONMENTAL">Environmental Conservation</option>
                   <option value="EDUCATIONAL">Educational / Tutoring</option>
@@ -175,128 +175,128 @@ export default function CreateEventPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-stone-300 mb-1.5">Operating City</label>
+                <label className="block text-xs font-semibold text-[#431407] mb-1.5">Operating City</label>
                 <input
                   type="text"
                   required
                   value={city}
                   onChange={e => setCity(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-stone-800/90 border border-stone-700/80 text-white text-sm focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-[#FED7AA] text-[#431407] text-sm focus:outline-none focus:ring-2 focus:ring-[#F97316]"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-stone-300 mb-1.5">Campaign Description</label>
+              <label className="block text-xs font-semibold text-[#431407] mb-1.5">Campaign Description</label>
               <textarea
                 rows={4}
                 required
                 placeholder="Detail the goals, volunteer tasks, gathering points, and positive social impact..."
                 value={description}
                 onChange={e => setDescription(e.target.value)}
-                className="w-full p-3.5 rounded-xl bg-stone-800/90 border border-stone-700/80 text-white placeholder-stone-500 text-xs focus:outline-none focus:ring-2 focus:ring-amber-400"
+                className="w-full p-3.5 rounded-xl bg-white border border-[#FED7AA] text-[#431407] placeholder-[#78716C] text-xs focus:outline-none focus:ring-2 focus:ring-[#F97316]"
               />
             </div>
 
             <div className="grid sm:grid-cols-3 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-stone-300 mb-1.5">Event Date</label>
+                <label className="block text-xs font-semibold text-[#431407] mb-1.5">Event Date</label>
                 <input
                   type="date"
                   required
                   value={eventDate}
                   onChange={e => setEventDate(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl bg-stone-800/90 border border-stone-700/80 text-white text-xs focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  className="w-full px-3 py-2 rounded-xl bg-white border border-[#FED7AA] text-[#431407] text-xs focus:outline-none focus:ring-2 focus:ring-[#F97316]"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-stone-300 mb-1.5">Start Time</label>
+                <label className="block text-xs font-semibold text-[#431407] mb-1.5">Start Time</label>
                 <input
                   type="time"
                   required
                   value={startTime}
                   onChange={e => setStartTime(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl bg-stone-800/90 border border-stone-700/80 text-white text-xs focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  className="w-full px-3 py-2 rounded-xl bg-white border border-[#FED7AA] text-[#431407] text-xs focus:outline-none focus:ring-2 focus:ring-[#F97316]"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-stone-300 mb-1.5">End Time</label>
+                <label className="block text-xs font-semibold text-[#431407] mb-1.5">End Time</label>
                 <input
                   type="time"
                   required
                   value={endTime}
                   onChange={e => setEndTime(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl bg-stone-800/90 border border-stone-700/80 text-white text-xs focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  className="w-full px-3 py-2 rounded-xl bg-white border border-[#FED7AA] text-[#431407] text-xs focus:outline-none focus:ring-2 focus:ring-[#F97316]"
                 />
               </div>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-stone-300 mb-1.5">Venue / Landmark Name</label>
+                <label className="block text-xs font-semibold text-[#431407] mb-1.5">Venue / Landmark Name</label>
                 <input
                   type="text"
                   required
                   placeholder="e.g. Adyar Eco Park Gate 2"
                   value={locationName}
                   onChange={e => setLocationName(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-stone-800/90 border border-stone-700/80 text-white text-xs focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-[#FED7AA] text-[#431407] text-xs focus:outline-none focus:ring-2 focus:ring-[#F97316]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-stone-300 mb-1.5">Street Address</label>
+                <label className="block text-xs font-semibold text-[#431407] mb-1.5">Street Address</label>
                 <input
                   type="text"
                   required
                   placeholder="Full physical meeting address"
                   value={address}
                   onChange={e => setAddress(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-stone-800/90 border border-stone-700/80 text-white text-xs focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-[#FED7AA] text-[#431407] text-xs focus:outline-none focus:ring-2 focus:ring-[#F97316]"
                 />
               </div>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-stone-300 mb-1.5">Target Volunteers Required</label>
+                <label className="block text-xs font-semibold text-[#431407] mb-1.5">Target Volunteers Required</label>
                 <input
                   type="number"
                   min={1}
                   max={200}
                   value={volunteersRequired}
                   onChange={e => setVolunteersRequired(parseInt(e.target.value, 10))}
-                  className="w-full px-3.5 py-2 rounded-xl bg-stone-800/90 border border-stone-700/80 text-white text-xs focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  className="w-full px-3.5 py-2 rounded-xl bg-white border border-[#FED7AA] text-[#431407] text-xs focus:outline-none focus:ring-2 focus:ring-[#F97316]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-stone-300 mb-1.5">Max Registration Capacity</label>
+                <label className="block text-xs font-semibold text-[#431407] mb-1.5">Max Registration Capacity</label>
                 <input
                   type="number"
                   min={1}
                   max={300}
                   value={maxCapacity}
                   onChange={e => setMaxCapacity(parseInt(e.target.value, 10))}
-                  className="w-full px-3.5 py-2 rounded-xl bg-stone-800/90 border border-stone-700/80 text-white text-xs focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  className="w-full px-3.5 py-2 rounded-xl bg-white border border-[#FED7AA] text-[#431407] text-xs focus:outline-none focus:ring-2 focus:ring-[#F97316]"
                 />
               </div>
             </div>
           </div>
 
           {/* Skills Required Selector */}
-          <div className="space-y-3 pt-4 border-t border-stone-800">
+          <div className="space-y-3 pt-4 border-t border-[#FED7AA]">
             <div className="flex justify-between items-center">
               <div>
-                <h3 className="text-sm font-bold text-white flex items-center space-x-1.5">
-                  <Sparkles className="w-4 h-4 text-amber-400" />
+                <h3 className="text-sm font-bold text-[#7C2D12] flex items-center space-x-1.5">
+                  <Sparkles className="w-4 h-4 text-[#F97316]" />
                   <span>Required Skills Taxonomy</span>
                 </h3>
-                <p className="text-[11px] text-stone-400">
+                <p className="text-[11px] text-[#78716C]">
                   Select required capabilities for AI volunteer candidate ranking
                 </p>
               </div>
-              <span className="text-xs font-bold text-amber-400">
+              <span className="text-xs font-bold text-[#F97316]">
                 {selectedSkills.length} selected
               </span>
             </div>
@@ -311,16 +311,16 @@ export default function CreateEventPage() {
                     key={skill.id}
                     className={`p-3 rounded-xl border text-xs flex items-center justify-between transition-all ${
                       isSelected
-                        ? 'border-amber-500 bg-amber-500/15 text-amber-300'
-                        : 'border-stone-800 bg-stone-950/60 hover:border-stone-700 text-stone-300'
+                        ? 'border-[#F97316] bg-[#FFEDD5] text-[#7C2D12] font-semibold ring-1 ring-orange-400'
+                        : 'border-[#FED7AA] bg-white hover:border-[#F97316] text-[#431407] interactive-card'
                     }`}
                   >
                     <div
                       onClick={() => toggleSkill(skill.id)}
                       className="cursor-pointer flex-1 space-y-0.5"
                     >
-                      <div className="font-bold text-white">{skill.name}</div>
-                      <div className="text-[10px] text-stone-400">{skill.category}</div>
+                      <div className="font-bold text-[#7C2D12]">{skill.name}</div>
+                      <div className="text-[10px] text-[#78716C]">{skill.category}</div>
                     </div>
 
                     {isSelected && (
@@ -329,8 +329,8 @@ export default function CreateEventPage() {
                         onClick={() => toggleMandatory(skill.id)}
                         className={`px-2 py-0.5 rounded text-[10px] font-bold ${
                           reqItem?.is_mandatory
-                            ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30'
-                            : 'bg-stone-800 text-stone-300 border border-stone-700'
+                            ? 'bg-rose-50 text-rose-800 border border-rose-300 font-bold'
+                            : 'bg-white text-[#431407] border border-[#FED7AA]'
                         }`}
                       >
                         {reqItem?.is_mandatory ? 'Mandatory' : 'Optional'}
@@ -345,10 +345,10 @@ export default function CreateEventPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 hover:from-amber-400 hover:to-orange-400 text-stone-950 font-bold text-xs shadow-lg shadow-amber-500/25 transition-all flex items-center justify-center space-x-2 disabled:opacity-50 cursor-pointer"
+            className="w-full py-3.5 rounded-xl bg-[#F97316] hover:bg-[#EA580C] hover:scale-105 active:scale-95 hover:shadow-lg hover:shadow-orange-500/30 cursor-pointer text-white font-bold text-xs shadow-lg shadow-orange-500/20 transition-all flex items-center justify-center space-x-2 disabled:opacity-50 cursor-pointer"
           >
             <span>{loading ? 'Creating Campaign...' : 'Publish Campaign'}</span>
-            <ArrowRight className="w-4 h-4 text-stone-950" />
+            <ArrowRight className="w-4 h-4 text-white" />
           </button>
         </form>
       </div>

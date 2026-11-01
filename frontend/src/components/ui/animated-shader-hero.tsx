@@ -558,4 +558,15 @@ void main(void) {
 	O=vec4(col,1);
 }`;
 
+export const ShaderCanvas: React.FC<{ className?: string }> = ({ className = '' }) => {
+  const canvasRef = useShaderBackground();
+  return (
+    <canvas
+      ref={canvasRef}
+      className={`touch-none ${className}`}
+      style={{ background: 'black' }}
+    />
+  );
+};
+
 export default Hero;

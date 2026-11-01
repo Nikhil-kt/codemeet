@@ -81,81 +81,81 @@ export default function AdminDashboardPage() {
   const displayedEvents = showAllEvents ? events : pendingEvents;
 
   if (loading) {
-    return <div className="py-24 text-center text-slate-400">Loading admin governance console...</div>;
+    return <div className="py-24 text-center text-[#78716C]">Loading admin governance console...</div>;
   }
 
   return (
     <ProtectedRoute allowedRoles={['ADMIN']}>
       <div className="space-y-8 pb-12">
         {/* Admin Header */}
-        <div className="bg-gradient-to-r from-[#1c1815] via-stone-900 to-[#231b14] border border-amber-500/25 text-white p-8 rounded-3xl shadow-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div className="bg-gradient-to-r from-white via-[#FFEDD5]/30 to-white border border-[#FED7AA] text-[#431407] p-8 rounded-3xl shadow-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <div className="space-y-2">
-            <div className="inline-flex items-center space-x-1.5 px-3 py-1 bg-amber-500/15 text-amber-300 border border-amber-500/30 rounded-full text-xs font-bold">
-              <ShieldAlert className="w-4 h-4 text-amber-400" />
+            <div className="inline-flex items-center space-x-1.5 px-3 py-1 bg-[#FFEDD5] text-[#9A3412] border border-[#FED7AA] hover:scale-105 hover:bg-[#FED7AA] transition-transform cursor-default rounded-full text-xs font-bold">
+              <ShieldAlert className="w-4 h-4 text-[#F97316]" />
               <span>Platform Governance & Compliance</span>
             </div>
             <h1 className="text-3xl font-extrabold tracking-tight">Administrative Operations</h1>
-            <p className="text-xs text-stone-300/90 max-w-xl font-light">
+            <p className="text-xs text-[#431407]/90 max-w-xl font-light">
               Audit organization KYC applications and moderate community campaigns. Accepted requests are automatically published and cleared from approval queues.
             </p>
           </div>
         </div>
 
         {actionMsg && (
-          <div className="p-4 bg-amber-500/15 border border-amber-500/30 text-amber-300 rounded-2xl text-xs font-semibold flex items-center space-x-2">
-            <CheckCircle2 className="w-4 h-4 text-amber-400" />
+          <div className="p-4 bg-[#FFEDD5] border border-[#FED7AA] text-[#9A3412] rounded-2xl text-xs font-semibold flex items-center space-x-2">
+            <CheckCircle2 className="w-4 h-4 text-[#F97316]" />
             <span>{actionMsg}</span>
           </div>
         )}
 
         {/* Governance Stats Row */}
         <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-          <div className="bg-stone-900/80 p-6 rounded-3xl border border-stone-800/80 shadow-xl space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-stone-400">Total Organizations</span>
-            <div className="text-3xl font-extrabold text-white">{stats?.totalOrgs || organizations.length}</div>
-            <div className="text-xs text-stone-400">{stats?.verifiedOrgs || 1} verified & active</div>
+          <div className="bg-white p-6 rounded-3xl border border-[#FED7AA] shadow-sm hover:border-[#F97316] hover:shadow-md hover:shadow-orange-500/10 transition-all duration-300 space-y-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#78716C]">Total Organizations</span>
+            <div className="text-3xl font-extrabold text-[#7C2D12]">{stats?.totalOrgs || organizations.length}</div>
+            <div className="text-xs text-[#78716C]">{stats?.verifiedOrgs || 1} verified & active</div>
           </div>
 
-          <div className="bg-stone-900/80 p-6 rounded-3xl border border-stone-800/80 shadow-xl space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-stone-400">Pending Org Requests</span>
-            <div className="text-3xl font-extrabold text-amber-400">{pendingOrgs.length}</div>
-            <div className="text-xs text-stone-400">Awaiting verification review</div>
+          <div className="bg-white p-6 rounded-3xl border border-[#FED7AA] shadow-sm hover:border-[#F97316] hover:shadow-md hover:shadow-orange-500/10 transition-all duration-300 space-y-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#78716C]">Pending Org Requests</span>
+            <div className="text-3xl font-extrabold text-[#F97316]">{pendingOrgs.length}</div>
+            <div className="text-xs text-[#78716C]">Awaiting verification review</div>
           </div>
 
-          <div className="bg-stone-900/80 p-6 rounded-3xl border border-stone-800/80 shadow-xl space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-stone-400">Pending Campaign Requests</span>
-            <div className="text-3xl font-extrabold text-orange-400">{pendingEvents.length}</div>
-            <div className="text-xs text-stone-400">Awaiting event approval</div>
+          <div className="bg-white p-6 rounded-3xl border border-[#FED7AA] shadow-sm hover:border-[#F97316] hover:shadow-md hover:shadow-orange-500/10 transition-all duration-300 space-y-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#78716C]">Pending Campaign Requests</span>
+            <div className="text-3xl font-extrabold text-[#F97316]">{pendingEvents.length}</div>
+            <div className="text-xs text-[#78716C]">Awaiting event approval</div>
           </div>
 
-          <div className="bg-stone-900/80 p-6 rounded-3xl border border-stone-800/80 shadow-xl space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-stone-400">Total Volunteers</span>
-            <div className="text-3xl font-extrabold text-white">{stats?.totalVolunteers || 2}</div>
-            <div className="text-xs text-amber-400/90 font-semibold">Active community members</div>
+          <div className="bg-white p-6 rounded-3xl border border-[#FED7AA] shadow-sm hover:border-[#F97316] hover:shadow-md hover:shadow-orange-500/10 transition-all duration-300 space-y-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#78716C]">Total Volunteers</span>
+            <div className="text-3xl font-extrabold text-[#7C2D12]">{stats?.totalVolunteers || 2}</div>
+            <div className="text-xs text-[#F97316]/90 font-semibold">Active community members</div>
           </div>
         </div>
 
         {/* Tabs */}
-        <div className="flex border-b border-stone-800 space-x-6 text-sm font-semibold">
+        <div className="flex border-b border-[#FED7AA] space-x-6 text-sm font-semibold">
           <button
             onClick={() => setActiveTab('ORGS')}
             className={`pb-3 border-b-2 transition-all flex items-center space-x-2 ${
-              activeTab === 'ORGS' ? 'border-amber-400 text-amber-400' : 'border-transparent text-stone-400 hover:text-stone-200'
+              activeTab === 'ORGS' ? 'border-[#F97316] text-[#7C2D12] font-bold' : 'border-transparent text-[#78716C] hover:text-[#7C2D12] hover:border-[#FED7AA]'
             }`}
           >
             <span>Organization Verification Requests</span>
-            <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${activeTab === 'ORGS' ? 'bg-amber-500/20 text-amber-300' : 'bg-stone-800 text-stone-400'}`}>
+            <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${activeTab === 'ORGS' ? 'bg-[#FFEDD5] text-[#9A3412]' : 'bg-white text-[#78716C]'}`}>
               {pendingOrgs.length}
             </span>
           </button>
           <button
             onClick={() => setActiveTab('EVENTS')}
             className={`pb-3 border-b-2 transition-all flex items-center space-x-2 ${
-              activeTab === 'EVENTS' ? 'border-amber-400 text-amber-400' : 'border-transparent text-stone-400 hover:text-stone-200'
+              activeTab === 'EVENTS' ? 'border-[#F97316] text-[#7C2D12] font-bold' : 'border-transparent text-[#78716C] hover:text-[#7C2D12] hover:border-[#FED7AA]'
             }`}
           >
             <span>Campaign Moderation Requests</span>
-            <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${activeTab === 'EVENTS' ? 'bg-amber-500/20 text-amber-300' : 'bg-stone-800 text-stone-400'}`}>
+            <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${activeTab === 'EVENTS' ? 'bg-[#FFEDD5] text-[#9A3412]' : 'bg-white text-[#78716C]'}`}>
               {pendingEvents.length}
             </span>
           </button>
@@ -165,60 +165,60 @@ export default function AdminDashboardPage() {
         {activeTab === 'ORGS' && (
           <div className="space-y-4">
             <div className="flex justify-between items-center pb-2">
-              <span className="text-xs font-bold text-stone-400 uppercase tracking-wider">
+              <span className="text-xs font-bold text-[#78716C] uppercase tracking-wider">
                 {showAllOrgs ? 'Showing All Organizations' : 'Approval Request List (Pending Only)'}
               </span>
               <button
                 onClick={() => setShowAllOrgs(!showAllOrgs)}
-                className="text-xs font-bold text-amber-400 hover:text-amber-300 transition-colors"
+                className="text-xs font-bold text-[#F97316] hover:text-[#9A3412] transition-colors"
               >
                 {showAllOrgs ? 'Show Pending Only' : `Show All (${organizations.length})`}
               </button>
             </div>
 
             {displayedOrgs.length === 0 ? (
-              <div className="bg-stone-900/80 p-12 rounded-3xl border border-stone-800 text-center space-y-3">
-                <div className="w-12 h-12 bg-amber-500/15 text-amber-400 border border-amber-500/30 rounded-2xl flex items-center justify-center mx-auto">
+              <div className="bg-white p-12 rounded-3xl border border-[#FED7AA] text-center space-y-3">
+                <div className="w-12 h-12 bg-[#FFEDD5] text-[#F97316] border border-[#FED7AA] rounded-2xl flex items-center justify-center mx-auto">
                   <CheckCircle2 className="w-6 h-6" />
                 </div>
-                <h3 className="font-bold text-white text-base">No Pending Organization Requests</h3>
-                <p className="text-xs text-stone-400 max-w-sm mx-auto">
+                <h3 className="font-bold text-[#7C2D12] text-base">No Pending Organization Requests</h3>
+                <p className="text-xs text-[#78716C] max-w-sm mx-auto">
                   All organization applications have been reviewed. Once an admin accepts a request, it is removed from this approval queue.
                 </p>
               </div>
             ) : (
               displayedOrgs.map(org => (
-                <div key={org.id} className="bg-stone-900/80 p-6 rounded-3xl border border-stone-800 shadow-xl space-y-4">
+                <div key={org.id} className="bg-white p-6 rounded-3xl border border-[#FED7AA] shadow-sm hover:border-[#F97316] hover:shadow-md hover:shadow-orange-500/10 transition-all duration-300 space-y-4">
                   <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
                     <div>
                       <div className="flex items-center space-x-2">
-                        <span className="font-extrabold text-base text-white">{org.name}</span>
-                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-stone-800 text-stone-300">
+                        <span className="font-extrabold text-base text-[#7C2D12]">{org.name}</span>
+                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-white text-[#431407]">
                           {org.category}
                         </span>
                         <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold ${
                           ['VERIFIED_NEW', 'ESTABLISHED_TRUSTED'].includes(org.verification_status)
-                            ? 'bg-amber-500/15 text-amber-300 border border-amber-500/30'
-                            : 'bg-stone-800 text-stone-300 border border-stone-700'
+                            ? 'bg-[#FFEDD5] text-[#9A3412] border border-[#FED7AA] hover:scale-105 hover:bg-[#FED7AA] transition-transform cursor-default'
+                            : 'bg-white text-[#431407] border border-[#FED7AA]'
                         }`}>
                           {org.verification_status}
                         </span>
                       </div>
-                      <div className="text-xs text-stone-400 mt-1">
-                        Representative: <strong className="text-stone-200">{org.representative_name}</strong> ({org.representative_contact || org.phone}) • {org.operating_location}
+                      <div className="text-xs text-[#78716C] mt-1">
+                        Representative: <strong className="text-[#431407]">{org.representative_name}</strong> ({org.representative_contact || org.phone}) • {org.operating_location}
                       </div>
                     </div>
 
                     <div className="flex items-center space-x-2">
                       <button
                         onClick={() => handleReviewOrg(org.id, 'VERIFIED_NEW')}
-                        className="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 hover:from-amber-400 hover:to-orange-400 text-stone-950 text-xs font-bold shadow-md shadow-amber-500/20 transition-all cursor-pointer"
+                        className="px-4 py-2 rounded-xl bg-[#F97316] hover:bg-[#EA580C] text-white text-xs font-bold shadow-md shadow-orange-500/20 interactive-btn transition-all cursor-pointer"
                       >
                         Accept & Approve
                       </button>
                       <button
                         onClick={() => handleReviewOrg(org.id, 'MORE_INFO_REQUIRED')}
-                        className="px-3.5 py-2 rounded-xl border border-stone-700 text-stone-300 hover:bg-stone-800 text-xs font-semibold"
+                        className="px-3.5 py-2 rounded-xl border border-[#FED7AA] text-[#7C2D12] hover:bg-[#FFEDD5] interactive-btn text-xs font-semibold"
                       >
                         Request Info
                       </button>
@@ -227,18 +227,18 @@ export default function AdminDashboardPage() {
 
                   {/* Uploaded Documents with AI Risk Analysis */}
                   {org.documents && org.documents.length > 0 && (
-                    <div className="pt-3 border-t border-stone-800 space-y-2">
-                      <div className="text-xs font-bold text-stone-300">Submitted Documents & AI OCR Findings:</div>
+                    <div className="pt-3 border-t border-[#FED7AA] space-y-2">
+                      <div className="text-xs font-bold text-[#431407]">Submitted Documents & AI OCR Findings:</div>
                       <div className="grid sm:grid-cols-2 gap-3">
                         {org.documents.map((d: any) => (
-                          <div key={d.id} className="p-3 bg-stone-950/80 rounded-xl border border-stone-800 text-xs space-y-1">
+                          <div key={d.id} className="p-3 bg-[#FFEDD5]/20/80 rounded-xl border border-[#FED7AA] text-xs space-y-1">
                             <div className="flex justify-between items-start">
-                              <span className="font-bold text-white">{d.document_name}</span>
-                              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/15 text-amber-300 border border-amber-500/30">
+                              <span className="font-bold text-[#7C2D12]">{d.document_name}</span>
+                              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#FFEDD5] text-[#9A3412] border border-[#FED7AA] hover:scale-105 hover:bg-[#FED7AA] transition-transform cursor-default">
                                 Risk: {d.ai_risk_score}/100
                               </span>
                             </div>
-                            <div className="text-[11px] text-stone-400">{d.ai_notes}</div>
+                            <div className="text-[11px] text-[#78716C]">{d.ai_notes}</div>
                           </div>
                         ))}
                       </div>
@@ -254,42 +254,42 @@ export default function AdminDashboardPage() {
         {activeTab === 'EVENTS' && (
           <div className="space-y-4">
             <div className="flex justify-between items-center pb-2">
-              <span className="text-xs font-bold text-stone-400 uppercase tracking-wider">
+              <span className="text-xs font-bold text-[#78716C] uppercase tracking-wider">
                 {showAllEvents ? 'Showing All Campaigns' : 'Approval Request List (Pending Only)'}
               </span>
               <button
                 onClick={() => setShowAllEvents(!showAllEvents)}
-                className="text-xs font-bold text-amber-400 hover:text-amber-300 transition-colors"
+                className="text-xs font-bold text-[#F97316] hover:text-[#9A3412] transition-colors"
               >
                 {showAllEvents ? 'Show Pending Only' : `Show All (${events.length})`}
               </button>
             </div>
 
             {displayedEvents.length === 0 ? (
-              <div className="bg-stone-900/80 p-12 rounded-3xl border border-stone-800 text-center space-y-3">
-                <div className="w-12 h-12 bg-amber-500/15 text-amber-400 border border-amber-500/30 rounded-2xl flex items-center justify-center mx-auto">
+              <div className="bg-white p-12 rounded-3xl border border-[#FED7AA] text-center space-y-3">
+                <div className="w-12 h-12 bg-[#FFEDD5] text-[#F97316] border border-[#FED7AA] rounded-2xl flex items-center justify-center mx-auto">
                   <CheckCircle2 className="w-6 h-6" />
                 </div>
-                <h3 className="font-bold text-white text-base">No Pending Campaign Requests</h3>
-                <p className="text-xs text-stone-400 max-w-sm mx-auto">
+                <h3 className="font-bold text-[#7C2D12] text-base">No Pending Campaign Requests</h3>
+                <p className="text-xs text-[#78716C] max-w-sm mx-auto">
                   All campaign submissions have been moderated. When you accept a campaign request, it is published and removed from this list.
                 </p>
               </div>
             ) : (
               displayedEvents.map(ev => (
-                <div key={ev.id} className="bg-stone-900/80 p-6 rounded-3xl border border-stone-800 shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div key={ev.id} className="bg-white p-6 rounded-3xl border border-[#FED7AA] shadow-sm hover:border-[#F97316] hover:shadow-md hover:shadow-orange-500/10 transition-all duration-300 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                   <div className="space-y-1">
                     <div className="flex items-center space-x-2">
-                      <span className="font-bold text-base text-white">{ev.title}</span>
+                      <span className="font-bold text-base text-[#7C2D12]">{ev.title}</span>
                       <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
                         ev.status === 'PUBLISHED'
-                          ? 'bg-amber-500/15 text-amber-300 border border-amber-500/30'
-                          : 'bg-stone-800 text-stone-300 border border-stone-700'
+                          ? 'bg-[#FFEDD5] text-[#9A3412] border border-[#FED7AA] hover:scale-105 hover:bg-[#FED7AA] transition-transform cursor-default'
+                          : 'bg-white text-[#431407] border border-[#FED7AA]'
                       }`}>
                         {ev.status}
                       </span>
                     </div>
-                    <div className="text-xs text-stone-400">
+                    <div className="text-xs text-[#78716C]">
                       {ev.event_date} • {ev.city} • Required: {ev.volunteers_required} volunteers • Contact: {ev.contact_person}
                     </div>
                   </div>
@@ -297,13 +297,13 @@ export default function AdminDashboardPage() {
                   <div className="flex items-center space-x-2">
                     <button
                       onClick={() => handleReviewEvent(ev.id, 'APPROVED')}
-                      className="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 hover:from-amber-400 hover:to-orange-400 text-stone-950 text-xs font-bold shadow-md shadow-amber-500/20 transition-all cursor-pointer"
+                      className="px-4 py-2 rounded-xl bg-[#F97316] hover:bg-[#EA580C] text-white text-xs font-bold shadow-md shadow-orange-500/20 interactive-btn transition-all cursor-pointer"
                     >
                       Accept & Publish
                     </button>
                     <button
                       onClick={() => handleReviewEvent(ev.id, 'REJECTED')}
-                      className="px-3.5 py-2 rounded-xl border border-rose-500/30 text-rose-300 hover:bg-rose-500/15 text-xs font-semibold cursor-pointer"
+                      className="px-3.5 py-2 rounded-xl border border-rose-200 text-rose-700 hover:bg-rose-50 interactive-btn text-xs font-bold cursor-pointer transition-all"
                     >
                       Reject
                     </button>

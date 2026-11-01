@@ -10,7 +10,6 @@ import {
   Users,
   ShieldCheck,
   CheckCircle2,
-  Clock,
   AlertTriangle,
   QrCode,
   ArrowLeft,
@@ -173,14 +172,14 @@ export default function EventDetailsPage() {
   };
 
   if (loading) {
-    return <div className="py-24 text-center text-amber-500/80 font-medium">Loading campaign details...</div>;
+    return <div className="py-24 text-center text-[#F97316] font-medium">Loading campaign details...</div>;
   }
 
   if (!event) {
     return (
       <div className="py-24 text-center space-y-3">
-        <p className="text-stone-300 font-semibold">Event not found.</p>
-        <button onClick={() => router.push('/events')} className="text-amber-400 text-sm font-semibold hover:underline">
+        <p className="text-[#7C2D12] font-semibold">Event not found.</p>
+        <button onClick={() => router.push('/events')} className="text-[#F97316] text-sm font-semibold hover:underline cursor-pointer">
           Return to campaigns
         </button>
       </div>
@@ -191,42 +190,42 @@ export default function EventDetailsPage() {
     <div className="max-w-4xl mx-auto space-y-8 pb-12">
       <button
         onClick={() => router.back()}
-        className="inline-flex items-center space-x-1.5 text-xs font-semibold text-stone-400 hover:text-amber-300 transition-colors"
+        className="inline-flex items-center space-x-1.5 text-xs font-semibold text-[#78716C] hover:text-[#F97316] hover:-translate-x-1 transition-all cursor-pointer"
       >
         <ArrowLeft className="w-4 h-4" />
         <span>Back to Campaigns</span>
       </button>
 
       {/* Main Campaign Header */}
-      <div className="bg-stone-900/80 backdrop-blur-xl p-8 rounded-3xl border border-stone-800 shadow-2xl space-y-6">
+      <div className="bg-white p-8 rounded-3xl border border-[#FED7AA] hover:border-[#F97316]/50 shadow-xs hover:shadow-md transition-all space-y-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <span className="text-xs font-bold px-3 py-1 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/30 uppercase tracking-wide">
+          <span className="text-xs font-bold px-3 py-1 rounded-full bg-[#FFEDD5] text-[#9A3412] border border-[#FED7AA] hover:scale-105 transition-transform uppercase tracking-wide cursor-default">
             {event.category.replace('_', ' ')}
           </span>
-          <div className="flex items-center space-x-2 bg-stone-950/70 px-3 py-1.5 rounded-xl border border-stone-800 text-xs text-stone-300 font-medium">
-            <ShieldCheck className="w-4 h-4 text-amber-400" />
-            <span>Organizer Trust: <strong className="text-white">{event.organization?.trust_score || 78}/100</strong></span>
+          <div className="flex items-center space-x-2 bg-[#FFEDD5]/60 hover:bg-[#FFEDD5] px-3 py-1.5 rounded-xl border border-[#FED7AA] text-xs text-[#7C2D12] font-medium transition-colors cursor-default">
+            <ShieldCheck className="w-4 h-4 text-[#F97316]" />
+            <span>Organizer Trust: <strong className="text-[#431407]">{event.organization?.trust_score || 78}/100</strong></span>
           </div>
         </div>
 
         <div>
-          <h1 className="text-3xl font-extrabold text-white leading-tight">{event.title}</h1>
-          <p className="text-sm text-stone-400 mt-1 font-medium">
-            Organized by <span className="text-amber-300 font-semibold">{event.organization?.name || 'Community Organization'}</span>
+          <h1 className="text-3xl font-extrabold text-[#7C2D12] leading-tight">{event.title}</h1>
+          <p className="text-sm text-[#78716C] mt-1 font-medium">
+            Organized by <span className="text-[#9A3412] font-semibold">{event.organization?.name || 'Community Organization'}</span>
           </p>
         </div>
 
         {/* Action alerts */}
         {regSuccess && (
-          <div className="p-4 bg-amber-500/10 border border-amber-500/30 rounded-2xl text-amber-200 text-sm flex items-center space-x-2">
-            <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-amber-400" />
+          <div className="p-4 bg-orange-50 border border-[#FED7AA] rounded-2xl text-[#7C2D12] text-sm flex items-center space-x-2">
+            <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-[#F97316]" />
             <span>{regSuccess}</span>
           </div>
         )}
 
         {regError && (
-          <div className="p-4 bg-rose-950/40 border border-rose-800/60 rounded-2xl text-rose-300 text-sm flex items-center space-x-2">
-            <AlertTriangle className="w-5 h-5 flex-shrink-0 text-rose-400" />
+          <div className="p-4 bg-rose-50 border border-rose-200 rounded-2xl text-rose-800 text-sm flex items-center space-x-2">
+            <AlertTriangle className="w-5 h-5 flex-shrink-0 text-rose-600" />
             <span>{regError}</span>
           </div>
         )}
@@ -235,26 +234,26 @@ export default function EventDetailsPage() {
         {event.requirements && event.requirements.length > 0 && currentUser && (currentUser.role === 'VOLUNTEER' || currentUser.role === 'TEAM_LEADER') && (
           <div>
             {skillMatchState.isMatched ? (
-              <div className="p-4 bg-amber-500/10 rounded-2xl border border-amber-500/30 text-xs text-amber-200 flex items-center space-x-2.5">
-                <CheckCircle2 className="w-5 h-5 text-amber-400 flex-shrink-0" />
+              <div className="p-4 bg-orange-50 rounded-2xl border border-[#FED7AA] text-xs text-[#7C2D12] flex items-center space-x-2.5">
+                <CheckCircle2 className="w-5 h-5 text-[#F97316] flex-shrink-0" />
                 <div>
-                  <strong className="block text-amber-300 font-bold">Skills Matched & Verified Eligible</strong>
+                  <strong className="block text-[#7C2D12] font-bold">Skills Matched & Verified Eligible</strong>
                   <span>Your profile competencies match the organizer&apos;s required skills for this initiative. You are authorized to register!</span>
                 </div>
               </div>
             ) : (
-              <div className="p-4 bg-amber-950/30 rounded-2xl border-2 border-amber-500/50 text-xs space-y-2">
-                <div className="flex items-center space-x-2 font-bold text-amber-300">
-                  <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0" />
+              <div className="p-4 bg-[#FFEDD5] rounded-2xl border-2 border-[#F97316]/50 text-xs space-y-2">
+                <div className="flex items-center space-x-2 font-bold text-[#7C2D12]">
+                  <AlertTriangle className="w-4 h-4 text-[#F97316] flex-shrink-0" />
                   <span>Organizer Skill Match Requirement</span>
                 </div>
-                <p className="text-stone-300 leading-relaxed">
-                  Only volunteers possessing the specific skills requested by the organization can register. Missing required skill(s): <strong className="text-amber-300 underline">{skillMatchState.missingSkills.join(', ')}</strong>.
+                <p className="text-[#431407] leading-relaxed">
+                  Only volunteers possessing the specific skills requested by the organization can register. Missing required skill(s): <strong className="text-[#7C2D12] underline">{skillMatchState.missingSkills.join(', ')}</strong>.
                 </p>
                 <div className="pt-1">
                   <Link
                     href="/volunteer/profile"
-                    className="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-stone-950 rounded-xl font-bold text-[11px] shadow-sm transition-all"
+                    className="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-[#F97316] hover:bg-[#EA580C] hover:scale-105 active:scale-95 text-white rounded-xl font-bold text-[11px] shadow-sm transition-all"
                   >
                     <span>Add Matching Skill to Profile</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -266,42 +265,42 @@ export default function EventDetailsPage() {
         )}
 
         {/* Logistics Grid */}
-        <div className="grid sm:grid-cols-3 gap-4 p-4 rounded-2xl bg-stone-950/60 border border-stone-800 text-xs text-stone-300">
-          <div className="space-y-1">
-            <div className="flex items-center space-x-1.5 text-stone-400 font-semibold uppercase tracking-wider">
-              <Calendar className="w-4 h-4 text-amber-400" />
+        <div className="grid sm:grid-cols-3 gap-4 p-4 rounded-2xl bg-[#FFEDD5]/40 border border-[#FED7AA] text-xs text-[#431407]">
+          <div className="space-y-1 p-2 rounded-xl hover:bg-[#FFEDD5]/80 hover:scale-[1.02] transition-all cursor-default">
+            <div className="flex items-center space-x-1.5 text-[#78716C] font-semibold uppercase tracking-wider">
+              <Calendar className="w-4 h-4 text-[#F97316]" />
               <span>Event Date</span>
             </div>
-            <div className="font-bold text-white text-sm">{event.event_date}</div>
-            <div className="text-stone-400">{event.start_time.slice(0, 5)} - {event.end_time.slice(0, 5)}</div>
+            <div className="font-bold text-[#7C2D12] text-sm">{event.event_date}</div>
+            <div className="text-[#78716C]">{event.start_time.slice(0, 5)} - {event.end_time.slice(0, 5)}</div>
           </div>
 
-          <div className="space-y-1">
-            <div className="flex items-center space-x-1.5 text-stone-400 font-semibold uppercase tracking-wider">
-              <MapPin className="w-4 h-4 text-amber-400" />
+          <div className="space-y-1 p-2 rounded-xl hover:bg-[#FFEDD5]/80 hover:scale-[1.02] transition-all cursor-default">
+            <div className="flex items-center space-x-1.5 text-[#78716C] font-semibold uppercase tracking-wider">
+              <MapPin className="w-4 h-4 text-[#F97316]" />
               <span>Location</span>
             </div>
-            <div className="font-bold text-white text-sm">{event.location_name}</div>
-            <div className="text-stone-400 truncate">{event.address}, {event.city}</div>
+            <div className="font-bold text-[#7C2D12] text-sm">{event.location_name}</div>
+            <div className="text-[#78716C] truncate">{event.address}, {event.city}</div>
           </div>
 
-          <div className="space-y-1">
-            <div className="flex items-center space-x-1.5 text-stone-400 font-semibold uppercase tracking-wider">
-              <Users className="w-4 h-4 text-amber-400" />
+          <div className="space-y-1 p-2 rounded-xl hover:bg-[#FFEDD5]/80 hover:scale-[1.02] transition-all cursor-default">
+            <div className="flex items-center space-x-1.5 text-[#78716C] font-semibold uppercase tracking-wider">
+              <Users className="w-4 h-4 text-[#F97316]" />
               <span>Capacity</span>
             </div>
-            <div className="font-bold text-white text-sm">
+            <div className="font-bold text-[#7C2D12] text-sm">
               {event.confirmed_count} / {event.volunteers_required} Volunteers
             </div>
-            <div className="text-stone-400">{event.max_capacity} Maximum Slot Limit</div>
+            <div className="text-[#78716C]">{event.max_capacity} Maximum Slot Limit</div>
           </div>
         </div>
 
         {/* Action Buttons */}
         <div className="flex flex-wrap items-center gap-4 pt-2">
           {event.status === 'REGISTRATION_CLOSED' || (event.confirmed_count >= (event.max_capacity || event.volunteers_required) && (event.max_capacity || event.volunteers_required) > 0) ? (
-            <div className="px-5 py-3 rounded-xl bg-rose-950/40 border border-rose-800/60 text-rose-300 font-semibold text-xs flex items-center space-x-2">
-              <AlertTriangle className="w-4 h-4 text-rose-400" />
+            <div className="px-5 py-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 font-semibold text-xs flex items-center space-x-2">
+              <AlertTriangle className="w-4 h-4 text-rose-500" />
               <span>Registration Closed — Maximum Capacity Reached ({event.confirmed_count}/{event.max_capacity || event.volunteers_required} Volunteers)</span>
             </div>
           ) : !skillMatchState.isMatched ? (
@@ -312,14 +311,14 @@ export default function EventDetailsPage() {
                     `Skill requirement not met: The organization requires verified competency in [${skillMatchState.missingSkills.join(', ')}]. Only volunteers with matching skills are allowed to register.`
                   )
                 }
-                className="px-6 py-3 rounded-xl bg-amber-500/20 border border-amber-500/40 hover:bg-amber-500/30 text-amber-300 font-semibold text-sm shadow-md transition-all flex items-center space-x-2"
+                className="px-6 py-3 rounded-xl bg-[#FFEDD5] border border-[#FED7AA] hover:border-[#F97316] hover:bg-[#FED7AA] text-[#7C2D12] font-semibold text-sm shadow-xs transition-all flex items-center space-x-2 cursor-pointer"
               >
-                <AlertTriangle className="w-4 h-4 text-amber-400" />
+                <AlertTriangle className="w-4 h-4 text-[#F97316]" />
                 <span>Skill Match Required to Register</span>
               </button>
               <Link
                 href="/volunteer/profile"
-                className="px-4 py-3 rounded-xl border border-amber-500/30 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 font-semibold text-xs transition-all flex items-center space-x-1"
+                className="px-4 py-3 rounded-xl border border-[#FED7AA] bg-white hover:bg-[#FFEDD5] hover:border-[#F97316] text-[#7C2D12] font-semibold text-xs transition-all flex items-center space-x-1 cursor-pointer"
               >
                 <span>Add Skill in Profile</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -329,7 +328,7 @@ export default function EventDetailsPage() {
             <button
               onClick={handleRegister}
               disabled={registering}
-              className="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 hover:from-amber-400 hover:to-orange-400 text-stone-950 font-bold text-sm shadow-lg shadow-amber-500/25 transition-all flex items-center space-x-2 disabled:opacity-50"
+              className="px-6 py-3 rounded-xl bg-[#F97316] hover:bg-[#EA580C] hover:scale-105 active:scale-95 text-white font-bold text-sm shadow-md shadow-orange-500/25 hover:shadow-orange-500/40 transition-all flex items-center space-x-2 disabled:opacity-50 cursor-pointer"
             >
               <CheckCircle2 className="w-4 h-4" />
               <span>{registering ? 'Processing Registration...' : 'Register for Campaign'}</span>
@@ -338,9 +337,9 @@ export default function EventDetailsPage() {
 
           <button
             onClick={() => setShowCheckInModal(true)}
-            className="px-5 py-3 rounded-xl bg-stone-800/90 border border-stone-700 hover:border-amber-500/50 text-stone-200 hover:text-white font-semibold text-sm hover:bg-stone-800 transition-all flex items-center space-x-2"
+            className="px-5 py-3 rounded-xl bg-white border border-[#FED7AA] hover:bg-[#FFEDD5] hover:border-[#F97316] hover:scale-105 active:scale-95 text-[#7C2D12] font-semibold text-sm transition-all flex items-center space-x-2 cursor-pointer"
           >
-            <QrCode className="w-4 h-4 text-amber-400" />
+            <QrCode className="w-4 h-4 text-[#F97316]" />
             <span>QR Attendance Check-In</span>
           </button>
         </div>
@@ -349,43 +348,43 @@ export default function EventDetailsPage() {
       {/* Campaign Details & Responsibilities */}
       <div className="grid md:grid-cols-3 gap-8">
         <div className="md:col-span-2 space-y-6">
-          <div className="bg-stone-900/80 backdrop-blur-xl p-6 rounded-2xl border border-stone-800 shadow-xl space-y-3">
-            <h2 className="text-lg font-bold text-white">Campaign Overview</h2>
-            <p className="text-sm text-stone-300 leading-relaxed whitespace-pre-line">{event.description}</p>
+          <div className="bg-white p-6 rounded-2xl border border-[#FED7AA] hover:border-[#F97316]/50 shadow-xs hover:shadow-md transition-all space-y-3">
+            <h2 className="text-lg font-bold text-[#7C2D12]">Campaign Overview</h2>
+            <p className="text-sm text-[#431407] leading-relaxed whitespace-pre-line">{event.description}</p>
           </div>
 
           {/* Safety & Instructions */}
-          <div className="bg-stone-900/80 backdrop-blur-xl p-6 rounded-2xl border border-stone-800 shadow-xl space-y-3">
-            <h2 className="text-lg font-bold text-white flex items-center space-x-2">
-              <AlertTriangle className="w-5 h-5 text-amber-400" />
+          <div className="bg-white p-6 rounded-2xl border border-[#FED7AA] hover:border-[#F97316]/50 shadow-xs hover:shadow-md transition-all space-y-3">
+            <h2 className="text-lg font-bold text-[#7C2D12] flex items-center space-x-2">
+              <AlertTriangle className="w-5 h-5 text-[#F97316]" />
               <span>Safety Briefing & Guidelines</span>
             </h2>
-            <p className="text-sm text-stone-300 leading-relaxed">{event.safety_instructions}</p>
-            <div className="pt-2 text-xs font-semibold text-stone-400">
-              Eligibility: <span className="font-normal text-stone-200">{event.eligibility_requirements}</span>
+            <p className="text-sm text-[#431407] leading-relaxed">{event.safety_instructions}</p>
+            <div className="pt-2 text-xs font-semibold text-[#78716C]">
+              Eligibility: <span className="font-normal text-[#431407]">{event.eligibility_requirements}</span>
             </div>
           </div>
 
           {/* Tasks in this Event */}
           {event.tasks && event.tasks.length > 0 && (
-            <div className="bg-stone-900/80 backdrop-blur-xl p-6 rounded-2xl border border-stone-800 shadow-xl space-y-4">
-              <h2 className="text-lg font-bold text-white flex items-center space-x-2">
-                <CheckSquare className="w-5 h-5 text-amber-400" />
+            <div className="bg-white p-6 rounded-2xl border border-[#FED7AA] hover:border-[#F97316]/50 shadow-xs hover:shadow-md transition-all space-y-4">
+              <h2 className="text-lg font-bold text-[#7C2D12] flex items-center space-x-2">
+                <CheckSquare className="w-5 h-5 text-[#F97316]" />
                 <span>Assigned Tasks & Deliverables</span>
               </h2>
 
               <div className="space-y-3">
                 {event.tasks.map((task: any) => (
-                  <div key={task.id} className="p-4 rounded-xl border border-stone-800 bg-stone-950/60 space-y-2 text-xs">
+                  <div key={task.id} className="p-4 rounded-xl border border-[#FED7AA] bg-[#FFEDD5]/40 hover:bg-[#FFEDD5]/70 hover:border-[#F97316]/50 transition-all space-y-2 text-xs cursor-pointer">
                     <div className="flex justify-between items-start">
-                      <div className="font-bold text-sm text-white">{task.title}</div>
-                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/15 text-amber-300 border border-amber-500/30">
+                      <div className="font-bold text-sm text-[#7C2D12]">{task.title}</div>
+                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#FFEDD5] text-[#9A3412] border border-[#FED7AA]">
                         {task.status}
                       </span>
                     </div>
-                    <p className="text-stone-300">{task.description}</p>
-                    <div className="text-[11px] text-stone-400">
-                      <strong className="text-amber-300/90">Evidence required:</strong> {task.evidence_requirements}
+                    <p className="text-[#431407]">{task.description}</p>
+                    <div className="text-[11px] text-[#78716C]">
+                      <strong className="text-[#7C2D12]">Evidence required:</strong> {task.evidence_requirements}
                     </div>
                   </div>
                 ))}
@@ -396,56 +395,56 @@ export default function EventDetailsPage() {
 
         {/* Sidebar: Skills & Verification Criteria */}
         <div className="space-y-6">
-          <div className="bg-stone-900/80 backdrop-blur-xl p-6 rounded-2xl border border-stone-800 shadow-xl space-y-4">
-            <h3 className="text-sm font-bold text-white flex items-center space-x-1.5">
-              <Sparkles className="w-4 h-4 text-amber-400" />
+          <div className="bg-white p-6 rounded-2xl border border-[#FED7AA] hover:border-[#F97316]/50 shadow-xs hover:shadow-md transition-all space-y-4">
+            <h3 className="text-sm font-bold text-[#7C2D12] flex items-center space-x-1.5">
+              <Sparkles className="w-4 h-4 text-[#F97316]" />
               <span>Required Skills</span>
             </h3>
 
             {event.requirements && event.requirements.length > 0 ? (
               <div className="space-y-2">
                 {event.requirements.map((req: any) => (
-                  <div key={req.id} className="p-2.5 rounded-xl bg-stone-950/60 border border-stone-800 text-xs">
+                  <div key={req.id} className="p-2.5 rounded-xl bg-[#FFEDD5]/40 hover:bg-[#FFEDD5]/70 hover:border-[#F97316]/50 border border-[#FED7AA] text-xs transition-all cursor-default">
                     <div className="flex items-center justify-between">
-                      <span className="font-bold text-stone-200">{req.skill_name}</span>
+                      <span className="font-bold text-[#7C2D12]">{req.skill_name}</span>
                       {req.is_mandatory && (
-                        <span className="px-1.5 py-0.5 bg-rose-950/60 text-rose-300 border border-rose-800/50 rounded text-[10px] font-bold">
+                        <span className="px-1.5 py-0.5 bg-rose-100 text-rose-800 border border-rose-200 rounded text-[10px] font-bold">
                           Mandatory
                         </span>
                       )}
                     </div>
-                    <div className="text-[11px] text-stone-400 mt-0.5">{req.category}</div>
+                    <div className="text-[11px] text-[#78716C] mt-0.5">{req.category}</div>
                   </div>
                 ))}
               </div>
             ) : (
-              <p className="text-xs text-stone-400">No strict skill requirements. Enthusiastic newcomers welcome!</p>
+              <p className="text-xs text-[#78716C]">No strict skill requirements. Enthusiastic newcomers welcome!</p>
             )}
           </div>
 
-          <div className="bg-stone-900/80 backdrop-blur-xl p-6 rounded-2xl border border-stone-800 shadow-xl space-y-3 text-xs">
-            <h3 className="text-sm font-bold text-white">Event Coordinator</h3>
-            <div className="text-amber-300 font-semibold">{event.contact_person}</div>
-            <div className="text-stone-400">{event.contact_phone}</div>
+          <div className="bg-white p-6 rounded-2xl border border-[#FED7AA] hover:border-[#F97316]/50 shadow-xs hover:shadow-md transition-all space-y-3 text-xs">
+            <h3 className="text-sm font-bold text-[#7C2D12]">Event Coordinator</h3>
+            <div className="text-[#9A3412] font-semibold">{event.contact_person}</div>
+            <div className="text-[#78716C]">{event.contact_phone}</div>
           </div>
         </div>
       </div>
 
       {/* Attendance Check-In Modal */}
       {showCheckInModal && (
-        <div className="fixed inset-0 bg-stone-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4">
-          <div className="bg-stone-900 rounded-3xl max-w-md w-full p-6 shadow-2xl border border-amber-500/30 space-y-4">
-            <div className="flex justify-between items-center pb-2 border-b border-stone-800">
-              <h3 className="font-bold text-base text-white flex items-center space-x-2">
-                <QrCode className="w-5 h-5 text-amber-400" />
+        <div className="fixed inset-0 bg-[#431407]/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-[#FED7AA] space-y-4">
+            <div className="flex justify-between items-center pb-2 border-b border-[#FED7AA]">
+              <h3 className="font-bold text-base text-[#7C2D12] flex items-center space-x-2">
+                <QrCode className="w-5 h-5 text-[#F97316]" />
                 <span>Verify Attendance</span>
               </h3>
-              <button onClick={() => setShowCheckInModal(false)} className="text-stone-400 hover:text-stone-100 text-sm">
+              <button onClick={() => setShowCheckInModal(false)} className="text-[#78716C] hover:text-[#7C2D12] text-sm cursor-pointer">
                 ✕
               </button>
             </div>
 
-            <p className="text-xs text-stone-400 leading-relaxed">
+            <p className="text-xs text-[#78716C] leading-relaxed">
               Scan the dynamic QR code displayed on the organizer screen or enter the cryptographic session token below.
             </p>
 
@@ -453,18 +452,18 @@ export default function EventDetailsPage() {
               <div
                 className={`p-3 rounded-xl text-xs flex items-center space-x-2 ${
                   checkInMsg.success
-                    ? 'bg-amber-500/10 text-amber-200 border border-amber-500/30'
-                    : 'bg-rose-950/40 text-rose-300 border border-rose-800/60'
+                    ? 'bg-orange-50 text-[#7C2D12] border border-[#FED7AA]'
+                    : 'bg-rose-50 text-rose-800 border border-rose-200'
                 }`}
               >
-                {checkInMsg.success ? <CheckCircle2 className="w-4 h-4 text-amber-400" /> : <AlertTriangle className="w-4 h-4 text-rose-400" />}
+                {checkInMsg.success ? <CheckCircle2 className="w-4 h-4 text-[#F97316]" /> : <AlertTriangle className="w-4 h-4 text-rose-600" />}
                 <span>{checkInMsg.text}</span>
               </div>
             )}
 
             <form onSubmit={handleCheckIn} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-stone-300 mb-1">
+                <label className="block text-xs font-semibold text-[#7C2D12] mb-1">
                   Scanned Token or Hex Code
                 </label>
                 <input
@@ -473,7 +472,7 @@ export default function EventDetailsPage() {
                   placeholder="Paste scanned QR token payload"
                   value={scannedToken}
                   onChange={e => setScannedToken(e.target.value)}
-                  className="w-full px-3 py-2.5 text-xs font-mono rounded-xl bg-stone-800/90 border border-stone-700 text-white placeholder-stone-500 focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  className="w-full px-3 py-2.5 text-xs font-mono rounded-xl bg-white border border-[#FED7AA] hover:border-[#F97316] text-[#431407] placeholder-[#78716C] focus:outline-none focus:ring-2 focus:ring-[#F97316] transition-all"
                 />
               </div>
 
@@ -481,13 +480,13 @@ export default function EventDetailsPage() {
                 <button
                   type="button"
                   onClick={() => setShowCheckInModal(false)}
-                  className="flex-1 py-2 rounded-xl text-xs font-semibold border border-stone-700 text-stone-300 hover:bg-stone-800"
+                  className="flex-1 py-2 rounded-xl text-xs font-semibold border border-[#FED7AA] text-[#7C2D12] hover:bg-[#FFEDD5] transition-all cursor-pointer"
                 >
                   Close
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 hover:from-amber-400 hover:to-orange-400 text-stone-950 shadow-lg shadow-amber-500/25"
+                  className="flex-1 py-2 rounded-xl text-xs font-bold bg-[#F97316] hover:bg-[#EA580C] hover:scale-105 active:scale-95 text-white shadow-md shadow-orange-500/25 transition-all cursor-pointer"
                 >
                   Confirm Check-In
                 </button>
@@ -499,4 +498,3 @@ export default function EventDetailsPage() {
     </div>
   );
 }
-
