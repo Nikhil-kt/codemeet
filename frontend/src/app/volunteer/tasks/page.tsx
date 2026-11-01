@@ -93,20 +93,20 @@ export default function VolunteerTasksPage() {
         {/* Evidence Submission Area */}
         <div className="md:col-span-2 space-y-6">
           {selectedTask && (
-            <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+            <div className="bg-stone-900/85 backdrop-blur-xl p-8 rounded-3xl border border-amber-500/25 shadow-xl space-y-6 text-stone-100">
               <div>
-                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">
+                <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30">
                   Task ID: {selectedTask.id.slice(0, 8)}
                 </span>
-                <h2 className="text-xl font-bold text-slate-900 mt-2">{selectedTask.title}</h2>
-                <p className="text-xs text-slate-500 mt-1 font-medium">{selectedTask.eventTitle}</p>
+                <h2 className="text-xl font-bold text-white mt-2">{selectedTask.title}</h2>
+                <p className="text-xs text-stone-400 mt-1 font-medium">{selectedTask.eventTitle}</p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 space-y-2 text-xs">
-                <div className="font-semibold text-slate-700">Instructions:</div>
-                <div className="text-slate-600">{selectedTask.instructions}</div>
-                <div className="font-semibold text-slate-700 pt-1">Evidence Required:</div>
-                <div className="text-slate-600">{selectedTask.evidence_requirements}</div>
+              <div className="p-4 rounded-2xl bg-stone-950/80 border border-stone-800 space-y-2 text-xs">
+                <div className="font-bold text-amber-400">Instructions:</div>
+                <div className="text-stone-300 font-light">{selectedTask.instructions}</div>
+                <div className="font-bold text-amber-400 pt-1">Evidence Required:</div>
+                <div className="text-stone-300 font-light">{selectedTask.evidence_requirements}</div>
               </div>
 
               {/* AI Duplicate Flag Warning if triggered */}
@@ -114,15 +114,15 @@ export default function VolunteerTasksPage() {
                 <div
                   className={`p-4 rounded-2xl border text-xs space-y-2 ${
                     submissionResult.ai_duplicate_analysis.is_potential_duplicate
-                      ? 'bg-rose-50 border-rose-200 text-rose-900'
-                      : 'bg-emerald-50 border-emerald-200 text-emerald-900'
+                      ? 'bg-rose-500/15 border-rose-400/30 text-rose-300'
+                      : 'bg-amber-500/15 border-amber-400/30 text-amber-300'
                   }`}
                 >
                   <div className="font-bold flex items-center space-x-1.5">
                     {submissionResult.ai_duplicate_analysis.is_potential_duplicate ? (
-                      <AlertTriangle className="w-4 h-4 text-rose-600" />
+                      <AlertTriangle className="w-4 h-4 text-rose-400" />
                     ) : (
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                      <CheckCircle2 className="w-4 h-4 text-amber-400" />
                     )}
                     <span>AI Verification Inspection Result</span>
                   </div>
@@ -135,7 +135,7 @@ export default function VolunteerTasksPage() {
 
               <form onSubmit={handleSubmitEvidence} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  <label className="block text-xs font-semibold text-stone-300 mb-1.5">
                     Completion Report & Work Done Summary
                   </label>
                   <textarea
@@ -144,22 +144,22 @@ export default function VolunteerTasksPage() {
                     value={evidenceDesc}
                     onChange={e => setEvidenceDesc(e.target.value)}
                     placeholder="Describe specific work completed, bags collected, or tasks fulfilled..."
-                    className="w-full p-3 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    className="w-full p-3.5 text-xs rounded-xl bg-stone-800/90 border border-stone-700/80 text-white placeholder-stone-500 focus:outline-none focus:ring-2 focus:ring-amber-400"
                   />
                 </div>
 
-                <div className="p-6 border-2 border-dashed border-slate-200 rounded-2xl text-center space-y-2 bg-slate-50/50">
-                  <Upload className="w-8 h-8 text-slate-400 mx-auto" />
-                  <div className="text-xs font-semibold text-slate-700">Attach Geo-Tagged Photo / Evidence</div>
-                  <div className="text-[11px] text-slate-400">JPG, PNG or PDF under 10MB</div>
+                <div className="p-6 border-2 border-dashed border-stone-800 rounded-2xl text-center space-y-2 bg-stone-950/60 hover:border-amber-500/30 transition-colors">
+                  <Upload className="w-8 h-8 text-amber-400/70 mx-auto" />
+                  <div className="text-xs font-semibold text-stone-200">Attach Geo-Tagged Photo / Evidence</div>
+                  <div className="text-[11px] text-stone-500">JPG, PNG or PDF under 10MB</div>
                 </div>
 
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs shadow-md shadow-emerald-600/20 transition-all flex items-center justify-center space-x-2 disabled:opacity-50"
+                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 hover:from-amber-400 hover:to-orange-400 text-stone-950 font-bold text-xs shadow-lg shadow-amber-500/25 transition-all flex items-center justify-center space-x-2 disabled:opacity-50 cursor-pointer"
                 >
-                  <Sparkles className="w-4 h-4" />
+                  <Sparkles className="w-4 h-4 text-stone-950" />
                   <span>{submitting ? 'Analyzing & Uploading Evidence...' : 'Submit Evidence for Verification'}</span>
                 </button>
               </form>

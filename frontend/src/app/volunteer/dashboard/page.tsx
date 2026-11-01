@@ -51,6 +51,7 @@ export default function VolunteerDashboard() {
       } catch (e) {}
     }
     loadData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadData = async () => {
@@ -135,28 +136,28 @@ export default function VolunteerDashboard() {
       <div className="space-y-8 pb-12">
         {/* Top Banner */}
         {celebrationBanner && (
-          <div className="p-4 bg-gradient-to-r from-emerald-600 via-teal-600 to-indigo-600 text-white rounded-2xl shadow-lg flex flex-col sm:flex-row items-center justify-between gap-3 animate-fade-in">
-            <div className="flex items-center space-x-2 text-xs font-semibold">
-              <Sparkles className="w-5 h-5 text-amber-300 animate-pulse" />
+          <div className="p-4 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-stone-950 font-bold rounded-2xl shadow-xl flex flex-col sm:flex-row items-center justify-between gap-3 animate-fade-in">
+            <div className="flex items-center space-x-2 text-xs">
+              <Sparkles className="w-5 h-5 text-stone-950 animate-pulse" />
               <span>{celebrationBanner}</span>
             </div>
             <button
               onClick={() => setCertificateModalOpen(true)}
-              className="px-4 py-1.5 bg-white text-emerald-800 hover:bg-emerald-50 text-xs font-bold rounded-xl shadow-sm transition-all"
+              className="px-4 py-1.5 bg-stone-950 text-amber-300 hover:bg-stone-900 text-xs font-bold rounded-xl shadow-sm transition-all cursor-pointer"
             >
               View Certificate Now
             </button>
           </div>
         )}
 
-        <div className="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-8 rounded-3xl shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="bg-gradient-to-r from-[#1c1815] via-stone-900 to-[#231b14] border border-amber-500/25 text-white p-8 rounded-3xl shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="space-y-2">
-            <div className="inline-flex items-center space-x-1.5 px-3 py-1 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 rounded-full text-xs font-semibold">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+            <div className="inline-flex items-center space-x-1.5 px-3 py-1 bg-amber-500/15 text-amber-300 border border-amber-500/30 rounded-full text-xs font-bold">
+              <ShieldCheck className="w-4 h-4 text-amber-400" />
               <span>Verified Community Volunteer</span>
             </div>
             <h1 className="text-3xl font-extrabold tracking-tight">Volunteer Command Center</h1>
-            <p className="text-xs text-slate-300 max-w-xl">
+            <p className="text-xs text-stone-300/90 max-w-xl font-light">
               Track your verified community participation, attendance records, assigned tasks, and official certificate of service.
             </p>
           </div>
@@ -164,17 +165,17 @@ export default function VolunteerDashboard() {
           <div className="flex flex-wrap items-center gap-3">
             <Link
               href="/volunteer/profile"
-              className="px-5 py-3 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs border border-white/20 shadow-sm transition-all flex items-center space-x-2"
+              className="px-5 py-3 rounded-2xl bg-stone-800/80 hover:bg-stone-700 text-white font-semibold text-xs border border-stone-700 shadow-sm transition-all flex items-center space-x-2"
             >
-              <User className="w-4 h-4 text-emerald-300" />
+              <User className="w-4 h-4 text-amber-400" />
               <span>My Profile & Skills</span>
             </Link>
 
             <button
               onClick={() => setCertificateModalOpen(true)}
-              className="px-5 py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-semibold text-xs shadow-lg shadow-amber-500/25 transition-all flex items-center space-x-2"
+              className="px-5 py-3 rounded-2xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 hover:from-amber-400 hover:to-orange-400 text-stone-950 font-bold text-xs shadow-lg shadow-amber-500/25 transition-all flex items-center space-x-2 cursor-pointer"
             >
-              <Award className="w-4 h-4 text-amber-200" />
+              <Award className="w-4 h-4 text-stone-950" />
               <span>Service Certificate</span>
             </button>
 
@@ -185,7 +186,7 @@ export default function VolunteerDashboard() {
                 }
                 setCheckInModalOpen(true);
               }}
-              className="px-5 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs shadow-lg shadow-emerald-600/30 transition-all flex items-center space-x-2"
+              className="px-5 py-3 rounded-2xl bg-orange-500/15 hover:bg-orange-500/25 border border-orange-500/30 text-orange-300 font-semibold text-xs shadow-lg transition-all flex items-center space-x-2 cursor-pointer"
             >
               <QrCode className="w-4 h-4" />
               <span>Scan Attendance QR</span>
@@ -194,25 +195,25 @@ export default function VolunteerDashboard() {
         </div>
 
         {/* Certificate Callout Card */}
-        <div className="bg-gradient-to-br from-amber-50 via-white to-amber-50/50 p-6 rounded-3xl border border-amber-200/80 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div className="bg-stone-900/80 backdrop-blur-xl p-6 sm:p-7 rounded-3xl border border-amber-500/30 shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div className="space-y-1">
-            <div className="flex items-center space-x-2 text-amber-800 font-bold text-xs uppercase tracking-wider">
-              <Award className="w-4 h-4 text-amber-600" />
+            <div className="flex items-center space-x-2 text-amber-400 font-bold text-xs uppercase tracking-wider">
+              <Award className="w-4 h-4 text-amber-400" />
               <span>Official Community Service Credential</span>
             </div>
-            <h3 className="text-lg font-extrabold text-slate-900">
+            <h3 className="text-lg font-extrabold text-white">
               Verified Certificate of Participation Available
             </h3>
-            <p className="text-xs text-slate-600 max-w-xl">
+            <p className="text-xs text-stone-300/80 max-w-xl font-light">
               Your attendance records and volunteer contributions are cryptographically verified through QR check-ins. You can view, download, or print your official certificate below.
             </p>
           </div>
 
           <button
             onClick={() => setCertificateModalOpen(true)}
-            className="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs shadow-md transition-all flex items-center space-x-1.5 flex-shrink-0"
+            className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-stone-950 font-bold text-xs shadow-md transition-all flex items-center space-x-1.5 flex-shrink-0 cursor-pointer"
           >
-            <Award className="w-4 h-4 text-amber-400" />
+            <Award className="w-4 h-4 text-stone-950" />
             <span>View & Print Certificate</span>
           </button>
         </div>
@@ -220,69 +221,69 @@ export default function VolunteerDashboard() {
         {/* Metrics Row */}
         <div className="grid sm:grid-cols-3 gap-6">
           {/* Reliability Score Card */}
-          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
+          <div className="bg-stone-900/80 p-6 rounded-3xl border border-stone-800/80 shadow-xl space-y-4">
             <div className="flex justify-between items-start">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+              <span className="text-xs font-bold uppercase tracking-wider text-stone-400">
                 Reliability Score
               </span>
-              <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800">
+              <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-500/15 text-amber-300 border border-amber-500/30">
                 {profile?.is_provisional ? 'Provisional' : 'Active Rating'}
               </span>
             </div>
 
             <div className="flex items-baseline space-x-2">
-              <span className="text-4xl font-extrabold text-slate-900">{reliabilityScore}</span>
-              <span className="text-slate-400 text-sm font-semibold">/ 100</span>
+              <span className="text-4xl font-extrabold text-amber-400">{reliabilityScore}</span>
+              <span className="text-stone-400 text-sm font-semibold">/ 100</span>
             </div>
 
-            <div className="space-y-2 pt-2 border-t border-slate-100 text-xs">
-              <div className="flex justify-between text-slate-600">
+            <div className="space-y-2 pt-2 border-t border-stone-800 text-xs">
+              <div className="flex justify-between text-stone-400">
                 <span>Attendance Consistency (40%)</span>
-                <strong className="text-slate-900">{factors.attendanceConsistency}%</strong>
+                <strong className="text-stone-200">{factors.attendanceConsistency}%</strong>
               </div>
-              <div className="flex justify-between text-slate-600">
+              <div className="flex justify-between text-stone-400">
                 <span>Verified Tasks (30%)</span>
-                <strong className="text-slate-900">{factors.taskCompletion}%</strong>
+                <strong className="text-stone-200">{factors.taskCompletion}%</strong>
               </div>
-              <div className="flex justify-between text-slate-600">
+              <div className="flex justify-between text-stone-400">
                 <span>Organizer Feedback (20%)</span>
-                <strong className="text-slate-900">{factors.organizerFeedback}%</strong>
+                <strong className="text-stone-200">{factors.organizerFeedback}%</strong>
               </div>
-              <div className="flex justify-between text-slate-600">
+              <div className="flex justify-between text-stone-400">
                 <span>Cancellation Behavior (10%)</span>
-                <strong className="text-slate-900">{factors.timelyCancellation}%</strong>
+                <strong className="text-stone-200">{factors.timelyCancellation}%</strong>
               </div>
             </div>
           </div>
 
           {/* Volunteering Hours */}
-          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+          <div className="bg-stone-900/80 p-6 rounded-3xl border border-stone-800/80 shadow-xl space-y-4">
+            <span className="text-xs font-bold uppercase tracking-wider text-stone-400">
               Total Contribution
             </span>
             <div className="flex items-baseline space-x-2">
-              <span className="text-4xl font-extrabold text-emerald-600">
+              <span className="text-4xl font-extrabold text-amber-400">
                 {totalVerifiedHours}
               </span>
-              <span className="text-slate-400 text-sm font-semibold">Verified Hours</span>
+              <span className="text-stone-400 text-sm font-semibold">Verified Hours</span>
             </div>
-            <p className="text-xs text-slate-500 leading-relaxed pt-2 border-t border-slate-100">
+            <p className="text-xs text-stone-400 leading-relaxed pt-2 border-t border-stone-800 font-light">
               Hours are certified upon QR attendance check-in and task completion records by community organizers.
             </p>
           </div>
 
           {/* Location & Preferred Categories */}
-          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+          <div className="bg-stone-900/80 p-6 rounded-3xl border border-stone-800/80 shadow-xl space-y-3">
+            <span className="text-xs font-bold uppercase tracking-wider text-stone-400">
               Matching Vicinity
             </span>
-            <div className="flex items-center space-x-2 text-slate-900 font-bold text-sm">
-              <MapPin className="w-4 h-4 text-emerald-600" />
+            <div className="flex items-center space-x-2 text-white font-bold text-sm">
+              <MapPin className="w-4 h-4 text-amber-400" />
               <span>{profile?.city || 'Chennai'}, {profile?.state || 'Tamil Nadu'}</span>
             </div>
             <div className="flex flex-wrap gap-1.5 pt-2">
               {(profile?.preferred_categories || ['ENVIRONMENTAL', 'COMMUNITY_WELFARE']).map((cat: string) => (
-                <span key={cat} className="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-[11px] font-semibold">
+                <span key={cat} className="px-2.5 py-1 rounded-lg bg-stone-800 border border-stone-700 text-stone-300 text-[11px] font-semibold">
                   {cat.replace('_', ' ')}
                 </span>
               ))}
@@ -291,33 +292,33 @@ export default function VolunteerDashboard() {
         </div>
 
         {/* Campaign Participation History */}
-        <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
-          <div className="p-6 border-b border-slate-100 flex justify-between items-center">
+        <div className="bg-stone-900/80 rounded-3xl border border-stone-800/80 shadow-xl overflow-hidden">
+          <div className="p-6 border-b border-stone-800 flex justify-between items-center">
             <div>
-              <h2 className="text-lg font-bold text-slate-900">Registered Campaigns & Attendance</h2>
-              <p className="text-xs text-slate-500 mt-0.5">Your personal event participations and verified attendance logs</p>
+              <h2 className="text-lg font-bold text-white">Registered Campaigns & Attendance</h2>
+              <p className="text-xs text-stone-400 mt-0.5">Your personal event participations and verified attendance logs</p>
             </div>
-            <Link href="/events" className="text-xs font-bold text-emerald-600 hover:underline flex items-center space-x-1">
+            <Link href="/events" className="text-xs font-bold text-amber-400 hover:text-amber-300 hover:underline flex items-center space-x-1">
               <span>Find More Campaigns</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
 
           {allEvents.length > 0 ? (
-            <div className="divide-y divide-slate-100">
+            <div className="divide-y divide-stone-800">
               {allEvents.map((item: any) => (
-                <div key={item.registration_id} className="p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:bg-slate-50/50 transition-colors">
+                <div key={item.registration_id} className="p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:bg-stone-950/50 transition-colors">
                   <div className="space-y-1">
-                    <div className="font-bold text-sm text-slate-900 hover:text-emerald-600">
+                    <div className="font-bold text-sm text-white hover:text-amber-400 transition-colors">
                       <Link href={`/events/${item.event_id}`}>{item.event_title}</Link>
                     </div>
-                    <div className="flex items-center space-x-3 text-xs text-slate-500">
+                    <div className="flex items-center space-x-3 text-xs text-stone-400">
                       <span className="flex items-center space-x-1">
-                        <Calendar className="w-3.5 h-3.5 text-slate-400" />
+                        <Calendar className="w-3.5 h-3.5 text-stone-500" />
                         <span>{item.event_date}</span>
                       </span>
                       <span className="flex items-center space-x-1">
-                        <MapPin className="w-3.5 h-3.5 text-slate-400" />
+                        <MapPin className="w-3.5 h-3.5 text-stone-500" />
                         <span>{item.city}</span>
                       </span>
                     </div>
@@ -326,16 +327,16 @@ export default function VolunteerDashboard() {
                   <div className="flex items-center space-x-3">
                     <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
                       item.registration_status === 'CONFIRMED'
-                        ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-                        : 'bg-amber-50 text-amber-700 border border-amber-200'
+                        ? 'bg-amber-500/15 text-amber-300 border border-amber-500/30'
+                        : 'bg-stone-800 text-stone-400 border border-stone-700'
                     }`}>
                       {item.registration_status}
                     </span>
 
                     <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
                       item.attendance_status === 'PRESENT'
-                        ? 'bg-blue-50 text-blue-700 border border-blue-200'
-                        : 'bg-slate-100 text-slate-600'
+                        ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+                        : 'bg-stone-800 text-stone-400 border border-stone-700'
                     }`}>
                       {item.attendance_status === 'PRESENT' ? '✓ Checked In (Present)' : 'Registered'}
                     </span>
@@ -346,7 +347,7 @@ export default function VolunteerDashboard() {
                           setSelectedEventId(item.event_id);
                           setCheckInModalOpen(true);
                         }}
-                        className="px-3.5 py-1.5 bg-slate-900 text-white rounded-xl text-xs font-semibold hover:bg-slate-800 transition-all shadow-sm"
+                        className="px-3.5 py-1.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-stone-950 rounded-xl text-xs font-bold transition-all shadow-md cursor-pointer"
                       >
                         Check In
                       </button>
@@ -356,7 +357,7 @@ export default function VolunteerDashboard() {
               ))}
             </div>
           ) : (
-            <div className="p-8 text-center text-xs text-slate-500">
+            <div className="p-8 text-center text-xs text-stone-500">
               No registered campaigns yet. Browse open campaigns to participate!
             </div>
           )}

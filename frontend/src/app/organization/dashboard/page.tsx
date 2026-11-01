@@ -131,14 +131,14 @@ export default function OrganizationDashboard() {
     <ProtectedRoute allowedRoles={['ORGANIZATION']}>
       <div className="space-y-8 pb-12">
         {/* Header Section */}
-        <div className="bg-gradient-to-r from-emerald-800 to-teal-900 text-white p-8 rounded-3xl shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div className="bg-gradient-to-r from-[#1c1815] via-stone-900 to-[#231b14] border border-amber-500/25 text-white p-8 rounded-3xl shadow-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <div className="space-y-2">
-            <div className="inline-flex items-center space-x-1.5 px-3 py-1 bg-emerald-700/40 border border-emerald-500/30 rounded-full text-xs font-semibold text-emerald-200">
+            <div className="inline-flex items-center space-x-1.5 px-3 py-1 bg-amber-500/15 border border-amber-500/30 rounded-full text-xs font-bold text-amber-300">
               <Building2 className="w-3.5 h-3.5" />
               <span>{org?.category || 'Community Organization'}</span>
             </div>
             <h1 className="text-3xl font-extrabold tracking-tight">{org?.name || 'Organizer Console'}</h1>
-            <p className="text-xs text-emerald-100 max-w-xl">
+            <p className="text-xs text-stone-300/90 max-w-xl font-light">
               Coordinate public initiatives, manage volunteer registrations, oversee live attendance check-ins, and inspect candidate trust metrics.
             </p>
           </div>
@@ -146,16 +146,16 @@ export default function OrganizationDashboard() {
           <div className="flex flex-wrap items-center gap-3">
             <Link
               href="/organization/events/create"
-              className="px-5 py-2.5 bg-white text-emerald-900 hover:bg-emerald-50 font-semibold text-xs rounded-xl shadow-md transition-all flex items-center space-x-1.5"
+              className="px-5 py-2.5 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 hover:from-amber-400 hover:to-orange-400 text-stone-950 font-bold text-xs rounded-xl shadow-lg shadow-amber-500/25 transition-all flex items-center space-x-1.5 hover:scale-105 active:scale-95"
             >
-              <Plus className="w-4 h-4" />
+              <Plus className="w-4 h-4 text-stone-950" />
               <span>Create Campaign</span>
             </Link>
             <Link
               href="/organization/verification"
-              className="px-4 py-2.5 bg-emerald-700/60 hover:bg-emerald-700 text-white font-semibold text-xs rounded-xl border border-emerald-500/30 transition-all flex items-center space-x-1.5"
+              className="px-4 py-2.5 bg-stone-800/80 hover:bg-stone-700 text-stone-200 font-semibold text-xs rounded-xl border border-stone-700 transition-all flex items-center space-x-1.5"
             >
-              <FileCheck className="w-4 h-4" />
+              <FileCheck className="w-4 h-4 text-amber-400" />
               <span>KYC Status</span>
             </Link>
           </div>
@@ -163,36 +163,36 @@ export default function OrganizationDashboard() {
 
         {/* Stats Grid */}
         <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Total Campaigns</span>
-            <div className="text-3xl font-extrabold text-slate-900">{stats?.totalEvents || events.length}</div>
-            <div className="text-xs text-slate-500">{stats?.completedEvents || 0} successfully completed</div>
+          <div className="bg-stone-900/80 p-6 rounded-3xl border border-stone-800/80 shadow-xl space-y-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-stone-400">Total Campaigns</span>
+            <div className="text-3xl font-extrabold text-white">{stats?.totalEvents || events.length}</div>
+            <div className="text-xs text-stone-400">{stats?.completedEvents || 0} successfully completed</div>
           </div>
 
-          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Confirmed Volunteers</span>
-            <div className="text-3xl font-extrabold text-emerald-600">{stats?.confirmedVolunteers || 1}</div>
-            <div className="text-xs text-slate-500">Across active initiatives</div>
+          <div className="bg-stone-900/80 p-6 rounded-3xl border border-stone-800/80 shadow-xl space-y-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-stone-400">Confirmed Volunteers</span>
+            <div className="text-3xl font-extrabold text-amber-400">{stats?.confirmedVolunteers || 1}</div>
+            <div className="text-xs text-stone-400">Across active initiatives</div>
           </div>
 
-          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Organization Trust</span>
+          <div className="bg-stone-900/80 p-6 rounded-3xl border border-stone-800/80 shadow-xl space-y-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-stone-400">Organization Trust</span>
             <div className="flex items-baseline space-x-1">
-              <span className="text-3xl font-extrabold text-slate-900">{org?.trust_score || 78.5}</span>
-              <span className="text-slate-400 text-xs font-semibold">/ 100</span>
+              <span className="text-3xl font-extrabold text-amber-400">{org?.trust_score || 78.5}</span>
+              <span className="text-stone-400 text-xs font-semibold">/ 100</span>
             </div>
-            <div className="text-xs text-emerald-600 font-semibold">Verified Community Organizer</div>
+            <div className="text-xs text-amber-400/90 font-semibold">Verified Community Organizer</div>
           </div>
 
-          <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Campaign Operations</span>
-            <div className="text-3xl font-extrabold text-slate-900">{events.length}</div>
-            <div className="text-xs text-emerald-600 font-semibold">100% Free Public Initiatives</div>
+          <div className="bg-stone-900/80 p-6 rounded-3xl border border-stone-800/80 shadow-xl space-y-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-stone-400">Campaign Operations</span>
+            <div className="text-3xl font-extrabold text-white">{events.length}</div>
+            <div className="text-xs text-amber-400/90 font-semibold">100% Free Public Initiatives</div>
           </div>
         </div>
 
         {/* Active Campaigns Management & Live Tools */}
-        <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden space-y-6 p-6">
+        <div className="bg-stone-900/80 rounded-3xl border border-stone-800/80 shadow-xl overflow-hidden space-y-6 p-6">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-100 pb-4">
             <div>
               <h2 className="text-lg font-bold text-slate-900">Active Campaign Operations</h2>
@@ -210,31 +210,31 @@ export default function OrganizationDashboard() {
               const isClosed = event.status === 'REGISTRATION_CLOSED' || ((event.confirmed_count || 0) >= maxCap);
 
               return (
-                <div key={event.id} className="p-6 rounded-2xl bg-slate-50 border border-slate-100 space-y-6">
+                <div key={event.id} className="p-6 rounded-3xl bg-stone-950/80 border border-stone-800 space-y-6">
                   <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                     <div className="space-y-1">
                       <div className="flex items-center space-x-2">
                         {event.status === 'UNDER_REVIEW' ? (
-                          <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300 flex items-center space-x-1.5 shadow-2xs">
-                            <Clock className="w-3.5 h-3.5 text-amber-600 animate-spin" />
+                          <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 flex items-center space-x-1.5 shadow-2xs">
+                            <Clock className="w-3.5 h-3.5 text-amber-400 animate-spin" />
                             <span>Application in Review</span>
                           </span>
                         ) : isClosed ? (
-                          <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800">
+                          <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30">
                             Registration Closed (Full)
                           </span>
                         ) : (
-                          <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
+                          <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30">
                             {event.status}
                           </span>
                         )}
-                        <span className="text-xs text-slate-400">•</span>
-                        <span className="text-xs font-semibold text-slate-600">
+                        <span className="text-xs text-stone-500">•</span>
+                        <span className="text-xs font-semibold text-stone-300">
                           {event.confirmed_count || 0} / {maxCap} Slots Filled
                         </span>
                       </div>
-                      <h3 className="text-lg font-bold text-slate-900 mt-1">{event.title}</h3>
-                      <div className="flex items-center space-x-3 text-xs text-slate-500">
+                      <h3 className="text-lg font-bold text-white mt-1">{event.title}</h3>
+                      <div className="flex items-center space-x-3 text-xs text-stone-400">
                         <span>{event.event_date}</span>
                         <span>•</span>
                         <span>{event.location_name}, {event.city}</span>
@@ -245,8 +245,8 @@ export default function OrganizationDashboard() {
                     <div className="flex flex-wrap items-center gap-2">
                       {event.status === 'UNDER_REVIEW' ? (
                         <div className="flex items-center space-x-2">
-                          <span className="px-3.5 py-2 rounded-xl bg-amber-50 text-amber-900 border border-amber-200 text-xs font-semibold flex items-center space-x-2 shadow-2xs">
-                            <Clock className="w-3.5 h-3.5 text-amber-600 animate-pulse" />
+                          <span className="px-3.5 py-2 rounded-xl bg-amber-500/10 text-amber-300 border border-amber-500/30 text-xs font-semibold flex items-center space-x-2">
+                            <Clock className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
                             <span>Pending Admin Moderation & Approval</span>
                           </span>
                         </div>
@@ -254,23 +254,23 @@ export default function OrganizationDashboard() {
                         <>
                           <button
                             onClick={() => handleViewVolunteers(event)}
-                            className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold flex items-center space-x-1.5 shadow-sm transition-all"
+                            className="px-4 py-2 rounded-xl bg-stone-800 hover:bg-stone-700 text-stone-200 border border-stone-700 text-xs font-semibold flex items-center space-x-1.5 shadow-sm transition-all cursor-pointer"
                           >
-                            <Users className="w-4 h-4" />
+                            <Users className="w-4 h-4 text-amber-400" />
                             <span>Registered Volunteers ({event.confirmed_count || 0})</span>
                           </button>
 
                           <button
                             onClick={() => handleRunMatching(event.id)}
-                            className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold flex items-center space-x-1.5 shadow-sm transition-all"
+                            className="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 hover:from-amber-400 hover:to-orange-400 text-stone-950 text-xs font-bold flex items-center space-x-1.5 shadow-md shadow-amber-500/20 transition-all cursor-pointer hover:scale-105 active:scale-95"
                           >
-                            <Cpu className="w-4 h-4 text-emerald-400" />
+                            <Cpu className="w-4 h-4 text-stone-950" />
                             <span>AI Match Volunteers</span>
                           </button>
 
                           <button
                             onClick={() => handleGenerateQR(event.id)}
-                            className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold flex items-center space-x-1.5 shadow-sm transition-all"
+                            className="px-4 py-2 rounded-xl bg-orange-500/15 hover:bg-orange-500/25 border border-orange-500/30 text-orange-300 text-xs font-semibold flex items-center space-x-1.5 shadow-sm transition-all cursor-pointer"
                           >
                             <QrCode className="w-4 h-4" />
                             <span>Attendance QR</span>
@@ -282,36 +282,36 @@ export default function OrganizationDashboard() {
 
                   {/* AI Matching Recommendations Section */}
                   {matchingEventId === event.id && (
-                    <div className="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm space-y-4">
-                      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-100 pb-3">
+                    <div className="p-6 bg-stone-900 rounded-3xl border border-amber-500/30 shadow-2xl space-y-4">
+                      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-stone-800 pb-3">
                         <div className="flex items-center space-x-2">
-                          <Sparkles className="w-5 h-5 text-emerald-600" />
-                          <h4 className="text-sm font-bold text-slate-900">
+                          <Sparkles className="w-5 h-5 text-amber-400" />
+                          <h4 className="text-sm font-bold text-white">
                             AI Matched Volunteers ({matches.length} Candidates Ranked)
                           </h4>
                         </div>
                         {matches.length > 0 && (
                           <button
                             onClick={() => handleNotifyMatches(event.id)}
-                            className="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-xl flex items-center space-x-1.5"
+                            className="px-3.5 py-1.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-stone-950 text-xs font-bold rounded-xl flex items-center space-x-1.5 shadow-md shadow-amber-500/20 cursor-pointer"
                           >
-                            <Users className="w-3.5 h-3.5" />
+                            <Users className="w-3.5 h-3.5 text-stone-950" />
                             <span>Notify Top Candidates</span>
                           </button>
                         )}
                       </div>
 
                       {notifySuccess && (
-                        <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl text-xs flex items-center space-x-2">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                        <div className="p-3 bg-amber-500/15 border border-amber-500/30 text-amber-300 rounded-xl text-xs flex items-center space-x-2">
+                          <CheckCircle2 className="w-4 h-4 text-amber-400" />
                           <span>{notifySuccess}</span>
                         </div>
                       )}
 
                       {matchingLoading ? (
-                        <div className="py-8 text-center text-xs text-slate-400">Running multi-factor matching model...</div>
+                        <div className="py-8 text-center text-xs text-stone-400">Running multi-factor matching model...</div>
                       ) : matches.length === 0 ? (
-                        <div className="py-6 text-center text-xs text-slate-500">
+                        <div className="py-6 text-center text-xs text-stone-400">
                           No matching profiles identified yet. Try updating required skills.
                         </div>
                       ) : (
@@ -320,26 +320,26 @@ export default function OrganizationDashboard() {
                             const fitScore = m.overall_fit_score || m.match_score || 0;
                             const isHighMatch = fitScore >= 85;
                             return (
-                              <div key={m.volunteer_id} className="p-4 bg-slate-50 border border-slate-200/80 rounded-2xl space-y-3 text-xs shadow-2xs hover:shadow-sm transition-all">
+                              <div key={m.volunteer_id} className="p-4 bg-stone-950/80 border border-stone-800 hover:border-amber-500/40 rounded-2xl space-y-3 text-xs shadow-xl transition-all">
                                 <div className="flex justify-between items-start gap-2">
                                   <div>
-                                    <div className="font-bold text-slate-900 text-sm flex items-center space-x-1.5">
+                                    <div className="font-bold text-white text-sm flex items-center space-x-1.5">
                                       <span>{m.volunteer_name || 'Volunteer'}</span>
                                     </div>
                                     {m.volunteer_city && (
-                                      <span className="text-[11px] text-slate-400">
+                                      <span className="text-[11px] text-stone-400">
                                         📍 {m.volunteer_city}
                                       </span>
                                     )}
                                   </div>
                                   <div className="flex flex-col items-end gap-1">
                                     <span className={`px-2 py-0.5 rounded-full text-[10px] font-black tracking-wide ${
-                                      isHighMatch ? 'bg-emerald-100 text-emerald-800' : 'bg-indigo-100 text-indigo-800'
+                                      isHighMatch ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' : 'bg-stone-800 text-stone-300 border border-stone-700'
                                     }`}>
                                       {fitScore}% Fit
                                     </span>
                                     {m.recommendation_category && (
-                                      <span className="text-[9px] uppercase font-bold text-slate-400">
+                                      <span className="text-[9px] uppercase font-bold text-amber-400/80">
                                         {m.recommendation_category.replace(/_/g, ' ')}
                                       </span>
                                     )}
@@ -349,14 +349,14 @@ export default function OrganizationDashboard() {
                                 {/* Matched Certified Skills Tags */}
                                 {m.matched_skills && m.matched_skills.length > 0 && (
                                   <div className="space-y-1">
-                                    <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">
+                                    <span className="text-[10px] font-semibold text-stone-400 uppercase tracking-wider block">
                                       Matched Certified Skills
                                     </span>
                                     <div className="flex flex-wrap gap-1">
                                       {m.matched_skills.map((skill: string, idx: number) => (
                                         <span
                                           key={idx}
-                                          className="px-2 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-md text-[10px] font-bold flex items-center space-x-1"
+                                          className="px-2 py-0.5 bg-amber-500/15 text-amber-300 border border-amber-500/30 rounded-md text-[10px] font-bold flex items-center space-x-1"
                                         >
                                           <span>✓</span>
                                           <span>{skill}</span>
@@ -367,23 +367,23 @@ export default function OrganizationDashboard() {
                                 )}
 
                                 {/* Multi-Factor Match Explanation */}
-                                <div className="space-y-1 pt-2 border-t border-slate-200/60">
+                                <div className="space-y-1 pt-2 border-t border-stone-800/80">
                                   {Array.isArray(m.explanation) ? (
                                     m.explanation.map((exp: string, idx: number) => (
-                                      <div key={idx} className="flex items-start space-x-1.5 text-[11px] text-slate-600">
-                                        <span className="text-emerald-500 font-bold leading-none mt-0.5">•</span>
+                                      <div key={idx} className="flex items-start space-x-1.5 text-[11px] text-stone-300">
+                                        <span className="text-amber-400 font-bold leading-none mt-0.5">•</span>
                                         <span className="leading-tight">{exp}</span>
                                       </div>
                                     ))
                                   ) : (
-                                    <div className="text-slate-500 text-[11px]">{m.explanation}</div>
+                                    <div className="text-stone-300 text-[11px]">{m.explanation}</div>
                                   )}
                                 </div>
 
                                 {/* Metrics strip */}
-                                <div className="flex items-center justify-between text-[10px] text-slate-400 pt-1 border-t border-slate-100">
-                                  <span>Reliability: <strong className="text-slate-600">{m.reliability_score || 90}/100</strong></span>
-                                  <span>Skill Fit: <strong className="text-slate-600">{m.skill_score || 85}%</strong></span>
+                                <div className="flex items-center justify-between text-[10px] text-stone-400 pt-1 border-t border-stone-800/80">
+                                  <span>Reliability: <strong className="text-amber-400">{m.reliability_score || 90}/100</strong></span>
+                                  <span>Skill Fit: <strong className="text-amber-400">{m.skill_score || 85}%</strong></span>
                                 </div>
                               </div>
                             );
@@ -400,27 +400,27 @@ export default function OrganizationDashboard() {
 
         {/* Modal: Registered Volunteers Information */}
         {volunteersModalOpen && (
-          <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
-            <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 space-y-6 shadow-2xl border border-slate-200">
-              <div className="flex justify-between items-start border-b border-slate-100 pb-4">
+          <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+            <div className="bg-stone-900 rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 space-y-6 shadow-2xl border border-amber-500/25 text-stone-100">
+              <div className="flex justify-between items-start border-b border-stone-800 pb-4">
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-indigo-600">
+                  <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
                     Registered Volunteers Roster
                   </span>
-                  <h3 className="text-xl font-bold text-slate-900 mt-1">
+                  <h3 className="text-xl font-bold text-white mt-1">
                     {selectedEventForVolunteers?.title}
                   </h3>
-                  <div className="flex items-center space-x-3 text-xs text-slate-500 mt-1">
+                  <div className="flex items-center space-x-3 text-xs text-stone-400 mt-1">
                     <span>Date: {selectedEventForVolunteers?.event_date}</span>
                     <span>•</span>
-                    <span className="font-semibold text-slate-700">
+                    <span className="font-semibold text-stone-300">
                       Capacity: {volunteersMeta?.confirmed_count || registeredVolunteers.length} / {volunteersMeta?.max_capacity || selectedEventForVolunteers?.max_capacity || 15}
                     </span>
                     <span>•</span>
                     <span className={`px-2 py-0.5 rounded-full font-bold text-[10px] ${
                       volunteersMeta?.is_registration_closed
-                        ? 'bg-rose-100 text-rose-800'
-                        : 'bg-emerald-100 text-emerald-800'
+                        ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30'
+                        : 'bg-amber-500/15 text-amber-300 border border-amber-500/30'
                     }`}>
                       {volunteersMeta?.is_registration_closed ? 'Registration Closed (Full)' : 'Registration Open'}
                     </span>
@@ -429,19 +429,19 @@ export default function OrganizationDashboard() {
 
                 <button
                   onClick={() => setVolunteersModalOpen(false)}
-                  className="p-2 text-slate-400 hover:text-slate-700 rounded-xl hover:bg-slate-100 transition-colors"
+                  className="p-2 text-stone-400 hover:text-white rounded-xl hover:bg-stone-800 transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
 
               {volunteersLoading ? (
-                <div className="py-20 text-center text-xs text-slate-400">Loading registered volunteer details...</div>
+                <div className="py-20 text-center text-xs text-stone-400">Loading registered volunteer details...</div>
               ) : registeredVolunteers.length === 0 ? (
                 <div className="py-16 text-center space-y-2">
-                  <Users className="w-10 h-10 text-slate-300 mx-auto" />
-                  <p className="text-slate-700 font-semibold text-sm">No Volunteers Registered Yet</p>
-                  <p className="text-slate-400 text-xs">
+                  <Users className="w-10 h-10 text-stone-600 mx-auto" />
+                  <p className="text-stone-300 font-semibold text-sm">No Volunteers Registered Yet</p>
+                  <p className="text-stone-500 text-xs">
                     When volunteers register for this campaign, their names, contact details, trust scores, and notes will appear here.
                   </p>
                 </div>
@@ -449,31 +449,31 @@ export default function OrganizationDashboard() {
                 <div className="space-y-4">
                   <div className="grid sm:grid-cols-2 gap-4">
                     {registeredVolunteers.map(v => (
-                      <div key={v.id} className="p-5 bg-slate-50 rounded-2xl border border-slate-200/80 space-y-3 text-xs hover:border-indigo-300 transition-colors">
+                      <div key={v.id} className="p-5 bg-stone-950/80 rounded-2xl border border-stone-800 space-y-3 text-xs hover:border-amber-500/40 transition-colors">
                         <div className="flex justify-between items-start">
                           <div>
-                            <div className="font-extrabold text-sm text-slate-900">{v.volunteer_name}</div>
-                            <div className="text-[11px] text-slate-500 flex items-center space-x-1 mt-0.5">
-                              <MapPin className="w-3 h-3 text-slate-400" />
+                            <div className="font-extrabold text-sm text-white">{v.volunteer_name}</div>
+                            <div className="text-[11px] text-stone-400 flex items-center space-x-1 mt-0.5">
+                              <MapPin className="w-3 h-3 text-amber-400" />
                               <span>{v.city} {v.district ? `• ${v.district}` : ''}</span>
                             </div>
                           </div>
-                          <span className="px-2 py-0.5 rounded-full font-bold text-[10px] bg-indigo-50 text-indigo-700 border border-indigo-200">
+                          <span className="px-2 py-0.5 rounded-full font-bold text-[10px] bg-amber-500/15 text-amber-300 border border-amber-500/30">
                             Trust: {v.reliability_score || 70}/100
                           </span>
                         </div>
 
                         {/* Contact Information */}
-                        <div className="pt-2 border-t border-slate-200/60 space-y-1.5 text-slate-700">
+                        <div className="pt-2 border-t border-stone-800/80 space-y-1.5 text-stone-300">
                           <div className="flex items-center space-x-2">
-                            <Mail className="w-3.5 h-3.5 text-slate-400 flex-shrink-0" />
-                            <a href={`mailto:${v.volunteer_email}`} className="text-indigo-600 hover:underline truncate">
+                            <Mail className="w-3.5 h-3.5 text-stone-400 flex-shrink-0" />
+                            <a href={`mailto:${v.volunteer_email}`} className="text-amber-400 hover:underline truncate">
                               {v.volunteer_email}
                             </a>
                           </div>
                           <div className="flex items-center space-x-2">
-                            <Phone className="w-3.5 h-3.5 text-slate-400 flex-shrink-0" />
-                            <a href={`tel:${v.volunteer_phone}`} className="text-slate-800 font-mono hover:underline">
+                            <Phone className="w-3.5 h-3.5 text-stone-400 flex-shrink-0" />
+                            <a href={`tel:${v.volunteer_phone}`} className="text-stone-200 font-mono hover:underline">
                               {v.volunteer_phone}
                             </a>
                           </div>
@@ -483,7 +483,7 @@ export default function OrganizationDashboard() {
                         {v.skills && v.skills.length > 0 && (
                           <div className="flex flex-wrap gap-1 pt-1">
                             {v.skills.map((s: string, idx: number) => (
-                              <span key={idx} className="px-2 py-0.5 bg-white border border-slate-200 rounded text-[10px] font-medium text-slate-600">
+                              <span key={idx} className="px-2 py-0.5 bg-stone-900 border border-stone-800 rounded text-[10px] font-medium text-amber-300/90">
                                 {s}
                               </span>
                             ))}
@@ -491,21 +491,21 @@ export default function OrganizationDashboard() {
                         )}
 
                         {/* Status & Notes */}
-                        <div className="pt-2 border-t border-slate-200/60 flex items-center justify-between">
+                        <div className="pt-2 border-t border-stone-800/80 flex items-center justify-between">
                           <span className={`px-2 py-0.5 rounded-full font-bold text-[10px] ${
                             v.attendance_status === 'PRESENT'
-                              ? 'bg-emerald-100 text-emerald-800'
-                              : 'bg-slate-200 text-slate-700'
+                              ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
+                              : 'bg-stone-800 text-stone-400'
                           }`}>
                             {v.attendance_status === 'PRESENT' ? '✓ Checked In (Present)' : 'Registered'}
                           </span>
-                          <span className="text-[10px] text-slate-400">
+                          <span className="text-[10px] text-stone-500">
                             {new Date(v.registered_at).toLocaleDateString()}
                           </span>
                         </div>
 
                         {v.notes && (
-                          <div className="p-2 bg-white rounded-xl border border-slate-100 text-[11px] text-slate-600 italic">
+                          <div className="p-2 bg-stone-900/90 rounded-xl border border-stone-800 text-[11px] text-stone-400 italic">
                             &quot;{v.notes}&quot;
                           </div>
                         )}
@@ -515,10 +515,10 @@ export default function OrganizationDashboard() {
                 </div>
               )}
 
-              <div className="flex justify-end pt-4 border-t border-slate-100">
+              <div className="flex justify-end pt-4 border-t border-stone-800">
                 <button
                   onClick={() => setVolunteersModalOpen(false)}
-                  className="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition-all"
+                  className="px-5 py-2.5 rounded-xl bg-stone-800 hover:bg-stone-700 text-stone-200 text-xs font-semibold transition-all"
                 >
                   Close Roster
                 </button>
@@ -529,43 +529,43 @@ export default function OrganizationDashboard() {
 
         {/* Modal: Display Live Attendance QR Code & Special Code */}
         {qrModalOpen && (
-          <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
-            <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 text-center space-y-6 shadow-2xl border border-slate-100">
-              <div className="flex justify-between items-start border-b border-slate-100 pb-4">
+          <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+            <div className="bg-stone-900 rounded-3xl max-w-lg w-full p-6 sm:p-8 text-center space-y-6 shadow-2xl border border-amber-500/30 text-stone-100">
+              <div className="flex justify-between items-start border-b border-stone-800 pb-4">
                 <div className="text-left space-y-1">
-                  <div className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold uppercase tracking-wider">
-                    <QrCode className="w-3.5 h-3.5 text-emerald-600" />
+                  <div className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 text-[11px] font-bold uppercase tracking-wider border border-amber-500/30">
+                    <QrCode className="w-3.5 h-3.5 text-amber-400" />
                     <span>Live Attendance Station</span>
                   </div>
-                  <h3 className="text-lg font-bold text-slate-900">
+                  <h3 className="text-lg font-bold text-white">
                     {selectedEventForQr?.title || 'Event Check-In Station'}
                   </h3>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-stone-400">
                     Volunteers can check in either by entering the special code or scanning the QR code.
                   </p>
                 </div>
                 <button
                   onClick={() => setQrModalOpen(false)}
-                  className="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-100 transition-colors"
+                  className="p-1.5 text-stone-400 hover:text-white rounded-lg hover:bg-stone-800 transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
 
               {qrLoading ? (
-                <div className="py-16 text-slate-400 text-xs flex flex-col items-center justify-center space-y-3">
-                  <div className="w-8 h-8 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
+                <div className="py-16 text-stone-400 text-xs flex flex-col items-center justify-center space-y-3">
+                  <div className="w-8 h-8 border-2 border-amber-500 border-t-transparent rounded-full animate-spin"></div>
                   <span>Generating cryptographic QR token & special check-in code...</span>
                 </div>
               ) : qrData ? (
                 <div className="space-y-6">
                   {/* Special Check-In Code Callout */}
-                  <div className="p-5 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 rounded-2xl border-2 border-indigo-200 text-center space-y-2">
-                    <span className="text-[11px] font-extrabold uppercase tracking-widest text-indigo-700 block">
+                  <div className="p-5 bg-gradient-to-r from-amber-950/40 via-stone-900 to-orange-950/40 rounded-2xl border-2 border-amber-500/40 text-center space-y-2">
+                    <span className="text-[11px] font-extrabold uppercase tracking-widest text-amber-400 block">
                       Special Check-In Code
                     </span>
                     <div className="flex items-center justify-center space-x-3">
-                      <span className="text-3xl sm:text-4xl font-black font-mono tracking-widest text-indigo-900 bg-white px-4 py-1.5 rounded-xl border border-indigo-200 shadow-inner select-all">
+                      <span className="text-3xl sm:text-4xl font-black font-mono tracking-widest text-amber-300 bg-stone-950 px-4 py-1.5 rounded-xl border border-amber-500/40 shadow-inner select-all">
                         {qrData.specialCode || qrData.data?.specialCode || 'IMP-2026'}
                       </span>
                       <button
@@ -577,30 +577,30 @@ export default function OrganizationDashboard() {
                             setTimeout(() => setCopiedCode(false), 2500);
                           }
                         }}
-                        className="p-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow-sm transition-all flex items-center space-x-1 text-xs font-semibold"
+                        className="p-2.5 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-stone-950 rounded-xl shadow-md transition-all flex items-center space-x-1 text-xs font-bold cursor-pointer"
                         title="Copy Special Code"
                       >
-                        {copiedCode ? <CheckCircle className="w-4 h-4 text-emerald-300" /> : <Copy className="w-4 h-4" />}
+                        {copiedCode ? <CheckCircle className="w-4 h-4 text-stone-950" /> : <Copy className="w-4 h-4" />}
                         <span className="hidden sm:inline">{copiedCode ? 'Copied!' : 'Copy'}</span>
                       </button>
                     </div>
-                    <p className="text-[11px] text-indigo-700/80">
-                      Announce this code or write it on the sign-in board. Volunteers enter it on their dashboard to instantly record attendance and unlock their Gemini AI Certificate!
+                    <p className="text-[11px] text-stone-300 font-light">
+                      Announce this code or display it on site. Volunteers enter it on their dashboard to instantly record attendance and unlock their Gemini AI Certificate!
                     </p>
                   </div>
 
                   {/* Scannable QR Code */}
-                  <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex flex-col items-center justify-center space-y-2">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                  <div className="p-4 bg-stone-950 rounded-2xl border border-stone-800 flex flex-col items-center justify-center space-y-2">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400">
                       Or Scan QR Code with Smartphone Camera
                     </span>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={qrData.qrDataUrl || qrData.data?.qrDataUrl}
                       alt="Attendance QR Code"
-                      className="w-48 h-48 rounded-xl shadow-inner border border-slate-200"
+                      className="w-48 h-48 rounded-xl shadow-inner border border-amber-500/30 bg-white p-2"
                     />
-                    <div className="text-[10px] text-slate-400 pt-1">
+                    <div className="text-[10px] text-stone-500 pt-1">
                       Token valid until: {new Date(qrData.expiresAt || qrData.data?.expiresAt).toLocaleTimeString()}
                     </div>
                   </div>
@@ -611,7 +611,7 @@ export default function OrganizationDashboard() {
                 {selectedEventForQr && (
                   <button
                     onClick={() => handleGenerateQR(selectedEventForQr.id)}
-                    className="flex-1 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-all flex items-center justify-center space-x-1.5"
+                    className="flex-1 py-2.5 rounded-xl border border-stone-700 text-xs font-semibold text-stone-300 hover:bg-stone-800 transition-all flex items-center justify-center space-x-1.5"
                   >
                     <RefreshCw className="w-3.5 h-3.5" />
                     <span>Refresh Code & QR</span>
@@ -619,7 +619,7 @@ export default function OrganizationDashboard() {
                 )}
                 <button
                   onClick={() => setQrModalOpen(false)}
-                  className="flex-1 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition-all"
+                  className="flex-1 py-2.5 rounded-xl bg-stone-800 hover:bg-stone-700 text-stone-200 text-xs font-semibold transition-all"
                 >
                   Done
                 </button>

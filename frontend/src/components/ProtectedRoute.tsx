@@ -22,8 +22,8 @@ export default function ProtectedRoute({ children, allowedRoles }: ProtectedRout
 
   if (loading) {
     return (
-      <div className="py-24 flex flex-col items-center justify-center space-y-3 text-slate-500 text-xs">
-        <Loader2 className="w-6 h-6 animate-spin text-emerald-600" />
+      <div className="py-24 flex flex-col items-center justify-center space-y-3 text-stone-400 text-xs">
+        <Loader2 className="w-6 h-6 animate-spin text-amber-400" />
         <span>Verifying security credentials & authorization...</span>
       </div>
     );
@@ -46,18 +46,18 @@ export default function ProtectedRoute({ children, allowedRoles }: ProtectedRout
         : '/volunteer/dashboard';
 
     return (
-      <div className="max-w-md mx-auto my-16 p-8 bg-white rounded-3xl border border-rose-100 shadow-lg text-center space-y-6">
-        <div className="w-14 h-14 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center mx-auto border border-rose-100 shadow-sm">
+      <div className="max-w-md mx-auto my-16 p-8 bg-stone-900/80 backdrop-blur-xl rounded-3xl border border-stone-800 shadow-2xl text-center space-y-6">
+        <div className="w-14 h-14 bg-rose-950/40 text-rose-400 rounded-2xl flex items-center justify-center mx-auto border border-rose-800/60 shadow-sm">
           <ShieldAlert className="w-7 h-7" />
         </div>
 
         <div className="space-y-2">
-          <h2 className="text-xl font-bold text-slate-900">Access Denied</h2>
-          <p className="text-xs text-slate-600 leading-relaxed">
-            You are signed in as <span className="font-bold text-slate-900 px-1.5 py-0.5 rounded bg-slate-100 border border-slate-200">{currentRole}</span>.
+          <h2 className="text-xl font-bold text-white">Access Denied</h2>
+          <p className="text-xs text-stone-300 leading-relaxed">
+            You are signed in as <span className="font-bold text-amber-300 px-1.5 py-0.5 rounded bg-stone-800 border border-stone-700">{currentRole}</span>.
           </p>
-          <p className="text-xs text-slate-500 leading-relaxed">
-            This portal is restricted to authorized <span className="font-semibold text-rose-700">{allowedRoles.join(' / ')}</span> accounts only. Role switching is prohibited.
+          <p className="text-xs text-stone-400 leading-relaxed">
+            This portal is restricted to authorized <span className="font-semibold text-rose-300">{allowedRoles.join(' / ')}</span> accounts only. Role switching is prohibited.
           </p>
         </div>
 
@@ -65,7 +65,7 @@ export default function ProtectedRoute({ children, allowedRoles }: ProtectedRout
           <button
             type="button"
             onClick={() => router.push(roleDashboardUrl)}
-            className="w-full py-2.5 px-4 rounded-xl bg-emerald-600 text-white font-semibold text-xs hover:bg-emerald-700 transition-all flex items-center justify-center space-x-2 shadow-md shadow-emerald-600/20"
+            className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 hover:from-amber-400 hover:to-orange-400 text-stone-950 font-bold text-xs transition-all flex items-center justify-center space-x-2 shadow-lg shadow-amber-500/25"
           >
             <span>Go to Your {currentRole === 'ORGANIZATION' ? 'Organizer' : currentRole === 'ADMIN' ? 'Admin' : 'Volunteer'} Dashboard</span>
             <ArrowRight className="w-4 h-4" />
@@ -74,16 +74,16 @@ export default function ProtectedRoute({ children, allowedRoles }: ProtectedRout
           <button
             type="button"
             onClick={logout}
-            className="w-full py-2.5 px-4 rounded-xl bg-white border border-slate-200 text-slate-700 font-semibold text-xs hover:bg-slate-50 transition-all flex items-center justify-center space-x-2"
+            className="w-full py-2.5 px-4 rounded-xl bg-stone-800/80 border border-stone-700 text-stone-200 font-semibold text-xs hover:bg-stone-800 hover:border-amber-500/40 transition-all flex items-center justify-center space-x-2"
           >
-            <LogOut className="w-3.5 h-3.5 text-slate-400" />
+            <LogOut className="w-3.5 h-3.5 text-stone-400" />
             <span>Sign In with Different Account</span>
           </button>
 
           <button
             type="button"
             onClick={() => router.push('/')}
-            className="text-xs text-slate-400 hover:text-slate-600 font-medium inline-flex items-center space-x-1 pt-1"
+            className="text-xs text-stone-400 hover:text-amber-300 font-medium inline-flex items-center space-x-1 pt-1"
           >
             <Home className="w-3 h-3" />
             <span>Return to Homepage</span>
