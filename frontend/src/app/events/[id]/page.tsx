@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
+import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { api } from '@/lib/api';
 import {
@@ -13,6 +14,7 @@ import {
   AlertTriangle,
   QrCode,
   ArrowLeft,
+  ArrowRight,
   CheckSquare,
   Sparkles
 } from 'lucide-react';
@@ -23,23 +25,94 @@ export default function EventDetailsPage() {
   const eventId = params.id as string;
 
   const [event, setEvent] = useState<any>(null);
+  const [currentUser, setCurrentUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [registering, setRegistering] = useState(false);
   const [regSuccess, setRegSuccess] = useState<string | null>(null);
   const [regError, setRegError] = useState<string | null>(null);
+
+  // Skill matching evaluation state
+  const [skillMatchState, setSkillMatchState] = useState<{ isMatched: boolean; missingSkills: string[] }>({
+    isMatched: true,
+    missingSkills: []
+  });
 
   // Check-In modal state
   const [showCheckInModal, setShowCheckInModal] = useState(false);
   const [scannedToken, setScannedToken] = useState('');
   const [checkInMsg, setCheckInMsg] = useState<{ success: boolean; text: string } | null>(null);
 
+  const evaluateSkills = (requirements: any[], skills: any[]) => {
+    if (!requirements || requirements.length === 0) {
+      setSkillMatchState({ isMatched: true, missingSkills: [] });
+      return;
+    }
+
+    const userSkillIds = skills.map((s: any) => s.skill_id || s.id);
+    const userSkillNames = skills.map((s: any) => (s.name || '').toLowerCase());
+
+    const mandatory = requirements.filter((r: any) => r.is_mandatory);
+    if (mandatory.length > 0) {
+      const missing = mandatory.filter(
+        (r: any) => !userSkillIds.includes(r.skill_id) && !userSkillNames.includes((r.skill_name || '').toLowerCase())
+      );
+      if (missing.length > 0) {
+        setSkillMatchState({
+          isMatched: false,
+          missingSkills: missing.map((r: any) => r.skill_name || 'Required Skill')
+        });
+        return;
+      }
+    } else {
+      const hasAny = requirements.some(
+        (r: any) => userSkillIds.includes(r.skill_id) || userSkillNames.includes((r.skill_name || '').toLowerCase())
+      );
+      if (!hasAny) {
+        setSkillMatchState({
+          isMatched: false,
+          missingSkills: requirements.map((r: any) => r.skill_name || 'Required Skill')
+        });
+        return;
+      }
+    }
+
+    setSkillMatchState({ isMatched: true, missingSkills: [] });
+  };
+
   const fetchEvent = useCallback(async () => {
     if (!eventId) return;
     setLoading(true);
-    const res = await api.getEvent(eventId);
+
+    const rawUser = typeof window !== 'undefined' ? localStorage.getItem('impactlink_user') : null;
+    let loggedUser: any = null;
+    let userVolunteerSkills: any[] = [];
+
+    if (rawUser) {
+      try {
+        loggedUser = JSON.parse(rawUser);
+        setCurrentUser(loggedUser);
+      } catch (e) {}
+    }
+
+    const [evRes, profRes] = await Promise.all([
+      api.getEvent(eventId),
+      loggedUser && (loggedUser.role === 'VOLUNTEER' || loggedUser.role === 'TEAM_LEADER')
+        ? api.getVolunteerProfile()
+        : Promise.resolve({ success: false, data: null })
+    ]);
+
     setLoading(false);
-    if (res.success && res.data) {
-      setEvent(res.data.event);
+
+    if (profRes.success && profRes.data?.volunteer) {
+      userVolunteerSkills = profRes.data.volunteer.skills || [];
+    }
+
+    if (evRes.success && evRes.data) {
+      const loadedEvent = evRes.data.event;
+      setEvent(loadedEvent);
+      if (loggedUser && (loggedUser.role === 'VOLUNTEER' || loggedUser.role === 'TEAM_LEADER')) {
+        evaluateSkills(loadedEvent.requirements || [], userVolunteerSkills);
+      }
     }
   }, [eventId]);
 
@@ -57,6 +130,13 @@ export default function EventDetailsPage() {
     const maxCap = event?.max_capacity || event?.volunteers_required || 0;
     if (event?.status === 'REGISTRATION_CLOSED' || (maxCap > 0 && (event?.confirmed_count || 0) >= maxCap)) {
       setRegError('Registration is closed. Maximum volunteer capacity has been reached.');
+      return;
+    }
+
+    if (!skillMatchState.isMatched) {
+      setRegError(
+        `Skill requirement not met: The organization requires verified competency in [${skillMatchState.missingSkills.join(', ')}]. Only volunteers with matching skills are allowed to register.`
+      );
       return;
     }
 
@@ -151,6 +231,40 @@ export default function EventDetailsPage() {
           </div>
         )}
 
+        {/* Skill Requirement Match Notice */}
+        {event.requirements && event.requirements.length > 0 && currentUser && (currentUser.role === 'VOLUNTEER' || currentUser.role === 'TEAM_LEADER') && (
+          <div>
+            {skillMatchState.isMatched ? (
+              <div className="p-4 bg-emerald-50 rounded-2xl border border-emerald-200 text-xs text-emerald-900 flex items-center space-x-2.5">
+                <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                <div>
+                  <strong className="block text-emerald-950 font-bold">Skills Matched & Verified Eligible</strong>
+                  <span>Your profile competencies match the organizer&apos;s required skills for this initiative. You are authorized to register!</span>
+                </div>
+              </div>
+            ) : (
+              <div className="p-4 bg-amber-50 rounded-2xl border-2 border-amber-300 text-xs space-y-2">
+                <div className="flex items-center space-x-2 font-bold text-amber-900">
+                  <AlertTriangle className="w-4 h-4 text-amber-600 flex-shrink-0" />
+                  <span>Organizer Skill Match Requirement</span>
+                </div>
+                <p className="text-amber-800 leading-relaxed">
+                  Only volunteers possessing the specific skills requested by the organization can register. Missing required skill(s): <strong className="text-amber-950 underline">{skillMatchState.missingSkills.join(', ')}</strong>.
+                </p>
+                <div className="pt-1">
+                  <Link
+                    href="/volunteer/profile"
+                    className="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white rounded-xl font-semibold text-[11px] shadow-sm transition-all"
+                  >
+                    <span>Add Matching Skill to Profile</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Logistics Grid */}
         <div className="grid sm:grid-cols-3 gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100 text-xs text-slate-700">
           <div className="space-y-1">
@@ -189,6 +303,27 @@ export default function EventDetailsPage() {
             <div className="px-5 py-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 font-semibold text-xs flex items-center space-x-2">
               <AlertTriangle className="w-4 h-4 text-rose-500" />
               <span>Registration Closed — Maximum Capacity Reached ({event.confirmed_count}/{event.max_capacity || event.volunteers_required} Volunteers)</span>
+            </div>
+          ) : !skillMatchState.isMatched ? (
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+              <button
+                onClick={() =>
+                  setRegError(
+                    `Skill requirement not met: The organization requires verified competency in [${skillMatchState.missingSkills.join(', ')}]. Only volunteers with matching skills are allowed to register.`
+                  )
+                }
+                className="px-6 py-3 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-semibold text-sm shadow-md transition-all flex items-center space-x-2"
+              >
+                <AlertTriangle className="w-4 h-4 text-amber-200" />
+                <span>Skill Match Required to Register</span>
+              </button>
+              <Link
+                href="/volunteer/profile"
+                className="px-4 py-3 rounded-xl border border-amber-300 bg-amber-50 hover:bg-amber-100 text-amber-900 font-semibold text-xs transition-all flex items-center space-x-1"
+              >
+                <span>Add Skill in Profile</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
             </div>
           ) : (
             <button

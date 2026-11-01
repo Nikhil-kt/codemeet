@@ -63,6 +63,45 @@ export class RegistrationController {
         return;
       }
 
+      // Check Skill Matching: Only volunteers possessing matching skills required by the organization/event are allowed to register
+      const eventReqs = db.event_requirements.filter(r => r.event_id === eventId);
+      if (eventReqs.length > 0) {
+        const volSkills = db.volunteer_skills.filter(vs => vs.volunteer_id === vol.id);
+        const volSkillIds = new Set(volSkills.map(vs => vs.skill_id));
+
+        const mandatoryReqs = eventReqs.filter(r => r.is_mandatory);
+        if (mandatoryReqs.length > 0) {
+          const missingMandatory = mandatoryReqs.filter(r => !volSkillIds.has(r.skill_id));
+          if (missingMandatory.length > 0) {
+            const missingNames = missingMandatory.map(
+              r => db.skills.find(s => s.id === r.skill_id)?.name || 'Required Skill'
+            );
+            res.status(400).json({
+              success: false,
+              message: `Skill requirement not met: The organization requires verified competency in [${missingNames.join(', ')}]. Only volunteers with matching skills are allowed to register.`,
+              missing_skills: missingNames,
+              skill_mismatch: true
+            });
+            return;
+          }
+        } else {
+          // If none specifically marked mandatory, volunteer must have at least one of the event's required skills
+          const hasMatchingSkill = eventReqs.some(r => volSkillIds.has(r.skill_id));
+          if (!hasMatchingSkill) {
+            const reqNames = eventReqs.map(
+              r => db.skills.find(s => s.id === r.skill_id)?.name || 'Required Skill'
+            );
+            res.status(400).json({
+              success: false,
+              message: `Skill requirement not met: The organization requires at least one of these competencies: [${reqNames.join(', ')}]. Only volunteers with matching skills are allowed to register.`,
+              missing_skills: reqNames,
+              skill_mismatch: true
+            });
+            return;
+          }
+        }
+      }
+
       // Check capacity
       const maxLimit = event.max_capacity || event.volunteers_required || 15;
       const confirmedCount = db.event_registrations.filter(

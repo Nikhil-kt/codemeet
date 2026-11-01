@@ -77,10 +77,17 @@ async function runTests() {
     assert(!!rahul, 'Volunteer Rahul profile identified');
     assert(rahul!.reliability_score >= 80, 'Volunteer historical reliability is above baseline');
 
-    // 8. Event Registration
-    console.log('[Step 8: Concurrency-Safe Volunteer Registration]');
+    // 8. Event Registration & Skill Matching
+    console.log('[Step 8: Skill Matching & Concurrency-Safe Volunteer Registration]');
     const reg = db.event_registrations.find(r => r.event_id === event!.id && r.volunteer_id === rahul!.id);
-    assert(reg?.status === 'CONFIRMED', 'Volunteer registration confirmed without overbooking');
+    assert(reg?.status === 'CONFIRMED', 'Volunteer Rahul registration confirmed with matching verified skills');
+
+    // Skill requirement enforcement test: Priya lacks 'Beach & Water Body Cleanup'
+    const eventReqs = db.event_requirements.filter(r => r.event_id === event!.id);
+    const priyaSkills = db.volunteer_skills.filter(vs => vs.volunteer_id === 'd0000000-0000-0000-0000-000000000002');
+    const priyaSkillIds = new Set(priyaSkills.map(vs => vs.skill_id));
+    const priyaHasMatchingSkill = eventReqs.some(r => priyaSkillIds.has(r.skill_id));
+    assert(!priyaHasMatchingSkill, 'Volunteers without matching skills are blocked from registering');
 
     // 9. QR Attendance Token & Check-In
     console.log('[Step 9: Cryptographic QR Attendance Verification & Special Code]');
