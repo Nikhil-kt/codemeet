@@ -15,14 +15,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="flex flex-col min-h-screen bg-[#FFF3E8] text-[#431407] antialiased selection:bg-[#F97316] selection:text-white">
+      <body className="flex flex-col min-h-screen bg-[#FFF3E8] text-[#431407] antialiased selection:bg-[#F97316] selection:text-white overflow-x-hidden">
         <AuthProvider>
           <Navbar />
-          <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <main className="flex-1 w-full">
             {children}
           </main>
           <footer className="bg-white border-t border-[#FED7AA] py-8 mt-auto text-[#78716C]">
-            <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
               <div className="flex items-center space-x-2">
                 <span className="w-2 h-2 rounded-full bg-[#F97316] animate-pulse"></span>
                 <span className="font-semibold text-[#7C2D12]">ImpactLink Platform</span>

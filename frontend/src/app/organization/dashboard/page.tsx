@@ -129,7 +129,7 @@ export default function OrganizationDashboard() {
 
   return (
     <ProtectedRoute allowedRoles={['ORGANIZATION']}>
-      <div className="space-y-8 pb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 pb-12">
         {/* Header Section */}
         <div className="bg-gradient-to-r from-white via-[#FFEDD5]/30 to-white border border-[#FED7AA] text-[#431407] p-8 rounded-3xl shadow-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <div className="space-y-2">

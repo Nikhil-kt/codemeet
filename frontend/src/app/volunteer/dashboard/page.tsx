@@ -133,7 +133,7 @@ export default function VolunteerDashboard() {
 
   return (
     <ProtectedRoute allowedRoles={['VOLUNTEER', 'TEAM_LEADER', 'ADMIN']}>
-      <div className="space-y-8 pb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 pb-12">
         {/* Top Banner */}
         {celebrationBanner && (
           <div className="p-4 bg-gradient-to-r from-[#F97316] via-[#EA580C] to-[#C2410C] text-white font-bold rounded-2xl shadow-xl flex flex-col sm:flex-row items-center justify-between gap-3 animate-fade-in">
