@@ -1,0 +1,20 @@
+{
+  "name": "impactlink-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ImpactLink: AI-Powered Community Coordination and Volunteer Management Platform",
+  "scripts": {
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:ml": "py -m uvicorn app.main:app --app-dir ml-service --reload --port 8000",
+    "build:backend": "npm --prefix backend run build",
+    "build:frontend": "npm --prefix frontend run build",
+    "test:backend": "npm --prefix backend test",
+    "test:ml": "py ml-service/test_ml.py"
+  },
+  "workspaces": [
+    "frontend",
+    "backend"
+  ]
+}
+

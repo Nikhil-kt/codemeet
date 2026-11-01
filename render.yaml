@@ -1,0 +1,64 @@
+# Render Blueprint specification for ImpactLink
+# https://render.com/docs/blueprint-spec
+
+version: "1"
+
+services:
+  # --------------------------------------------------------------------------
+  # 1. Node.js Express Backend Service
+  # --------------------------------------------------------------------------
+  - type: web
+    name: impactlink-backend
+    runtime: node
+    plan: starter
+    rootDir: backend
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: FRONTEND_URL
+        sync: false
+      - key: ALLOWED_ORIGINS
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_PUBLISHABLE_KEY
+        sync: false
+      - key: SUPABASE_SECRET_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: ML_SERVICE_URL
+        sync: false
+      - key: ML_SERVICE_SECRET
+        generateValue: true
+
+  # --------------------------------------------------------------------------
+  # 2. Python FastAPI ML Microservice
+  # --------------------------------------------------------------------------
+  - type: web
+    name: impactlink-ml
+    runtime: python
+    plan: starter
+    rootDir: ml-service
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: ALLOWED_ORIGINS
+        sync: false
+      - key: ML_SERVICE_SECRET
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+
