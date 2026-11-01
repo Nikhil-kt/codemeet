@@ -1,8 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&family=Noto+Serif+Khitan+Small+Script&family=Redaction+10:ital,wght@0,400;0,700;1,400&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
+  /* Vintage Parchment Design Tokens */
+  --parchment: #F3E3C3;
+  --parchment-light: #FFF8EB;
+  --parchment-card: rgba(255, 250, 238, 0.82);
+  --ink: #4A2410;
+  --ink-body: #5C4033;
+  --ink-muted: #7C5A48;
+  --sepia: rgba(139, 94, 52, 0.28);
+  --sepia-dark: #8B5E34;
+  --burnt-orange: #E8590C;
+  --burnt-orange-dark: #B8430A;
+  --burnt-orange-light: #FF6B1A;
+  --olive-success: #5B7A2F;
   /* Core Theme Design Tokens */
   --background: #FFF3E8;
   --surface: #FFFFFF;
@@ -24,9 +39,13 @@ body {
   background-color: var(--background);
   color: var(--text-body);
   min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: 'Redaction 10', 'Noto Serif Khitan Small Script', serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+input, textarea, select, button {
+  font-family: inherit;
 }
 
 /* Custom warm peach & terracotta scrollbars */
@@ -144,4 +163,69 @@ select:focus {
   background: linear-gradient(135deg, #7C2D12 0%, #9A3412 50%, #F97316 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+
+/* ==========================================================================
+   VINTAGE PARCHMENT DASHBOARD STYLES & UTILITIES
+   ========================================================================== */
+
+.dashboard-bg {
+  min-height: 100vh;
+  background-color: var(--parchment, #F3E3C3);
+  background-image:
+    radial-gradient(ellipse at center, rgba(255, 244, 214, 0.35) 0%, rgba(120, 70, 20, 0.18) 100%),
+    url('/images/parchment.webp');
+  background-size: cover, 140%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .dashboard-bg {
+    background-attachment: scroll;
+    background-size: cover, 160%;
+  }
+}
+
+/* Aged Parchment Vignette Overlay */
+.dashboard-bg::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(60, 30, 10, 0.25) 100%);
+  z-index: 1;
+}
+
+/* Vintage Ink Stamp Badges */
+.ink-stamp {
+  display: inline-flex;
+  align-items: center;
+  transform: rotate(-2deg);
+  border: 1.5px dashed var(--stamp-color, #B8430A);
+  color: var(--stamp-color, #B8430A);
+  background-color: var(--stamp-bg, rgba(184, 67, 10, 0.08));
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 800;
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1px rgba(184, 67, 10, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ink-stamp:hover {
+  transform: rotate(0deg) scale(1.04);
+}
+
+.ink-stamp-active {
+  --stamp-color: #5B7A2F;
+  --stamp-bg: rgba(91, 122, 47, 0.1);
+}
+
+.ink-stamp-confirmed {
+  --stamp-color: #B8430A;
+  --stamp-bg: rgba(184, 67, 10, 0.08);
 }
