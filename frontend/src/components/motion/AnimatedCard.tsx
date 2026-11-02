@@ -21,7 +21,7 @@ export default function AnimatedCard({
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
-  // Mouse position values for 3D tilt (reduced to 5-6 deg for classic archival feel)
+  // Mouse position values for 3D tilt
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -29,9 +29,9 @@ export default function AnimatedCard({
   const mouseXSpring = useSpring(x, { stiffness: 220, damping: 20 });
   const mouseYSpring = useSpring(y, { stiffness: 220, damping: 20 });
 
-  // Rotate between -6deg and 6deg
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ['6deg', '-6deg']);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-6deg', '6deg']);
+  // Rotate between -7deg and 7deg
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ['7deg', '-7deg']);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-7deg', '7deg']);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!enableTilt || !cardRef.current) return;
@@ -59,14 +59,14 @@ export default function AnimatedCard({
     y.set(0);
   };
 
-  // Step 3: Parchment Card Variant Styling
+  // NGO Foundation Card Variant Styling
   const variantStyles = {
     white:
-      'bg-[#FFFAEE]/85 backdrop-blur-[6px] text-[#4A2410] border border-[rgba(139,94,52,0.28)] [outline:1px_solid_rgba(139,94,52,0.15)] [outline-offset:-6px] shadow-[0_2px_4px_rgba(90,50,15,0.12),0_12px_28px_rgba(90,50,15,0.18)] hover:border-[rgba(232,89,12,0.5)] hover:shadow-[0_22px_44px_rgba(90,50,15,0.28)]',
+      'bg-white text-[#7A2E0E] border border-[rgba(255,107,26,0.14)] shadow-[0_1px_2px_rgba(122,46,14,.06),0_8px_24px_rgba(255,107,26,.10)] hover:border-[#FF6B1A] hover:shadow-[0_24px_48px_rgba(255,107,26,.25)]',
     orange:
-      'bg-gradient-to-br from-[#E8590C] to-[#B8430A] text-[#FFF8EB] border border-[#FF9A4D]/35 [outline:1px_solid_rgba(255,248,235,0.22)] [outline-offset:-6px] shadow-[0_4px_16px_rgba(90,50,15,0.22),0_14px_32px_rgba(184,67,10,0.3)] hover:shadow-[0_22px_44px_rgba(184,67,10,0.45)]',
+      'bg-gradient-to-br from-[#FF6B1A] to-[#E8590C] text-white border border-white/20 shadow-[0_4px_24px_rgba(232,89,12,.35)] hover:shadow-[0_28px_56px_rgba(232,89,12,.5)]',
     gradient:
-      'bg-gradient-to-br from-[#E8590C] via-[#D14F0B] to-[#B8430A] text-[#FFF8EB] border border-[#FF9A4D]/40 [outline:1px_solid_rgba(255,248,235,0.25)] [outline-offset:-6px] shadow-[0_6px_20px_rgba(90,50,15,0.25),0_16px_36px_rgba(184,67,10,0.35)] hover:shadow-[0_24px_48px_rgba(184,67,10,0.48)]',
+      'bg-gradient-to-br from-[#FF6B1A] via-[#FF8C38] to-[#FF9A4D] text-white border border-white/30 shadow-[0_6px_28px_rgba(255,107,26,.32)] hover:shadow-[0_28px_56px_rgba(255,107,26,.45)]',
   };
 
   return (
@@ -82,15 +82,15 @@ export default function AnimatedCard({
         transformStyle: 'preserve-3d',
       }}
       whileHover={{
-        y: -6,
-        scale: 1.015,
+        y: -8,
+        scale: 1.02,
         transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] },
       }}
-      className={`group relative rounded-[16px] overflow-hidden transition-all duration-[280ms] ${variantStyles[variant]} ${className}`}
+      className={`group relative rounded-[28px] overflow-hidden transition-all duration-[280ms] ${variantStyles[variant]} ${className}`}
     >
       {/* Shine Sweep Overlay */}
       <motion.div
-        className="pointer-events-none absolute -inset-full h-[300%] w-[200%] -rotate-45 bg-gradient-to-r from-transparent via-white/20 to-transparent z-20"
+        className="pointer-events-none absolute -inset-full h-[300%] w-[200%] -rotate-45 bg-gradient-to-r from-transparent via-white/25 to-transparent z-20"
         animate={{
           x: isHovered ? '150%' : '-150%',
         }}

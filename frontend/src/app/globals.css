@@ -1,51 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&family=Noto+Serif+Khitan+Small+Script&family=Redaction+10:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Poppins:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  /* Vintage Parchment Design Tokens */
+  /* Universal NGO Foundation Palette */
+  --bg-primary: #FFF4E8;
+  --bg-card: #FFFFFF;
+  --bg-peach: #FFE3CC;
+  --primary-orange: #FF6B1A;
+  --deep-orange: #E8590C;
+  --text-heading: #7A2E0E;
+  --text-body: #6B5B53;
+  --border-card: rgba(255, 107, 26, 0.12);
+  --border-hover: rgba(255, 107, 26, 0.50);
+
+  /* Parchment Variant Tokens (Archival Fallbacks) */
   --parchment: #F3E3C3;
-  --parchment-light: #FFF8EB;
-  --parchment-card: rgba(255, 250, 238, 0.82);
+  --parchment-card: rgba(255, 250, 238, 0.85);
   --ink: #4A2410;
-  --ink-body: #5C4033;
-  --ink-muted: #7C5A48;
   --sepia: rgba(139, 94, 52, 0.28);
-  --sepia-dark: #8B5E34;
-  --burnt-orange: #E8590C;
-  --burnt-orange-dark: #B8430A;
-  --burnt-orange-light: #FF6B1A;
-  --olive-success: #5B7A2F;
-  /* Core Theme Design Tokens */
-  --background: #FFF3E8;
-  --surface: #FFFFFF;
-  --surface-secondary: #FFEDD5;
-
-  /* Typography Contrast Hierarchy (WCAG 2.2 AA Compliant) */
-  --text-primary: #7C2D12;    /* 8.9:1 contrast ratio against #FFF3E8 (High emphasis titles/headings) */
-  --text-body: #431407;       /* 12.8:1 contrast ratio against #FFF3E8 & 15.4:1 against #FFFFFF (Main body & inputs) */
-  --text-secondary: #9A3412;  /* 6.8:1 contrast ratio against #FFF3E8 (Subtitles, meta, active tags) */
-  --text-muted: #6B6560;      /* 4.6:1 contrast ratio against #FFF3E8 (Exceeds 4.5:1 WCAG AA minimum for small text) */
-
-  /* Interactive Accents */
-  --primary: #F97316;
-  --primary-hover: #EA580C;
-  --border: #FED7AA;
 }
 
 body {
-  background-color: var(--background);
+  background-color: var(--bg-primary);
   color: var(--text-body);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   min-height: 100vh;
-  font-family: 'Redaction 10', 'Noto Serif Khitan Small Script', serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 
-input, textarea, select, button {
-  font-family: inherit;
+h1, h2, h3, h4, .font-heading {
+  font-family: 'Plus Jakarta Sans', 'Poppins', sans-serif;
+  color: var(--text-heading);
 }
 
 /* Custom warm peach & terracotta scrollbars */
@@ -54,88 +43,21 @@ input, textarea, select, button {
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
+  background: #FED7AA;
   border-radius: 9999px;
-  border: 2px solid var(--background);
+  border: 2px solid var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--primary);
+  background: var(--primary-orange);
 }
 
 /* Accessible Global Focus Indicator */
 :focus-visible {
-  outline: 2px solid var(--primary);
+  outline: 2px solid var(--primary-orange);
   outline-offset: 2px;
-}
-
-/* Reduced Motion Support */
-@media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* Reusable Interactive Micro-Interactions */
-.interactive-card {
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.2s ease-in-out,
-              background-color 0.2s ease-in-out;
-}
-.interactive-card:hover {
-  transform: translateY(-2.5px);
-  border-color: rgba(249, 115, 22, 0.6);
-  box-shadow: 0 12px 24px -4px rgba(249, 115, 22, 0.12),
-              0 6px 12px -3px rgba(249, 115, 22, 0.06);
-}
-
-.interactive-btn {
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
-              background-color 0.15s ease-in-out,
-              color 0.15s ease-in-out;
-  cursor: pointer;
-}
-.interactive-btn:hover:not(:disabled) {
-  transform: scale(1.02);
-  box-shadow: 0 10px 20px -5px rgba(249, 115, 22, 0.32);
-}
-.interactive-btn:active:not(:disabled) {
-  transform: scale(0.98);
-}
-.interactive-btn:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
-  box-shadow: none !important;
-  transform: none !important;
-}
-
-.interactive-badge {
-  transition: transform 0.18s ease-in-out,
-              background-color 0.18s ease-in-out,
-              border-color 0.18s ease-in-out,
-              color 0.18s ease-in-out;
-}
-.interactive-badge:hover {
-  transform: scale(1.05);
-  background-color: var(--border);
-  border-color: var(--primary);
-  color: var(--text-primary);
-}
-
-/* Link hover with subtle underline animation */
-.hover-link {
-  position: relative;
-  transition: color 0.15s ease-in-out;
-}
-.hover-link:hover {
-  color: var(--primary);
 }
 
 /* Form input focus & hover transitions */
@@ -147,85 +69,53 @@ select {
 input:not([type="checkbox"]):not([type="radio"]):hover:not(:disabled):not(:focus),
 textarea:hover:not(:disabled):not(:focus),
 select:hover:not(:disabled):not(:focus) {
-  border-color: rgba(249, 115, 22, 0.6);
-  background-color: #FFFFFF;
+  border-color: rgba(255, 107, 26, 0.4);
 }
 input:not([type="checkbox"]):not([type="radio"]):focus,
 textarea:focus,
 select:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
+  border-color: var(--primary-orange);
+  box-shadow: 0 0 0 3px rgba(255, 107, 26, 0.2);
   outline: none;
 }
 
-/* Typography Gradient Utilities */
-.theme-text-gradient {
-  background: linear-gradient(135deg, #7C2D12 0%, #9A3412 50%, #F97316 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-
-/* ==========================================================================
-   VINTAGE PARCHMENT DASHBOARD STYLES & UTILITIES
-   ========================================================================== */
-
-.dashboard-bg {
-  min-height: 100vh;
-  background-color: var(--parchment, #F3E3C3);
-  background-image:
-    radial-gradient(ellipse at center, rgba(255, 244, 214, 0.35) 0%, rgba(120, 70, 20, 0.18) 100%),
-    url('/images/parchment.webp');
-  background-size: cover, 140%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+/* Underline grow link hover effect */
+.hover-underline-grow {
   position: relative;
+  display: inline-block;
 }
-
-@media (max-width: 768px) {
-  .dashboard-bg {
-    background-attachment: scroll;
-    background-size: cover, 160%;
-  }
-}
-
-/* Aged Parchment Vignette Overlay */
-.dashboard-bg::before {
+.hover-underline-grow::after {
   content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(ellipse at center, transparent 55%, rgba(60, 30, 10, 0.25) 100%);
-  z-index: 1;
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--primary-orange);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+.hover-underline-grow:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
-/* Vintage Ink Stamp Badges */
-.ink-stamp {
-  display: inline-flex;
-  align-items: center;
-  transform: rotate(-2deg);
-  border: 1.5px dashed var(--stamp-color, #B8430A);
-  color: var(--stamp-color, #B8430A);
-  background-color: var(--stamp-bg, rgba(184, 67, 10, 0.08));
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-weight: 800;
-  border-radius: 6px;
-  box-shadow: inset 0 0 0 1px rgba(184, 67, 10, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+/* Shimmer animation for primary CTAs */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+.animate-shimmer {
+  animation: shimmer 2.5s infinite;
 }
 
-.ink-stamp:hover {
-  transform: rotate(0deg) scale(1.04);
-}
-
-.ink-stamp-active {
-  --stamp-color: #5B7A2F;
-  --stamp-bg: rgba(91, 122, 47, 0.1);
-}
-
-.ink-stamp-confirmed {
-  --stamp-color: #B8430A;
-  --stamp-bg: rgba(184, 67, 10, 0.08);
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
