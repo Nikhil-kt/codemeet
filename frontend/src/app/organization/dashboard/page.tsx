@@ -689,7 +689,7 @@ export default function OrganizationDashboard() {
                           </button>
                         </div>
                         <p className="text-[11px] text-[#6B5B53] font-medium">
-                          Announce this code or display it on site. Volunteers enter it on their dashboard to instantly record attendance and unlock their Gemini AI Certificate!
+                          Announce this static secret code or display it on site. All volunteers attending this event use this exact same code to verify attendance and generate their official Gemini AI Certificate!
                         </p>
                       </div>
 
@@ -705,7 +705,7 @@ export default function OrganizationDashboard() {
                           className="w-48 h-48 rounded-2xl shadow-md border border-[#FF6B1A]/20 bg-white p-3"
                         />
                         <div className="text-[10px] text-[#6B5B53] pt-1">
-                          Token valid until: {new Date(qrData.expiresAt || qrData.data?.expiresAt).toLocaleTimeString()}
+                          Static attendance code • Permanent for this event
                         </div>
                       </div>
                     </div>

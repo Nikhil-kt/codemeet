@@ -6,6 +6,7 @@ import { config } from '../config';
 import { EventStatus, EventCategory, DepositStatus } from '../types';
 import { GeminiService } from '../services/geminiService';
 import { FirestoreSync } from '../db/firestoreSync';
+import { QRService } from '../services/qrService';
 
 export class EventController {
   public static async createEvent(req: AuthenticatedRequest, res: Response): Promise<void> {
@@ -49,6 +50,7 @@ export class EventController {
       }
 
       const eventId = uuidv4();
+      const secretCode = req.body.secret_code?.trim().toUpperCase() || QRService.generateStaticCodeForId(eventId);
 
       const newEvent = {
         id: eventId,
@@ -68,6 +70,9 @@ export class EventController {
         max_capacity: parseInt(max_capacity || '15', 10),
         confirmed_count: 0,
         status: 'UNDER_REVIEW' as EventStatus,
+        secret_code: secretCode,
+        check_in_code: secretCode,
+        active_check_in_code: secretCode,
         contact_person,
         contact_phone,
         safety_instructions: safety_instructions || 'Follow organizers safety briefing on site.',
@@ -175,8 +180,11 @@ export class EventController {
 
     const enriched = filtered.map(e => {
       const org = db.organizations.find(o => o.id === e.organization_id);
+      const secretCode = QRService.getEventSecretCode(e);
       return {
         ...e,
+        secret_code: secretCode,
+        check_in_code: secretCode,
         organization_name: org?.name || 'Community Organization',
         organization_trust_score: org?.trust_score || 50.0
       };
@@ -195,6 +203,7 @@ export class EventController {
     }
 
     const org = db.organizations.find(o => o.id === event.organization_id);
+    const secretCode = QRService.getEventSecretCode(event);
     const requirements = db.event_requirements
       .filter(r => r.event_id === event.id)
       .map(r => {
@@ -213,6 +222,8 @@ export class EventController {
       success: true,
       event: {
         ...event,
+        secret_code: secretCode,
+        check_in_code: secretCode,
         organization: org,
         requirements,
         tasks,

@@ -160,7 +160,7 @@ export default function VolunteerDashboard() {
         setCheckInModalOpen(false);
       }, 2500);
     } else {
-      setCheckInStatus({ success: false, msg: res.error || 'Invalid or expired check-in code / token.' });
+      setCheckInStatus({ success: false, msg: res.message || (res.data as any)?.message || res.error || 'Invalid check-in code. Please verify the code announced by your event organizer.' });
     }
   };
 
@@ -990,7 +990,7 @@ export default function VolunteerDashboard() {
                   </div>
 
                   <p className="font-vintage-body text-xs text-[#5C4033] leading-relaxed">
-                    Enter the <strong className="text-[#4A2410]">Special Check-In Code</strong> announced by the event organizer (e.g. <span className="font-mono bg-[#F5E6CE] px-1.5 py-0.5 rounded text-[#4A2410] font-bold">IMP-4829</span>) or paste the scanned QR token to confirm your attendance and instantly generate your Gemini AI certificate!
+                    Enter the <strong className="text-[#4A2410]">Special Check-In Code</strong> announced by the event organizer (e.g. <span className="font-mono bg-[#F5E6CE] px-1.5 py-0.5 rounded text-[#4A2410] font-bold">IMP-2026</span>) or paste the scanned QR token to confirm your attendance and instantly generate your Gemini AI certificate!
                   </p>
 
                   {checkInStatus && (
@@ -1036,7 +1036,7 @@ export default function VolunteerDashboard() {
                       <input
                         type="text"
                         required
-                        placeholder="e.g. IMP-4829 or paste token"
+                        placeholder="e.g. IMP-2026 or paste token"
                         value={tokenInput}
                         onChange={e => setTokenInput(e.target.value)}
                         className="w-full px-3.5 py-2.5 text-sm font-mono tracking-wider font-semibold rounded-lg border border-[rgba(139,94,52,0.3)] focus:outline-none focus:ring-2 focus:ring-[#E8590C] uppercase placeholder:normal-case placeholder:font-normal placeholder:tracking-normal placeholder:text-[#7C5A48] bg-[#FFF8EB] text-[#4A2410]"
